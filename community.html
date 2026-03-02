@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Board | Rhythmic Ribbon of Texas</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --rrt-gold: #d4af37;
+      --rrt-soft-gold: #f1d28a;
+      --rrt-cream: #f5f0e6;
+      --rrt-muted: #888;
+      --rrt-muted-light: #a0a0a0;
+      --rrt-border: rgba(212, 175, 55, 0.2);
+    }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #05070a;
+      color: var(--rrt-cream);
+      margin: 0;
+      min-height: 100vh;
+    }
+    .header {
+      background: rgba(5, 7, 13, 0.95);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--rrt-border);
+    }
+    .header img {
+      height: 40px;
+      border-radius: 8px;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .user-info {
+      color: var(--rrt-muted-light);
+      font-size: 0.9rem;
+    }
+    .logout {
+      color: var(--rrt-gold);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+    .board-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .board-header h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--rrt-gold);
+      margin: 0;
+    }
+    .program-filter {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .program-filter button {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--rrt-border);
+      color: var(--rrt-muted-light);
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .program-filter button.active,
+    .program-filter button:hover {
+      background: var(--rrt-gold);
+      color: #120a02;
+      border-color: var(--rrt-gold);
+    }
+    .post-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--rrt-border);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .post-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rrt-gold), #020308);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--rrt-cream);
+    }
+    .post-author-info h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--rrt-cream);
+    }
+    .post-author-info span {
+      font-size: 0.8rem;
+      color: var(--rrt-muted-light);
+    }
+    .post-program {
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--rrt-soft-gold);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+    }
+    .post-content {
+      color: var(--rrt-muted-light);
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .post-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .post-actions {
+      display: flex;
+      gap: 20px;
+      padding-top: 15px;
+      border-top: 1px solid var(--rrt-border);
+    }
+    .post-action {
+      color: var(--rrt-muted-light);
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .post-action:hover {
+      color: var(--rrt-gold);
+    }
+    .new-post-btn {
+      background: linear-gradient(135deg, #f1d28a, #d4af37);
+      color: #120a02;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .new-post-btn:hover {
+      transform: translateY(-2px);
+    }
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--rrt-muted-light);
+    }
+    .empty-state i {
+      font-size: 3rem;
+      color: var(--rrt-gold);
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+    @media (max-width: 600px) {
+      .board-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="/"><img src="assets/logo.png" alt="RRT"></a>
+    <div class="header-right">
+      <span class="user-info">Welcome, Parent!</span>
+      <a href="/community.html" class="logout">Logout</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="board-header">
+      <h1>Community Board</h1>
+      <button class="new-post-btn" onclick="document.getElementById('newPostModal').style.display='flex'">
+        <i class="fas fa-plus"></i> New Post
+      </button>
+    </div>
+
+    <div class="program-filter">
+      <button class="active" onclick="filterPosts('all')">All Programs</button>
+      <button onclick="filterPosts('preschool')">Preschool</button>
+      <button onclick="filterPosts('beginners')">Beginners</button>
+      <button onclick="filterPosts('competitive')">Competitive</button>
+      <button onclick="filterPosts('flexibility')">Flexibility</button>
+      <button onclick="filterPosts('ballet')">Ballet</button>
+    </div>
+
+    <div id="posts" style="margin-top: 30px;">
+      <!-- Sample Posts -->
+      <div class="post-card" data-program="beginners">
+        <div class="post-header">
+          <div class="post-author">
+            <div class="post-avatar">SM</div>
+            <div class="post-author-info">
+              <h3>Sarah M.</h3>
+              <span>Beginners • 2 hours ago</span>
+            </div>
+          </div>
+          <span class="post-program">Beginners</span>
+        </div>
+        <p class="post-content">So proud of my daughter for mastering the basic ball routine today! She's been practicing all week and it finally clicked. Thank you Coach Ella for the amazing patience! 🏆</p>
+        <div class="post-actions">
+          <span class="post-action"><i class="far fa-heart"></i> 12</span>
+          <span class="post-action"><i class="far fa-comment"></i> 3</span>
+        </div>
+      </div>
+
+      <div class="post-card" data-program="preschool">
+        <div class="post-header">
+          <div class="post-author">
+            <div class="post-avatar">JK</div>
+            <div class="post-author-info">
+              <h3>Jessica K.</h3>
+              <span>Preschool • 5 hours ago</span>
+            </div>
+          </div>
+          <span class="post-program">Preschool</span>
+        </div>
+        <p class="post-content">Does anyone have recommendations for competition makeup for the recital? First time mom here! 😅</p>
+        <div class="post-actions">
+          <span class="post-action"><i class="far fa-heart"></i> 8</span>
+          <span class="post-action"><i class="far fa-comment"></i> 6</span>
+        </div>
+      </div>
+
+      <div class="post-card" data-program="competitive">
+        <div class="post-header">
+          <div class="post-author">
+            <div class="post-avatar">AL</div>
+            <div class="post-author-info">
+              <h3>Amanda L.</h3>
+              <span>Competitive • Yesterday</span>
+            </div>
+          </div>
+          <span class="post-program">Competitive</span>
+        </div>
+        <p class="post-content">Great practice today team! Those new ribbon routines are looking incredible. Keep up the hard work everyone - regionals are coming up! 💪</p>
+        <div class="post-actions">
+          <span class="post-action"><i class="far fa-heart"></i> 24</span>
+          <span class="post-action"><i class="far fa-comment"></i> 5</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function filterPosts(program) {
+      document.querySelectorAll('.program-filter button').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      document.querySelectorAll('.post-card').forEach(post => {
+        if (program === 'all' || post.dataset.program === program) {
+          post.style.display = 'block';
+        } else {
+          post.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
