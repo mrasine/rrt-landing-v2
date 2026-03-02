@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+  <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: url('assets/gallery/Coach Ella with class.jpg') center/cover no-repeat; opacity: 0.15;"></div>
   <a href="#main" class="skip-link">Skip to content</a>
 
   <header class="site-header">
@@ -49,10 +50,21 @@
         <!-- Contact Info -->
         <div>
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 20px; padding: 40px; margin-bottom: 30px;">
-            <h2 style="color: var(--rrt-gold); margin-bottom: 25px;">Studio Location</h2>
-            <address style="font-style: normal;">
-              <p style="font-size: 1.2rem; color: var(--rrt-cream); margin-bottom: 10px;"><strong>4260 Eldorado Parkway</strong></p>
+            <h2 style="color: var(--rrt-gold); margin-bottom: 25px;">Studio Locations</h2>
+            
+            <h3 style="color: var(--rrt-soft-gold); margin-bottom: 15px;">McKinney</h3>
+            <address style="font-style: normal; margin-bottom: 25px;">
+              <p style="font-size: 1.1rem; color: var(--rrt-cream); margin-bottom: 8px;"><strong>4260 Eldorado Pkwy, 2nd Floor</strong></p>
               <p style="color: var(--rrt-muted-light);">McKinney, TX 75070</p>
+              <p style="color: var(--rrt-muted-light); font-size: 0.9rem;">At Zenith Gymnastics</p>
+            </address>
+            
+            <h3 style="color: var(--rrt-soft-gold); margin-bottom: 15px;">Frisco</h3>
+            <address style="font-style: normal;">
+              <p style="font-size: 1.1rem; color: var(--rrt-cream); margin-bottom: 8px;"><strong>7255 Meadow Hill Dr, Field 5</strong></p>
+              <p style="color: var(--rrt-muted-light);">Frisco, TX 75034</p>
+              <p style="color: var(--rrt-muted-light); font-size: 0.9rem;">At Performance Indoor Training</p>
+              <p style="color: var(--rrt-muted-light); margin-top: 10px;"><strong>Hours:</strong> Sat 3:00 - 4:30 PM</p>
             </address>
             
             <h3 style="color: var(--rrt-gold); margin-top: 30px; margin-bottom: 15px;">Contact</h3>
@@ -83,16 +95,34 @@
 
         <!-- Map & Form -->
         <div>
-          <div style="border-radius: 20px; overflow: hidden; margin-bottom: 30px; height: 250px;">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.5!2d-96.69!3d33.19!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c4f6e2f3e3e3e%3A0!2s4260%20Eldorado%20Pkwy%2C%20McKinney%2C%20TX%2075070!5e0!3m2!1sen!2sus!4v1234567890" 
-              width="100%" 
-              height="100%" 
-              style="border:0;" 
-              allowfullscreen="" 
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+          <div style="margin-bottom: 20px;">
+            <h3 style="color: var(--rrt-gold); margin-bottom: 15px;">McKinney</h3>
+            <div style="border-radius: 20px; overflow: hidden; height: 200px;">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.5!2d-96.69!3d33.19!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c4f6e2f3e3e3e%3A0!2s4260%20Eldorado%20Pkwy%2C%20McKinney%2C%20TX%2075070!5e0!3m2!1sen!2sus!4v1234567890" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+          
+          <div>
+            <h3 style="color: var(--rrt-gold); margin-bottom: 15px;">Frisco</h3>
+            <div style="border-radius: 20px; overflow: hidden; height: 200px;">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3357.5!2d-96.84!3d33.11!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3e3e3e3e3e3e%3A0!2s7255%20Meadow%20Hill%20Dr%2C%20Frisco%2C%20TX%2075034!5e0!3m2!1sen!2sus!4v1234567890" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
           </div>
           
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 20px; padding: 30px;">
@@ -119,6 +149,10 @@
   </main>
 
   <footer class="site-footer">
+    <div class="mobile-footer-spacer"></div>
+    <style>@media (max-width: 768px) { .mobile-footer-spacer { height: 80px; } }</style>
+    <div class="mobile-footer-spacer"></div>
+    <style>@media (max-width: 768px) { .mobile-footer-spacer { height: 80px; } }</style>
     <div class="footer-inner">
       <div class="footer-bottom">
         <p>&copy; 2026 Rhythmic Ribbon of Texas. All rights reserved.</p>

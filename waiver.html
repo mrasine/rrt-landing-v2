@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
   <title>Waiver | Rhythmic Ribbon of Texas</title>
   <meta name="description" content="Complete the required waiver and release form for Rhythmic Ribbon of Texas. Online submission available.">
   <meta property="og:title" content="Waiver | Rhythmic Ribbon of Texas">
@@ -30,6 +32,7 @@
   </style>
 </head>
 <body>
+  <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: url('assets/gallery/Coach Ella with class.jpg') center/cover no-repeat; opacity: 0.15;"></div>
   <a href="#main" class="skip-link">Skip to content</a>
   
   <header class="site-header">
@@ -43,12 +46,13 @@
       </button>
       <nav class="header-nav" id="main-nav">
         <a href="/" class="nav-link">Home</a>
-        <a href="/about.html" class="nav-link">About RG</a>
+        <a href="/about.html" class="nav-link">About</a>
         <a href="/programs.html" class="nav-link">Programs</a>
         <a href="/registration.html" class="nav-link">Registration</a>
         <a href="/gallery.html" class="nav-link">Gallery</a>
         <a href="/coaches.html" class="nav-link">Coaches</a>
         <a href="/contact.html" class="nav-link">Contact</a>
+        <a href="tel:+17186892469" class="btn btn-primary mobile-cta" style="font-size: 0.85rem;">(718) 689-2469</a>
       </nav>
       <a href="/registration.html" class="btn btn-primary shine">Book Free Trial</a>
     </div>
@@ -168,7 +172,13 @@
   </main>
 
   <footer class="site-footer">
+    <div class="mobile-footer-spacer"></div>
+    <style>@media (max-width: 768px) { .mobile-footer-spacer { height: 80px; } }</style>
     <div class="footer-inner">
+      <div style="text-align: center; margin-bottom: 20px;">
+        <a href="https://instagram.com/rhythmicribbonoftexas" target="_blank" style="color: var(--rrt-gold); font-size: 1.5rem; margin: 0 15px;"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/RhythmicRibbon" target="_blank" style="color: var(--rrt-gold); font-size: 1.5rem; margin: 0 15px;"><i class="fab fa-facebook-f"></i></a>
+      </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Rhythmic Ribbon of Texas. All rights reserved.</p>
         <div class="footer-legal">
@@ -178,6 +188,17 @@
       </div>
     </div>
   </footer>
+  
+  <!-- Mobile Sticky CTA -->
+  <div class="mobile-sticky-cta">
+    <a href="/registration.html" class="btn btn-primary shine" style="width:100%;display:block;padding:14px 20px;text-align:center;text-decoration:none;">Book Free Trial</a>
+  </div>
+  <style>
+    .mobile-sticky-cta{display:none;}
+    @media(max-width:768px){
+      .mobile-sticky-cta{display:block;position:fixed;bottom:0;left:0;right:0;background:rgba(5,7,13,0.95);padding:12px 15px;z-index:999;border-top:1px solid var(--rrt-border);}
+    }
+  </style>
 
   <script>
     document.getElementById('waiverForm').addEventListener('submit', async (e) => {
