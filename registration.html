@@ -86,7 +86,7 @@
             </div>
             <div>
               <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Date of Birth *</label>
-              <input type="text" name="childDob" placeholder="MM/DD/YYYY" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+              <input type="date" name="childDob" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
             </div>
             <div>
               <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Child's Age *</label>
@@ -111,12 +111,13 @@
               <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Interested Program *</label>
               <select name="program" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
                 <option value="">Select program</option>
-                <option value="beginners">Beginners (Ages 6+)</option>
                 <option value="preschool">Preschool (Ages 3-5)</option>
-                <option value="competitive">Competitive Team</option>
-                <option value="flexibility">Multi-Sport Flexibility</option>
-                <option value="ballet">Ballet</option>
+                <option value="beginners">Beginners (Ages 6+)</option>
+                <option value="competitive" disabled>Competitive Team (Call to inquire)</option>
+                <option value="flexibility" disabled>Multi-Sport Flexibility (Call to inquire)</option>
+                <option value="ballet" disabled>Ballet (Call to inquire)</option>
               </select>
+              <p style="font-size: 0.8rem; color: var(--rrt-muted-light); margin-top: 8px;">For Competitive, Flexibility, or Ballet programs, please <a href="/contact.html" style="color: var(--rrt-gold);">call or send us a message</a>.</p>
             </div>
             <div>
               <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Experience Level</label>
@@ -141,6 +142,7 @@
     <style>@media (max-width: 768px) { .mobile-footer-spacer { height: 80px; } }</style>
     <div class="footer-inner">
       <div style="text-align: center; margin-bottom: 20px;">
+        <p style="color: var(--rrt-muted-light); margin-bottom: 10px;">Follow Us</p>
         <a href="https://instagram.com/rhythmicribbonoftexas" target="_blank" style="color: var(--rrt-gold); font-size: 1.5rem; margin: 0 15px;"><i class="fab fa-instagram"></i></a>
         <a href="https://facebook.com/RhythmicRibbon" target="_blank" style="color: var(--rrt-gold); font-size: 1.5rem; margin: 0 15px;"><i class="fab fa-facebook-f"></i></a>
       </div>
@@ -180,42 +182,18 @@
       e.target.value = val;
     });
     
-    // Auto-format date (MM/DD/YYYY - 4 digit year required)
-    form.childDob.addEventListener('input', (e) => {
-      let val = e.target.value.replace(/\D/g, '').slice(0, 8);
-      
-      // Format as MM/DD/YYYY - enforce 4 digit year
-      if (val.length > 4) {
-        // Pad year to 4 digits
-        const month = val.slice(0,2);
-        const day = val.slice(2,4);
-        const year = val.slice(4).padStart(4, '0');
-        val = month + '/' + day + '/' + year;
-      } else if (val.length > 2) {
-        val = val.slice(0,2) + '/' + val.slice(2);
-      }
-      e.target.value = val;
-      
-      // Validate and auto-populate age
-      if (val.length === 10) {
-        const parts = val.split('/');
-        const month = parseInt(parts[0]);
-        const day = parseInt(parts[1]);
-        const year = parseInt(parts[2]);
-        
-        if (month >= 1 && month <= 12 && day >= 1 && day <= 31 && year >= 2000 && year <= new Date().getFullYear()) {
-          const dob = new Date(year, month - 1, day);
-          if (dob.getMonth() === month - 1 && dob.getDate() === day) {
-            const today = new Date();
-            let age = today.getFullYear() - dob.getFullYear();
-            const m = today.getMonth() - dob.getMonth();
-            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-              age--;
-            }
-            if (age >= 0 && age <= 18) {
-              form.childAge.value = age >= 11 ? '11' : String(age);
-            }
-          }
+    // Auto-populate age from date picker
+    form.childDob.addEventListener('change', (e) => {
+      if (e.target.value) {
+        const dob = new Date(e.target.value);
+        const today = new Date();
+        let age = today.getFullYear() - dob.getFullYear();
+        const m = today.getMonth() - dob.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+          age--;
+        }
+        if (age >= 0 && age <= 18) {
+          form.childAge.value = age >= 11 ? '11' : String(age);
         }
       }
     });
@@ -256,16 +234,9 @@
     }
     
     function validateDate(date) {
-      const parts = date.split('/');
-      if (parts.length !== 3) return false;
-      const month = parseInt(parts[0]);
-      const day = parseInt(parts[1]);
-      const year = parseInt(parts[2]);
-      if (month < 1 || month > 12) return false;
-      if (day < 1 || day > 31) return false;
-      if (year < 2000 || year > new Date().getFullYear()) return false;
-      const d = new Date(year, month - 1, day);
-      return d.getMonth() === month - 1 && d.getDate() === day;
+      // Date input returns YYYY-MM-DD format
+      const d = new Date(date);
+      return !isNaN(d.getTime()) && d.getFullYear() >= 2000 && d.getFullYear() <= new Date().getFullYear();
     }
     
     form.addEventListener('submit', (e) => {
