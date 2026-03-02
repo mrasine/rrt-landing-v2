@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Clubs - two small clubs -->
+  <!-- Club 1 -->
+  <ellipse cx="20" cy="20" rx="6" ry="8"/>
+  <line x1="20" y1="28" x2="20" y2="44"/>
+  <line x1="14" y1="44" x2="26" y2="44"/>
+  
+  <!-- Club 2 -->
+  <ellipse cx="44" cy="20" rx="6" ry="8"/>
+  <line x1="44" y1="28" x2="44" y2="44"/>
+  <line x1="38" y1="44" x2="50" y2="44"/>
+</svg>

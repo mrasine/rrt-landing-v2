@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2">
+  <!-- Rope - wavy line -->
+  <path d="M8 32 Q16 20, 24 32 Q32 44, 40 32 Q48 20, 56 32" stroke-linecap="round"/>
+  <path d="M12 28 Q20 18, 28 28 Q36 38, 44 28 Q52 18, 56 24" stroke-linecap="round"/>
+</svg>

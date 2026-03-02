@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round">
+  <!-- Ribbon - flowing wavy line with end -->
+  <!-- Handle -->
+  <line x1="8" y1="32" x2="16" y2="32"/>
+  <circle cx="12" cy="32" r="3" fill="#d4af37"/>
+  
+  <!-- Wavy ribbon -->
+  <path d="M16 32 Q24 20, 32 32 Q40 44, 48 32 Q56 20, 60 28" stroke-linecap="round"/>
+  
+  <!-- Ribbon end -->
+  <path d="M58 24 L64 28 L60 32" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M58 32 L64 28" stroke-linecap="round"/>
+</svg>

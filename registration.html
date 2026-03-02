@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <title>Registration | Rhythmic Ribbon of Texas</title>
+  <meta name="description" content="Register for a free trial rhythmic gymnastics class at Rhythmic Ribbon of Texas. Ages 3+. McKinney and Frisco locations.">
+  <meta property="og:title" content="Registration | Rhythmic Ribbon of Texas">
+  <meta property="og:description" content="Register for a free trial rhythmic gymnastics class at Rhythmic Ribbon of Texas. Ages 3+.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .form-container { max-width: 700px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo-lockup">
+        <img src="assets/logo.png" alt="Rhythmic Ribbon of Texas Logo" style="width:48px;height:48px;border-radius:10px;">
+        <div><span class="brand-name">Rhythmic Ribbon</span><p class="brand-tagline">of Texas</p></div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="header-nav" id="main-nav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/about.html" class="nav-link">About RG</a>
+        <a href="/programs.html" class="nav-link">Programs</a>
+        <a href="/registration.html" class="nav-link active">Registration</a>
+        <a href="/gallery.html" class="nav-link">Gallery</a>
+        <a href="/coaches.html" class="nav-link">Coaches</a>
+        <a href="/contact.html" class="nav-link">Contact</a>
+      </nav>
+      <a href="/registration.html" class="btn btn-primary shine">Book Free Trial</a>
+    </div>
+  </header>
+
+  <main id="main" style="padding-top: 100px;">
+    <section class="container" style="padding: 60px 20px;">
+      <div class="form-container">
+        <h1 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 20px;">Register for Free Trial</h1>
+        <p class="lead" style="margin-bottom: 40px;">Try a free class before you commit. Fill out the form below and we'll contact you within 24 hours.</p>
+        
+        <form id="registration-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 20px; padding: 40px;">
+          <input type="hidden" name="_subject" value="New Free Trial Request - Rhythmic Ribbon">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <h3 style="color: var(--rrt-gold); margin-bottom: 25px;">Parent Information</h3>
+          
+          <div class="grid-form" style="margin-bottom: 30px;">
+            <div>
+              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Parent/Guardian Name *</label>
+              <input type="text" name="parentName" placeholder="First Last" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Email *</label>
+              <input type="email" name="email" placeholder="you@example.com" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Phone *</label>
+              <input type="tel" name="phone" placeholder="(469) 555-0123" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Address</label>
+              <input type="text" name="address" placeholder="123 Main St, McKinney, TX" style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+          </div>
+          
+          <h3 style="color: var(--rrt-gold); margin-bottom: 25px;">Student Information</h3>
+          
+          <div class="grid-form" style="margin-bottom: 30px;">
+            <div>
+              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Child's Name *</label>
+              <input type="text" name="childName" placeholder="First Last" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Date of Birth *</label>
+              <input type="text" name="childDob" placeholder="MM/DD/YYYY" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Child's Age *</label>
+              <select name="childAge" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+                <option value="">Select age</option>
+                <option value="3">3 years old</option>
+                <option value="4">4 years old</option>
+                <option value="5">5 years old</option>
+                <option value="6">6 years old</option>
+                <option value="7">7 years old</option>
+                <option value="8">8 years old</option>
+                <option value="9">9 years old</option>
+                <option value="10">10 years old</option>
+                <option value="11">11+ years old</option>
+              </select>
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Zip Code</label>
+              <input type="text" name="zipCode" placeholder="75070" style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Interested Program *</label>
+              <select name="program" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+                <option value="">Select program</option>
+                <option value="beginners">Beginners (Ages 6+)</option>
+                <option value="preschool">Preschool (Ages 3-5)</option>
+                <option value="competitive">Competitive Team</option>
+                <option value="flexibility">Multi-Sport Flexibility</option>
+                <option value="ballet">Ballet</option>
+              </select>
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Experience Level</label>
+              <select name="experience" style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+                <option value="none">No experience</option>
+                <option value="recreational">Recreational gymnastics</option>
+                <option value="dance">Dance experience</option>
+                <option value="competitive">Competitive gymnastics</option>
+              </select>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-full" style="margin-top: 10px;">Submit Registration Request</button>
+          <p style="text-align: center; color: var(--rrt-muted); font-size: 0.85rem; margin-top: 15px;">We'll contact you within 24 hours to schedule your free trial!</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rhythmic Ribbon of Texas. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('registration-form');
+    
+    // Auto-format phone
+    form.phone.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '');
+      if (val.length > 10) val = val.slice(0, 10);
+      if (val.length >= 6) {
+        val = '(' + val.slice(0,3) + ') ' + val.slice(3,6) + '-' + val.slice(6);
+      } else if (val.length >= 3) {
+        val = '(' + val.slice(0,3) + ') ' + val.slice(3);
+      }
+      e.target.value = val;
+    });
+    
+    // Auto-format date (MM/DD/YYYY - 4 digit year required)
+    form.childDob.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '').slice(0, 8);
+      
+      // Format as MM/DD/YYYY - enforce 4 digit year
+      if (val.length > 4) {
+        // Pad year to 4 digits
+        const month = val.slice(0,2);
+        const day = val.slice(2,4);
+        const year = val.slice(4).padStart(4, '0');
+        val = month + '/' + day + '/' + year;
+      } else if (val.length > 2) {
+        val = val.slice(0,2) + '/' + val.slice(2);
+      }
+      e.target.value = val;
+      
+      // Validate and auto-populate age
+      if (val.length === 10) {
+        const parts = val.split('/');
+        const month = parseInt(parts[0]);
+        const day = parseInt(parts[1]);
+        const year = parseInt(parts[2]);
+        
+        if (month >= 1 && month <= 12 && day >= 1 && day <= 31 && year >= 2000 && year <= new Date().getFullYear()) {
+          const dob = new Date(year, month - 1, day);
+          if (dob.getMonth() === month - 1 && dob.getDate() === day) {
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const m = today.getMonth() - dob.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+              age--;
+            }
+            if (age >= 0 && age <= 18) {
+              form.childAge.value = age >= 11 ? '11' : String(age);
+            }
+          }
+        }
+      }
+    });
+    
+    // Auto-format zip
+    form.zipCode && form.zipCode.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 5);
+    });
+    
+    function showError(input, message) {
+      const parent = input.parentElement;
+      let error = parent.querySelector('.error-msg');
+      if (!error) {
+        error = document.createElement('div');
+        error.className = 'error-msg';
+        error.style.color = '#f26c4f';
+        error.style.fontSize = '0.8rem';
+        error.style.marginTop = '5px';
+        parent.appendChild(error);
+      }
+      error.textContent = message;
+      input.style.borderColor = '#f26c4f';
+    }
+    
+    function clearError(input) {
+      const parent = input.parentElement;
+      const error = parent.querySelector('.error-msg');
+      if (error) error.remove();
+      input.style.borderColor = '';
+    }
+    
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+    
+    function validatePhone(phone) {
+      return /^[\d\s\-()+ ]{14,}$/.test(phone);
+    }
+    
+    function validateDate(date) {
+      const parts = date.split('/');
+      if (parts.length !== 3) return false;
+      const month = parseInt(parts[0]);
+      const day = parseInt(parts[1]);
+      const year = parseInt(parts[2]);
+      if (month < 1 || month > 12) return false;
+      if (day < 1 || day > 31) return false;
+      if (year < 2000 || year > new Date().getFullYear()) return false;
+      const d = new Date(year, month - 1, day);
+      return d.getMonth() === month - 1 && d.getDate() === day;
+    }
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+      
+      const parentName = form.parentName;
+      const email = form.email;
+      const phone = form.phone;
+      const childName = form.childName;
+      const childDob = form.childDob;
+      const childAge = form.childAge;
+      const program = form.program;
+      
+      clearError(parentName);
+      clearError(email);
+      clearError(phone);
+      clearError(childName);
+      clearError(childDob);
+      clearError(childAge);
+      clearError(program);
+      
+      if (!parentName.value.trim()) {
+        showError(parentName, 'Please enter parent name');
+        valid = false;
+      }
+      
+      if (!email.value.trim()) {
+        showError(email, 'Please enter email');
+        valid = false;
+      } else if (!validateEmail(email.value)) {
+        showError(email, 'Please enter a valid email');
+        valid = false;
+      }
+      
+      if (!phone.value.trim()) {
+        showError(phone, 'Please enter phone number');
+        valid = false;
+      } else if (!validatePhone(phone.value)) {
+        showError(phone, 'Please enter a valid phone number');
+        valid = false;
+      }
+      
+      if (!childName.value.trim()) {
+        showError(childName, "Please enter child's name");
+        valid = false;
+      }
+      
+      if (!childDob.value.trim()) {
+        showError(childDob, 'Please enter date of birth');
+        valid = false;
+      } else if (!validateDate(childDob.value)) {
+        showError(childDob, 'Please use MM/DD/YYYY format');
+        valid = false;
+      }
+      
+      if (!childAge.value) {
+        showError(childAge, 'Please select age');
+        valid = false;
+      }
+      
+      if (!program.value) {
+        showError(program, 'Please select a program');
+        valid = false;
+      }
+      
+      if (valid) {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            alert('Thank you! We\'ll contact you within 24 hours to schedule your free trial class.');
+            form.reset();
+          } else {
+            alert('Something went wrong. Please try again or contact us directly.');
+          }
+        }).catch(error => {
+          alert('Something went wrong. Please try again or contact us directly.');
+        }).finally(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        });
+      }
+    });
+    
+    // Clear errors on input
+    form.querySelectorAll('input, select').forEach(input => {
+      input.addEventListener('input', () => clearError(input));
+      input.addEventListener('change', () => clearError(input));
+    });
+  </script>
+  <script src="assets/main.js"></script>
+</body>
+</html>

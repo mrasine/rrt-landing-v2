@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <title>Waiver | Rhythmic Ribbon of Texas</title>
+  <meta name="description" content="Complete the required waiver and release form for Rhythmic Ribbon of Texas. Online submission available.">
+  <meta property="og:title" content="Waiver | Rhythmic Ribbon of Texas">
+  <meta property="og:description" content="Complete the required waiver and release form for Rhythmic Ribbon of Texas.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .waiver-container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+    .waiver-section { background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 20px; padding: 30px; margin-bottom: 30px; }
+    .waiver-section h3 { color: var(--rrt-gold); margin-bottom: 15px; font-family: var(--font-heading); }
+    .waiver-section p, .waiver-section li { color: var(--rrt-muted-light); font-size: 0.9rem; }
+    .waiver-section ul { padding-left: 20px; }
+    .waiver-section li { margin-bottom: 8px; }
+    .required-star { color: var(--rrt-gold); }
+    .signature-canvas { width: 100%; height: 150px; border: 2px dashed rgba(255,255,255,0.3); border-radius: 10px; background: rgba(0,0,0,0.3); cursor: crosshair; }
+    .signature-actions { margin-top: 10px; }
+    .signature-actions button { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: var(--rrt-cream); padding: 8px 16px; border-radius: 20px; cursor: pointer; }
+    .success-message { background: rgba(123, 220, 181, 0.15); border: 1px solid var(--success); border-radius: 10px; padding: 20px; text-align: center; display: none; }
+    .success-message.show { display: block; }
+    .pdf-download { display: inline-flex; align-items: center; gap: 8px; background: var(--rrt-gold); color: #120a02; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 600; margin-top: 20px; }
+    .pdf-download:hover { transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo-lockup">
+        <img src="assets/logo.png" alt="Rhythmic Ribbon of Texas Logo" style="width:48px;height:48px;border-radius:10px;">
+        <div><span class="brand-name">Rhythmic Ribbon</span><p class="brand-tagline">of Texas</p></div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="header-nav" id="main-nav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/about.html" class="nav-link">About RG</a>
+        <a href="/programs.html" class="nav-link">Programs</a>
+        <a href="/registration.html" class="nav-link">Registration</a>
+        <a href="/gallery.html" class="nav-link">Gallery</a>
+        <a href="/coaches.html" class="nav-link">Coaches</a>
+        <a href="/contact.html" class="nav-link">Contact</a>
+      </nav>
+      <a href="/registration.html" class="btn btn-primary shine">Book Free Trial</a>
+    </div>
+  </header>
+
+  <main id="main" style="padding-top: 100px;">
+    <div class="waiver-container">
+      <p class="eyebrow">Required Forms</p>
+      <h1 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 10px;">Waiver & Release</h1>
+      <p style="color: var(--rrt-muted-light); margin-bottom: 30px;">Please complete the online form below. You may also download the PDF for your records.</p>
+      
+      <a href="#" class="pdf-download" onclick="alert('PDF download coming soon. Please use the online form for now.')">
+        📄 Download PDF Version
+      </a>
+      
+      <div class="success-message" id="successMessage">
+        <h3 style="color: var(--success); margin-bottom: 10px;">✓ Form Submitted Successfully!</h3>
+        <p>Thank you for completing the waiver. We'll see you at your first class!</p>
+      </div>
+      
+      <form id="waiverForm" style="margin-top: 40px;">
+        <!-- Parent Information -->
+        <div class="waiver-section">
+          <h3>Parent/Guardian Information</h3>
+          <div class="grid-form" style="gap: 15px;">
+            <div>
+              <label style="display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--rrt-muted-light);">Parent Name <span class="required-star">*</span></label>
+              <input type="text" name="parentName" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--rrt-muted-light);">Email <span class="required-star">*</span></label>
+              <input type="email" name="email" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--rrt-muted-light);">Phone <span class="required-star">*</span></label>
+              <input type="tel" name="phone" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--rrt-muted-light);">Address</label>
+              <input type="text" name="address" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Student Information -->
+        <div class="waiver-section">
+          <h3>Student Information</h3>
+          <div class="grid-form" style="gap: 15px;">
+            <div>
+              <label style="display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--rrt-muted-light);">Child's Name <span class="required-star">*</span></label>
+              <input type="text" name="childName" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--rrt-muted-light);">Date of Birth <span class="required-star">*</span></label>
+              <input type="date" name="childDob" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--rrt-muted-light);">Age</label>
+              <input type="number" name="childAge" min="3" max="18" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--rrt-muted-light);">Allergies / Medical Conditions</label>
+              <input type="text" name="medical" placeholder="List any allergies or conditions" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Emergency Contact -->
+        <div class="waiver-section">
+          <h3>Emergency Contact</h3>
+          <div class="grid-form" style="gap: 15px;">
+            <div>
+              <label style="display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--rrt-muted-light);">Emergency Contact Name <span class="required-star">*</span></label>
+              <input type="text" name="emergencyName" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--rrt-muted-light);">Emergency Contact Phone <span class="required-star">*</span></label>
+              <input type="tel" name="emergencyPhone" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Agreements -->
+        <div class="waiver-section">
+          <h3>Agreements & Consent</h3>
+          <div style="display: flex; flex-direction: column; gap: 15px;">
+            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+              <input type="checkbox" name="releaseAgree" required style="margin-top: 4px;">
+              <span style="color: var(--rrt-muted-light); font-size: 0.9rem;">I hereby release and discharge Rhythmic Ribbon of Texas, its coaches, and staff from any and all liability for injury or accident occurring during my child's participation in classes. <span class="required-star">*</span></span>
+            </label>
+            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+              <input type="checkbox" name="medicalAgree" required style="margin-top: 4px;">
+              <span style="color: var(--rrt-muted-light); font-size: 0.9rem;">I consent to emergency medical treatment if necessary and authorize staff to seek medical attention. <span class="required-star">*</span></span>
+            </label>
+            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+              <input type="checkbox" name="mediaAgree" style="margin-top: 4px;">
+              <span style="color: var(--rrt-muted-light); font-size: 0.9rem;">I consent to my child being photographed/videoed for promotional purposes.</span>
+            </label>
+            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+              <input type="checkbox" name="policyAgree" required style="margin-top: 4px;">
+              <span style="color: var(--rrt-muted-light); font-size: 0.9rem;">I have read and agree to the studio policies including attendance, dress code, and payment terms. <span class="required-star">*</span></span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- Signature -->
+        <div class="waiver-section">
+          <h3>Electronic Signature</h3>
+          <p style="color: var(--rrt-muted-light); margin-bottom: 15px;">Type your full name as your electronic signature. <span class="required-star">*</span></p>
+          <input type="text" name="signature" required placeholder="Type full name" style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream); font-size: 1.1rem;">
+          <p style="color: var(--rrt-muted); font-size: 0.8rem; margin-top: 10px;">By typing your name, you agree that this electronic signature is legally binding.</p>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-full" style="margin-top: 20px;">Submit Waiver</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rhythmic Ribbon of Texas. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('waiverForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      
+      // Convert checkboxes to booleans
+      data.mediaAgree = formData.has('mediaAgree');
+      
+      try {
+        // In production, this would POST to /api/waivers
+        // For now, just show success
+        document.getElementById('successMessage').classList.add('show');
+        e.target.reset();
+        window.scrollTo({ top: document.getElementById('successMessage').offsetTop - 100, behavior: 'smooth' });
+      } catch (error) {
+        alert('Error submitting form. Please try again.');
+      }
+    });
+  </script>
+  <script src="assets/main.js"></script>
+</body>
+</html>
