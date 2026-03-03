@@ -97,6 +97,7 @@ body {
   right: 0;
   z-index: 100;
   background: rgba(5, 7, 13, 0.9);
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--rrt-border);
 }
@@ -871,6 +872,7 @@ main {
     left: 0;
     right: 0;
     background: rgba(5, 7, 13, 0.98);
+    -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     flex-direction: column;
     padding: 20px;
@@ -890,6 +892,8 @@ main {
 
 @media (max-width: 640px) {
   .grid-4, .grid-5 { grid-template-columns: 1fr; }
+  /* Keep gallery photo grid at 2 columns on small screens */
+  .grid-4:has(> div[style*="aspect-ratio"]) { grid-template-columns: repeat(2, 1fr) !important; }
   .grid-form { grid-template-columns: 1fr; }
 }
 
@@ -949,4 +953,332 @@ main {
 /* Mobile Footer Spacer */
 @media (max-width: 768px) {
   .mobile-footer-spacer { height: 80px; }
+}
+
+/* ========================================
+   COMPREHENSIVE RESPONSIVE OPTIMIZATIONS
+   ======================================== */
+
+/* --- Tablet (≤ 960px) --- */
+@media (max-width: 960px) {
+  /* Reduce fixed margins everywhere */
+  .program-card { padding: 30px !important; }
+}
+
+/* --- Mobile (≤ 768px) --- */
+@media (max-width: 768px) {
+
+  /* About hero: reduce 120px top padding */
+  .about-hero {
+    padding: 50px 16px 40px !important;
+  }
+
+  /* Global h1 sizing — override inline font-size: 2.5rem */
+  main h1 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem) !important;
+  }
+
+  /* Global h2 sizing — override inline 2rem/1.8rem headings */
+  main h2 {
+    font-size: clamp(1.3rem, 4vw, 1.8rem) !important;
+  }
+
+  /* Reduce section padding for sections with large inline padding */
+  main > section[style*="padding: 120px"],
+  main > section[style*="padding: 80px"],
+  main > section[style*="padding: 60px"],
+  main > section[style*="padding: 40px"] {
+    padding-top: 40px !important;
+    padding-bottom: 30px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Container padding tighten */
+  .container {
+    padding: 0 16px;
+  }
+
+  /* --- Program Cards --- */
+  .program-card {
+    padding: 20px !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Program card flex headers: stack vertically */
+  .program-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .program-card > div[style*="display: flex"][style*="align-items: center"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  /* Program card images: shrink */
+  .program-header img,
+  .program-card img[style*="width: 120px"] {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  /* Program card h2: reduce from 2rem */
+  .program-card h2 {
+    font-size: 1.4rem !important;
+  }
+
+  /* --- About Page Hero --- */
+  main > section[style*="padding: 120px"] {
+    padding-top: 50px !important;
+    padding-bottom: 40px !important;
+  }
+
+  /* --- Fixed margins (80px / 60px) → reduce --- */
+  div[style*="margin-top: 80px"],
+  div[style*="margin-top: 60px"] {
+    margin-top: 40px !important;
+  }
+
+  div[style*="margin-bottom: 80px"],
+  div[style*="margin-bottom: 60px"] {
+    margin-bottom: 40px !important;
+  }
+
+  /* --- Cards with padding: 40px/30px/25px --- */
+  div[style*="padding: 40px"],
+  .grid-sidebar[style*="padding: 40px"] {
+    padding: 20px !important;
+  }
+
+  div[style*="padding: 30px"] {
+    padding: 18px !important;
+  }
+
+  /* --- Gallery: keep 2 columns on mobile instead of 1 --- */
+  .grid-4[style*="gap: 15px"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  /* --- Footer social links: increase tap target --- */
+  .site-footer a[style*="font-size:1.2rem"],
+  .site-footer a[style*="font-size: 1.2rem"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    font-size: 1.4rem !important;
+  }
+
+  /* Footer login link: increase tap target */
+  .site-footer a[style*="font-size:0.85rem"],
+  .site-footer a[style*="font-size: 0.85rem"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    min-height: 44px !important;
+    padding: 8px 12px !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* Footer bottom: stack on mobile */
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+  }
+
+  .footer-legal {
+    justify-content: center;
+  }
+
+  /* --- Contact form inputs: ensure 44px min-height --- */
+  input[style*="padding: 12px"],
+  textarea[style*="padding: 12px"],
+  input[style*="padding: 10px"] {
+    padding: 14px !important;
+    min-height: 48px !important;
+    font-size: 16px !important; /* Prevents iOS zoom */
+  }
+
+  /* Registration form inputs already at 14px — ensure min-height */
+  input[style*="padding: 14px"],
+  select[style*="padding: 14px"] {
+    min-height: 48px !important;
+    font-size: 16px !important;
+  }
+
+  /* Contact social buttons: ensure 44px */
+  .btn[style*="padding: 12px 20px"] {
+    padding: 14px 20px !important;
+    min-height: 44px !important;
+  }
+
+  /* --- Waiver checkboxes: larger tap targets --- */
+  #waiverForm input[type="checkbox"] {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px;
+    margin-top: 2px !important;
+    accent-color: var(--rrt-gold);
+  }
+
+  /* Waiver labels: ensure tappable area */
+  #waiverForm label[style*="cursor: pointer"] {
+    padding: 8px 0 !important;
+    gap: 12px !important;
+  }
+
+  /* Signature input: increase height */
+  input[name="signature"] {
+    padding: 14px !important;
+    min-height: 48px !important;
+    font-size: 16px !important;
+  }
+
+  /* PDF download button: ensure 44px */
+  .pdf-download {
+    min-height: 44px;
+    padding: 14px 24px !important;
+  }
+
+  /* --- Apparatus items (about page) --- */
+  .apparatus-item p[style*="font-size: 0.7rem"] {
+    font-size: 0.8rem !important;
+  }
+
+  /* --- Coaches page: grid-sidebar photo stacks above text --- */
+  .grid-sidebar {
+    gap: 20px !important;
+  }
+
+  .grid-sidebar > div:first-child {
+    max-height: 300px;
+  }
+
+  /* Credentials list: stack on mobile */
+  ul[style*="display: flex"][style*="gap: 30px"] {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  /* --- Index hero program thumbnails: resize --- */
+  a[href*="programs.html"] img[style*="width: 120px"] {
+    width: 90px !important;
+    height: 90px !important;
+  }
+
+  /* --- Index apparatus cards: resize --- */
+  div[style*="width: 120px"][style*="text-align: center"] {
+    width: 100px !important;
+  }
+
+  /* --- CTA section heading --- */
+  .cta-section h2 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
+  }
+
+  /* Quick links grid */
+  .quick-link-card {
+    padding: 20px 15px;
+  }
+
+  .quick-link-card i {
+    font-size: 1.5rem;
+  }
+
+  /* Reviews carousel padding */
+  #reviews-carousel {
+    padding: 20px !important;
+  }
+
+  /* Review text */
+  .review-slide p[style*="font-size: 1.1rem"] {
+    font-size: 0.95rem !important;
+  }
+}
+
+/* --- Small Mobile (≤ 480px) --- */
+@media (max-width: 480px) {
+
+  /* Further reduce headings */
+  main h1 {
+    font-size: 1.5rem !important;
+  }
+
+  main h2 {
+    font-size: 1.25rem !important;
+  }
+
+  /* Program cards even tighter */
+  .program-card {
+    padding: 16px !important;
+  }
+
+  .program-card img[style*="width: 120px"] {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  /* Index program thumbnails: smaller grid */
+  a[href*="programs.html"] img[style*="width: 120px"] {
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  /* Index apparatus cards: shrink */
+  div[style*="width: 120px"][style*="text-align: center"],
+  div[style*="width: 100px"][style*="text-align: center"] {
+    width: 85px !important;
+    padding: 10px !important;
+  }
+
+  /* Apparatus icons smaller */
+  div[style*="width: 120px"] img[style*="width: 60px"],
+  div[style*="width: 100px"] img[style*="width: 60px"] {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  /* Gallery: keep 2 columns */
+  .grid-4[style*="gap: 15px"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* Schedule card tighter */
+  .schedule-card {
+    padding: 18px !important;
+  }
+
+  /* Form padding reduction */
+  form[style*="padding: 40px"] {
+    padding: 16px !important;
+  }
+
+  /* Waiver sections */
+  .waiver-section {
+    padding: 18px;
+  }
+
+  /* Cards and panels */
+  div[style*="padding: 40px"],
+  div[style*="padding: 30px"],
+  div[style*="padding: 25px"] {
+    padding: 14px !important;
+  }
+
+  /* Footer inner padding */
+  .footer-inner {
+    padding: 0 12px;
+  }
+
+  /* Contact social buttons: full width stack */
+  div[style*="display: flex"][style*="gap: 15px"]:has(.btn) {
+    flex-direction: column !important;
+  }
 }
