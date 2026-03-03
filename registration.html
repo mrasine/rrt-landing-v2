@@ -193,18 +193,7 @@
                 </div>
                 <div>
                   <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Child's Age <span class="required-star">*</span></label>
-                  <select name="childAge" required style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
-                    <option value="">Select age</option>
-                    <option value="3">3 years old</option>
-                    <option value="4">4 years old</option>
-                    <option value="5">5 years old</option>
-                    <option value="6">6 years old</option>
-                    <option value="7">7 years old</option>
-                    <option value="8">8 years old</option>
-                    <option value="9">9 years old</option>
-                    <option value="10">10 years old</option>
-                    <option value="11">11+ years old</option>
-                  </select>
+                  <input type="text" name="childAge" readonly required placeholder="Auto-calculated from DOB" style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.03);color:var(--rrt-cream);cursor:default;">
                 </div>
                 <div>
                   <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Interested Program <span class="required-star">*</span></label>
@@ -534,16 +523,20 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
     e.target.value = val;
   });
 
-  // Auto-populate age from DOB
-  form.childDob.addEventListener('change', function(e) {
-    if (!e.target.value) return;
-    var dob = new Date(e.target.value);
+  // Auto-calculate age from DOB
+  function calcAge() {
+    var val = form.childDob.value;
+    if (!val) { form.childAge.value = ''; return; }
+    var dob = new Date(val);
     var today = new Date();
     var age = today.getFullYear() - dob.getFullYear();
     var m = today.getMonth() - dob.getMonth();
     if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
-    if (age >= 0 && age <= 18) form.childAge.value = age >= 11 ? '11' : String(age);
-  });
+    form.childAge.value = age >= 0 ? age : '';
+    clearError(form.childAge);
+  }
+  form.childDob.addEventListener('change', calcAge);
+  form.childDob.addEventListener('input', calcAge);
 
   // Auto-format zip
   if (form.zipCode) form.zipCode.addEventListener('input', function(e) { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 5); });
@@ -585,7 +578,7 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
     // Populate waiver summary
     document.getElementById('sumParent').textContent = regData.parentName;
     document.getElementById('sumChild').textContent = regData.childName;
-    document.getElementById('sumAge').textContent = regData.childAge === '11' ? '11+' : regData.childAge;
+    document.getElementById('sumAge').textContent = regData.childAge;
     document.getElementById('sumProgram').textContent = regData.program;
 
     goStep(2);
@@ -787,7 +780,7 @@ document.getElementById('finalSubmit').addEventListener('click', function() {
     parent_phone:   regData.phone,
     address:        regData.address || 'N/A',
     child_name:     regData.childName,
-    child_age:      regData.childAge === '11' ? '11+' : regData.childAge,
+    child_age:      regData.childAge,
     child_dob:      regData.childDob,
     program:        programLabel,
     experience:     regData.experience || 'None',
