@@ -1005,12 +1005,12 @@ main {
     padding: 50px 16px 40px !important;
   }
 
-  /* Global h1 sizing — override inline font-size: 2.5rem */
+  /* Global h1 sizing - override inline font-size: 2.5rem */
   main h1 {
     font-size: clamp(1.6rem, 5vw, 2.2rem) !important;
   }
 
-  /* Global h2 sizing — override inline 2rem/1.8rem headings */
+  /* Global h2 sizing - override inline 2rem/1.8rem headings */
   main h2 {
     font-size: clamp(1.3rem, 4vw, 1.8rem) !important;
   }
@@ -1137,7 +1137,7 @@ main {
     font-size: 16px !important; /* Prevents iOS zoom */
   }
 
-  /* Registration form inputs already at 14px — ensure min-height */
+  /* Registration form inputs already at 14px - ensure min-height */
   input[style*="padding: 14px"],
   select[style*="padding: 14px"] {
     min-height: 48px !important;
