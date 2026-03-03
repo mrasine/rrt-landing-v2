@@ -74,3 +74,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// Hide sticky CTA at bottom of page on mobile
+(function() {
+  var lastScroll = 0;
+  window.addEventListener('scroll', function() {
+    var cta = document.querySelector('.mobile-sticky-cta');
+    if (!cta) return;
+    
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight;
+    var winHeight = window.innerHeight;
+    
+    // Hide when within 200px of bottom
+    if (scrollTop + winHeight >= docHeight - 200) {
+      cta.style.display = 'none';
+    } else {
+      cta.style.display = '';
+    }
+  });
+})();
