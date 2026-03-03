@@ -929,3 +929,24 @@ main {
 @media (min-width: 769px) {
   .mobile-cta { display: none !important; }
 }
+
+/* Mobile Sticky CTA */
+.mobile-sticky-cta { display: none; }
+@media (max-width: 768px) {
+  .mobile-sticky-cta {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(5, 7, 13, 0.95);
+    padding: 12px 15px;
+    z-index: 999;
+    border-top: 1px solid var(--rrt-border);
+  }
+}
+
+/* Mobile Footer Spacer */
+@media (max-width: 768px) {
+  .mobile-footer-spacer { height: 80px; }
+}

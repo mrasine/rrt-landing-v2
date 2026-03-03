@@ -94,3 +94,68 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 })();
+
+// Video Modal
+function openModal(videoSrc) {
+  var modal = document.getElementById('videoModal');
+  var modalVideo = document.getElementById('modalVideo');
+  if (!modal || !modalVideo) return;
+  modalVideo.src = videoSrc;
+  modal.style.display = 'flex';
+  modalVideo.play();
+  // Trap focus and allow Escape to close
+  modal.focus();
+  modal.addEventListener('keydown', function handler(e) {
+    if (e.key === 'Escape') {
+      closeModal();
+      modal.removeEventListener('keydown', handler);
+    }
+  });
+}
+
+function closeModal() {
+  var modal = document.getElementById('videoModal');
+  var modalVideo = document.getElementById('modalVideo');
+  if (!modal || !modalVideo) return;
+  modalVideo.pause();
+  modalVideo.currentTime = 0;
+  modalVideo.removeAttribute('src');
+  modal.style.display = 'none';
+}
+
+// Reviews Carousel
+(function() {
+  var currentReview = 0;
+  var reviews = document.querySelectorAll('.review-slide');
+  var dotsContainer = document.getElementById('review-dots');
+  if (!reviews.length || !dotsContainer) return;
+
+  reviews.forEach(function(_, i) {
+    var dot = document.createElement('span');
+    dot.style.cssText = 'width: 10px; height: 10px; border-radius: 50%; background: rgba(212,175,55,0.3); cursor: pointer;';
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-label', 'Review ' + (i + 1));
+    dot.onclick = function() { goToReview(i); };
+    dotsContainer.appendChild(dot);
+  });
+
+  function showReview(index) {
+    reviews.forEach(function(r) { r.style.display = 'none'; });
+    dotsContainer.querySelectorAll('span').forEach(function(d) { d.style.background = 'rgba(212,175,55,0.3)'; });
+    reviews[index].style.display = 'block';
+    dotsContainer.querySelectorAll('span')[index].style.background = 'var(--rrt-gold)';
+  }
+
+  function goToReview(i) {
+    currentReview = i;
+    showReview(currentReview);
+  }
+
+  // Expose globally for onclick buttons
+  window.changeReview = function(dir) {
+    currentReview = (currentReview + dir + reviews.length) % reviews.length;
+    showReview(currentReview);
+  };
+
+  showReview(0);
+})();
