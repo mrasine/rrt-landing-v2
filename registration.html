@@ -91,11 +91,38 @@
     .summary-detail dt { color: var(--rrt-muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 10px; }
     .summary-detail dd { color: var(--rrt-cream); margin: 2px 0 6px; }
 
+    /* ── Policy initials ── */
+    .policy-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+    .policy-row .initial-box { flex: 0 0 60px; }
+    .policy-row .initial-box input { width: 60px; padding: 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream); text-align: center; font-size: 0.95rem; text-transform: uppercase; }
+    .policy-row span { color: var(--rrt-muted-light); font-size: 0.85rem; line-height: 1.6; }
+
     /* ── Button row ── */
     .btn-row { display: flex; gap: 12px; margin-top: 20px; }
     .btn-row .btn { flex: 1; }
     .btn-back { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--rrt-cream); padding: 14px 28px; border-radius: 30px; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
     .btn-back:hover { border-color: var(--rrt-gold); color: var(--rrt-gold); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--rrt-cream); padding: 10px 20px; border-radius: 30px; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; text-decoration: none; }
+    .btn-outline:hover { border-color: var(--rrt-gold); color: var(--rrt-gold); }
+
+    /* ── Print styles ── */
+    @media print {
+      body { background: #fff !important; color: #000 !important; }
+      .site-header, .site-footer, .mobile-sticky-cta, .step-progress, .btn-row, .btn-back, #step1, #step3, #step4, .hero-bg-fixed, .skip-link { display: none !important; }
+      .step-panel { display: block !important; }
+      #step2 { display: block !important; }
+      .form-section { background: #fff !important; border: 1px solid #ccc !important; page-break-inside: avoid; padding: 20px !important; margin-bottom: 15px !important; }
+      .form-section h3 { color: #8B6914 !important; }
+      .form-section p, .form-section span, .form-section label { color: #333 !important; }
+      .waiver-legal { color: #333 !important; }
+      input, select, textarea { border: 1px solid #999 !important; background: #f9f9f9 !important; color: #000 !important; }
+      .print-header { display: block !important; text-align: center; margin-bottom: 20px; }
+      .print-header h2 { font-size: 1.3rem; margin-bottom: 4px; }
+      .print-header p { font-size: 0.85rem; color: #666; }
+      main { padding-top: 0 !important; }
+      .container { padding: 10px !important; }
+    }
+    .print-header { display: none; }
   </style>
 </head>
 <body>
@@ -228,6 +255,18 @@
              STEP 2 — Waiver
         ═══════════════════════════════════════════ -->
         <div class="step-panel" id="step2">
+          <!-- Print-only header -->
+          <div class="print-header">
+            <h2>Rhythmic Ribbon of Texas (RRT) | International Sports Academy (ISA)</h2>
+            <p>4260 Eldorado Pkwy, McKinney, TX 75070 (2nd Floor) | 7255 Meadow Hill Dr, Frisco, TX 75034 (Field #5)</p>
+            <p style="font-weight:600;">REGISTRATION, WAIVER, AND MEDICAL RELEASE</p>
+          </div>
+
+          <div style="display:flex;justify-content:flex-end;margin-bottom:16px;gap:10px;flex-wrap:wrap;">
+            <button type="button" class="btn-outline" onclick="window.print()"><i class="fas fa-print"></i> Print / Save PDF</button>
+            <a href="/rrt-waiver.pdf" target="_blank" class="btn-outline"><i class="fas fa-file-pdf"></i> Download PDF</a>
+          </div>
+
           <form id="waiver-form" novalidate>
             <!-- Auto-populated read-only summary -->
             <div class="form-section" style="background:rgba(212,175,55,0.05);">
@@ -238,53 +277,195 @@
               </p>
             </div>
 
+            <!-- How did you hear about us -->
             <div class="form-section">
-              <h3>Emergency Contact</h3>
+              <h3>How Did You Hear About Us?</h3>
+              <div style="display:flex;flex-wrap:wrap;gap:12px;">
+                <label style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" value="google"> Google Ad / Flyer</label>
+                <label style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" value="website"> Website</label>
+                <label style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" value="friend"> Friend</label>
+                <label style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" value="social"> Facebook / Instagram</label>
+                <label style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" value="other"> Other</label>
+              </div>
+            </div>
+
+            <!-- Student Medical Info -->
+            <div class="form-section">
+              <h3>Student Medical Information</h3>
               <div class="grid-form" style="gap:15px;">
                 <div>
-                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Emergency Contact Name <span class="required-star">*</span></label>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Gender</label>
+                  <select name="studentGender" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                    <option value="">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Medical Conditions We Should Know About?</label>
+                  <div style="display:flex;gap:16px;margin-bottom:8px;">
+                    <label style="display:flex;align-items:center;gap:5px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="hasMedical" value="yes"> Yes</label>
+                    <label style="display:flex;align-items:center;gap:5px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="hasMedical" value="no" checked> No</label>
+                  </div>
+                  <input type="text" name="medicalExplain" placeholder="If yes, please explain" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+                <div style="grid-column:1/-1;">
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Existing or Past Injury, Allergies, Medications Taken Regularly</label>
+                  <textarea name="medical" rows="2" placeholder="List any injuries, allergies, or regular medications" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);resize:vertical;"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Emergency Contact -->
+            <div class="form-section">
+              <h3>Emergency Contact <span style="font-size:0.8rem;color:var(--rrt-muted);">(Other than Parent/Guardian)</span></h3>
+              <div class="grid-form" style="gap:15px;">
+                <div>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Full Name <span class="required-star">*</span></label>
                   <input type="text" name="emergencyName" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
                 </div>
                 <div>
-                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Emergency Contact Phone <span class="required-star">*</span></label>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Relationship</label>
+                  <input type="text" name="emergencyRelationship" placeholder="e.g. Grandmother, Aunt" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Phone <span class="required-star">*</span></label>
                   <input type="tel" name="emergencyPhone" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
                 </div>
               </div>
             </div>
 
+            <!-- Doctor / Insurance -->
             <div class="form-section">
-              <h3>Medical Information</h3>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Allergies / Medical Conditions</label>
-              <input type="text" name="medical" placeholder="List any allergies or conditions" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <h3>Doctor &amp; Insurance</h3>
+              <div class="grid-form" style="gap:15px;">
+                <div>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Family Doctor Name</label>
+                  <input type="text" name="doctorName" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Doctor Phone</label>
+                  <input type="tel" name="doctorPhone" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Insurance Company</label>
+                  <input type="text" name="insuranceCompany" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Policy Number</label>
+                  <input type="text" name="insurancePolicy" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+              </div>
             </div>
 
+            <!-- Release and Waiver -->
             <div class="form-section">
-              <h3>Agreements &amp; Consent</h3>
+              <h3>Release &amp; Waiver <span style="font-size:0.8rem;color:var(--rrt-muted);">(Read Carefully)</span></h3>
+              <div class="waiver-legal" style="color:var(--rrt-muted-light);font-size:0.85rem;line-height:1.7;margin-bottom:18px;">
+                <p style="margin-bottom:10px;"><strong>Assumption of Risk:</strong> I understand that participation in rhythmic gymnastics, fitness, training, camps, classes, performances, and related activities involves inherent risks. These risks may include, but are not limited to, falls, collisions, equipment-related injury, cuts, bruises, sprains, fractures, paralysis, and in rare cases, death.</p>
+                <p style="margin-bottom:10px;"><strong>Participation:</strong> I give permission for the student named above to participate in all activities offered by RRT and ISA, including the use of training equipment and facilities.</p>
+                <p style="margin-bottom:10px;"><strong>Release of Liability:</strong> To the fullest extent permitted by law, I release and forever discharge Rhythmic Ribbon of Texas (RRT), International Sports Academy (ISA), and their owners, directors, coaches, staff, volunteers, agents, and facility providers from any and all claims, liabilities, demands, actions, damages, or causes of action arising from or related to participation, whether occurring before, during, or after activities.</p>
+                <p style="margin-bottom:10px;"><strong>Indemnification:</strong> I agree to indemnify and hold harmless RRT/ISA from any claims or expenses (including reasonable attorney fees) arising from the student&rsquo;s participation, including claims brought by or on behalf of the student.</p>
+                <p>This waiver is intended to be broad and inclusive. If any portion is found unenforceable, the remaining portions shall remain in effect.</p>
+              </div>
               <div class="waiver-agree">
                 <label>
                   <input type="checkbox" name="releaseAgree" required style="margin-top:4px;">
-                  <span>I hereby release and discharge Rhythmic Ribbon of Texas, its coaches, and staff from any and all liability for injury or accident occurring during my child's participation in classes. <span class="required-star">*</span></span>
-                </label>
-                <label>
-                  <input type="checkbox" name="medicalAgree" required style="margin-top:4px;">
-                  <span>I consent to emergency medical treatment if necessary and authorize staff to seek medical attention. <span class="required-star">*</span></span>
-                </label>
-                <label>
-                  <input type="checkbox" name="mediaAgree" style="margin-top:4px;">
-                  <span>I consent to my child being photographed/videoed for promotional purposes.</span>
-                </label>
-                <label>
-                  <input type="checkbox" name="policyAgree" required style="margin-top:4px;">
-                  <span>I have read and agree to the studio policies including attendance, dress code, and payment terms. <span class="required-star">*</span></span>
+                  <span>I have read and agree to the Release &amp; Waiver above. <span class="required-star">*</span></span>
                 </label>
               </div>
             </div>
 
+            <!-- Medical Consent -->
+            <div class="form-section">
+              <h3>Medical Consent</h3>
+              <p style="color:var(--rrt-muted-light);font-size:0.85rem;line-height:1.7;margin-bottom:14px;">I authorize RRT/ISA staff to administer basic first aid and, if needed, to obtain emergency medical services for the student. I understand that RRT/ISA does not provide medical insurance and I accept responsibility for all costs associated with medical treatment.</p>
+              <div class="waiver-agree">
+                <label>
+                  <input type="checkbox" name="medicalAgree" required style="margin-top:4px;">
+                  <span>I consent to emergency medical treatment as described above. <span class="required-star">*</span></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Media Release -->
+            <div class="form-section">
+              <h3>Media Release</h3>
+              <p style="color:var(--rrt-muted-light);font-size:0.85rem;line-height:1.7;margin-bottom:14px;">Photos and videos may be taken during classes or events. We will not associate a child&rsquo;s name with their image without parental permission.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:12px;">
+                <label style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="mediaRelease" value="in-school"> In-school displays only</label>
+                <label style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="mediaRelease" value="website-social"> Website/social only</label>
+                <label style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="mediaRelease" value="both"> Both</label>
+                <label style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="mediaRelease" value="none"> None</label>
+              </div>
+            </div>
+
+            <!-- Policies -->
+            <div class="form-section">
+              <h3>Policies <span style="font-size:0.8rem;color:var(--rrt-muted);">(Initial Each)</span></h3>
+
+              <div class="policy-row">
+                <div class="initial-box"><input type="text" name="initMembership" maxlength="4" placeholder="Init" required></div>
+                <span><strong>Annual Membership Fee (camp excluded):</strong> A $90 annual membership fee is due at registration. If you are a current member and your membership is not due, you will not be charged. This fee renews every 12 months for active students.</span>
+              </div>
+
+              <div class="policy-row">
+                <div class="initial-box"><input type="text" name="initPayment" maxlength="4" placeholder="Init" required></div>
+                <span><strong>Payment Information:</strong> Tuition is due each month on the 26th, no later than the 1st. Late fees: $25 after the 5th, $50 after the 10th, and $75 after the 20th. Returned check fee: $30. Participation may be suspended if the account is not current. PayPal is accepted with a $15 processing fee (rhythmicribbonoftexas@gmail.com). Online payment may also be available via QuickBooks.</span>
+              </div>
+
+              <div class="policy-row">
+                <div class="initial-box"><input type="text" name="initCancellation" maxlength="4" placeholder="Init" required></div>
+                <span><strong>Cancellation Policy:</strong> To avoid charges for the next month, a drop class form must be submitted at least 30 days prior (beginner and recreational classes) and 60 days prior (competitive team and adult fitness). Drop forms available by email: rhythmicribbonoftexas@gmail.com.</span>
+              </div>
+
+              <div class="policy-row">
+                <div class="initial-box"><input type="text" name="initMakeup" maxlength="4" placeholder="Init" required></div>
+                <span><strong>Make-Up Classes:</strong> Contact Mrs. Rasin to schedule a make-up class for beginner classes. No make-up classes are offered for competitive program athletes.</span>
+              </div>
+
+              <div class="policy-row">
+                <div class="initial-box"><input type="text" name="initClosures" maxlength="4" placeholder="Init" required></div>
+                <span><strong>Closures:</strong> No classes on major holidays: January 1, Memorial Day, July 4 week, Labor Day, Thanksgiving (Thu&ndash;Fri), Christmas Eve, Christmas Day, New Year&rsquo;s Eve, and during inclement weather as determined by RRT/ISA.</span>
+              </div>
+
+              <div class="policy-row">
+                <div class="initial-box"><input type="text" name="initPickup" maxlength="4" placeholder="Init" required></div>
+                <span><strong>Pick-Up Policy:</strong> Students must be picked up inside the building promptly after class. Staff is not responsible for unattended children before or after class times unless prior arrangements have been made. If a child is not picked up within 30 minutes after closure and we cannot reach a parent/guardian, staff may contact law enforcement to help ensure safe transport.</span>
+              </div>
+
+              <div class="waiver-agree" style="margin-top:16px;">
+                <label>
+                  <input type="checkbox" name="policyAgree" required style="margin-top:4px;">
+                  <span>By initialing and checking this box, I verify that I have read, understood, and accepted the policies and terms on this form. <span class="required-star">*</span></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Signature -->
             <div class="form-section">
               <h3>Electronic Signature</h3>
-              <p style="color:var(--rrt-muted-light);margin-bottom:12px;font-size:0.9rem;">Type your full name as your electronic signature. <span class="required-star">*</span></p>
-              <input type="text" name="signature" required placeholder="Type full name" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);font-size:1.1rem;">
-              <p style="color:var(--rrt-muted);font-size:0.8rem;margin-top:8px;">By typing your name, you agree that this electronic signature is legally binding.</p>
+              <div class="grid-form" style="gap:15px;">
+                <div>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Parent/Guardian Printed Name <span class="required-star">*</span></label>
+                  <input type="text" name="signature" required placeholder="Type full legal name" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);font-size:1.1rem;">
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Driver&rsquo;s License # <span style="font-size:0.8rem;color:var(--rrt-muted);">(optional)</span></label>
+                  <input type="text" name="driversLicense" placeholder="License number" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">State</label>
+                  <input type="text" name="driversLicenseState" placeholder="e.g. TX" maxlength="2" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);text-transform:uppercase;">
+                </div>
+              </div>
+              <p style="color:var(--rrt-muted);font-size:0.8rem;margin-top:12px;">By typing your name, you agree that this electronic signature is legally binding.</p>
+            </div>
+
+            <!-- Additional Notes -->
+            <div class="form-section">
+              <h3>Additional Notes <span style="font-size:0.8rem;color:var(--rrt-muted);">(Optional)</span></h3>
+              <textarea name="additionalNotes" rows="3" placeholder="Anything else you'd like us to know?" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);resize:vertical;"></textarea>
             </div>
 
             <div class="btn-row">
@@ -605,13 +786,19 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
     var ok = true;
 
     var textFields = [
-      [form.emergencyName,  'Please enter emergency contact name'],
-      [form.emergencyPhone, 'Please enter emergency contact phone'],
-      [form.signature,      'Please type your full name as signature']
+      [form.emergencyName,    'Please enter emergency contact name'],
+      [form.emergencyPhone,   'Please enter emergency contact phone'],
+      [form.signature,        'Please type your full name as signature'],
+      [form.initMembership,   'Please initial'],
+      [form.initPayment,      'Please initial'],
+      [form.initCancellation, 'Please initial'],
+      [form.initMakeup,       'Please initial'],
+      [form.initClosures,     'Please initial'],
+      [form.initPickup,       'Please initial']
     ];
     var checkboxes = [
-      [form.releaseAgree, 'You must agree to the liability release'],
-      [form.medicalAgree, 'You must consent to emergency medical treatment'],
+      [form.releaseAgree, 'You must agree to the Release & Waiver'],
+      [form.medicalAgree, 'You must consent to medical treatment'],
       [form.policyAgree,  'You must agree to studio policies']
     ];
 
@@ -629,10 +816,14 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
 
     var fd = new FormData(form);
     fd.forEach(function(v, k) { waiverData[k] = v; });
-    waiverData.mediaAgree   = form.mediaAgree.checked  ? 'Yes' : 'No';
-    waiverData.releaseAgree = 'Yes';
-    waiverData.medicalAgree = 'Yes';
-    waiverData.policyAgree  = 'Yes';
+    // Capture radio / checkbox values explicitly
+    var mediaRadio = form.querySelector('input[name="mediaRelease"]:checked');
+    waiverData.mediaRelease  = mediaRadio ? mediaRadio.value : 'none';
+    var referralRadio = form.querySelector('input[name="referralSource"]:checked');
+    waiverData.referralSource = referralRadio ? referralRadio.value : '';
+    waiverData.releaseAgree  = 'Yes';
+    waiverData.medicalAgree  = 'Yes';
+    waiverData.policyAgree   = 'Yes';
 
     goStep(3);
   });
@@ -784,11 +975,22 @@ document.getElementById('finalSubmit').addEventListener('click', function() {
     child_dob:      regData.childDob,
     program:        programLabel,
     experience:     regData.experience || 'None',
-    emergency_name: waiverData.emergencyName,
-    emergency_phone:waiverData.emergencyPhone,
-    medical:        waiverData.medical || 'None',
-    media_consent:  waiverData.mediaAgree,
-    signature:      waiverData.signature,
+    emergency_name:  waiverData.emergencyName,
+    emergency_phone: waiverData.emergencyPhone,
+    emergency_rel:   waiverData.emergencyRelationship || 'N/A',
+    medical:         waiverData.medical || 'None',
+    medical_cond:    waiverData.medicalExplain || 'None',
+    gender:          waiverData.studentGender || 'N/A',
+    doctor_name:     waiverData.doctorName || 'N/A',
+    doctor_phone:    waiverData.doctorPhone || 'N/A',
+    insurance:       waiverData.insuranceCompany || 'N/A',
+    policy_number:   waiverData.insurancePolicy || 'N/A',
+    media_release:   waiverData.mediaRelease || 'none',
+    referral:        waiverData.referralSource || 'N/A',
+    drivers_license: waiverData.driversLicense || 'N/A',
+    dl_state:        waiverData.driversLicenseState || 'N/A',
+    notes:           waiverData.additionalNotes || '',
+    signature:       waiverData.signature,
     location:       locationStr,
     trial_date:     dateStr,
     trial_time:     selectedTime,
