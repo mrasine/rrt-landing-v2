@@ -402,15 +402,21 @@
       var dobField = form.childDob;
       var ageField = form.childAge;
       if (dobField && ageField) {
-        dobField.addEventListener('change', function() {
+        function calcAge() {
           if (!dobField.value) { ageField.value = ''; return; }
-          var dob = new Date(dobField.value + 'T00:00:00');
+          var parts = dobField.value.split('-');
+          var dob = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
           var today = new Date();
           var age = today.getFullYear() - dob.getFullYear();
           var m = today.getMonth() - dob.getMonth();
           if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
           ageField.value = age >= 0 ? age : '';
-        });
+        }
+        dobField.addEventListener('change', calcAge);
+        dobField.addEventListener('input', calcAge);
+        setInterval(function() {
+          if (dobField.value && !ageField.value) calcAge();
+        }, 500);
       }
 
       function showError(el, msg) {

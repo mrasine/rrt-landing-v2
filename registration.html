@@ -708,7 +708,8 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
   function calcAge() {
     var val = form.childDob.value;
     if (!val) { form.childAge.value = ''; return; }
-    var dob = new Date(val);
+    var parts = val.split('-');
+    var dob = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
     var today = new Date();
     var age = today.getFullYear() - dob.getFullYear();
     var m = today.getMonth() - dob.getMonth();
@@ -718,6 +719,10 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
   }
   form.childDob.addEventListener('change', calcAge);
   form.childDob.addEventListener('input', calcAge);
+  // Fallback: poll for value changes (some browsers don't fire events reliably for date inputs)
+  setInterval(function() {
+    if (form.childDob.value && !form.childAge.value) calcAge();
+  }, 500);
 
   // Auto-format zip
   if (form.zipCode) form.zipCode.addEventListener('input', function(e) { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 5); });
