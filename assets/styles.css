@@ -1112,6 +1112,20 @@ main {
     font-size: 16px !important;
   }
 
+  /* Normalize date input to match other fields */
+  input[type="date"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 48px !important;
+    min-height: 48px !important;
+    max-height: 48px !important;
+    padding: 12px 14px !important;
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+    box-sizing: border-box !important;
+  }
+
   /* Contact social buttons: ensure 44px */
   .btn[style*="padding: 12px 20px"] {
     padding: 14px 20px !important;
