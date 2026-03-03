@@ -169,10 +169,9 @@ function closeModal() {
 (function() {
   var btn = document.querySelector('a[onclick*="scrollTo(0,0)"]');
   if (!btn) return;
-  btn.style.display = 'none';
   
   window.addEventListener('scroll', function() {
-    if (window.scrollY > 300) {
+    if (window.scrollY > 200) {
       btn.style.display = 'flex';
     } else {
       btn.style.display = 'none';
