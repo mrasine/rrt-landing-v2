@@ -44,7 +44,7 @@
   </header>
 
   <main id="main" style="position: relative;">
-    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: url('assets/gallery/Coach Ella with class.jpg') center/cover no-repeat; opacity: 0.15;"></div>
+    <div class="hero-bg-fixed"></div>
     
     <section style="padding: 120px 20px 80px; text-align: center;">
       <h1 style="font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 12px;">About Rhythmic Gymnastics</h1>
@@ -216,34 +216,363 @@
       <a href="tel:+17186892469" style="color: var(--rrt-gold); font-size: 1.1rem; text-decoration: none;">(718) 689-2469</a>
     </div>
     
-    <!-- Trust Badges -->
-    <div style="background: rgba(5, 9, 20, 0.8); padding: 20px 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
-      <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: flex-start; gap: 30px; flex-wrap: wrap;">
-        <div style="text-align: center;">
-          <img src="assets/usag-logo.webp" alt="USAG Certified" style="height: 35px; width: auto; margin-bottom: 8px;">
-          <p style="color: var(--rrt-muted-light); font-size: 0.8rem;">USAG Certified Club</p>
+    </div>
+    <div class="footer-inner">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rhythmic Ribbon of Texas | Premier Rhythmic Gymnastics in McKinney, TX</title>
+  <meta name="description" content="Rhythmic Ribbon of Texas offers premier rhythmic gymnastics training in McKinney, TX. Programs for beginners through competitive athletes focused on flexibility, strength, and confidence.">
+  <meta property="og:title" content="Rhythmic Ribbon of Texas | Rhythmic Gymnastics in McKinney">
+  <meta property="og:description" content="Rhythmic gymnastics classes for ages 3+ in McKinney and Frisco, TX. Free beginner trials. USAG certified coaches.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .hero-section { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 60px 20px; gap: 40px; min-height: 70vh; }
+    .hero-left { flex: 1 1 500px; }
+    .hero-right { flex: 0 1 380px; }
+    .hero-bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: url('assets/hero-bg.jpg') center/cover no-repeat; opacity: 0.2; }
+    .schedule-card { background: transparent; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 20px; padding: 25px; }
+    @media (max-width: 768px) {
+      .hero-section { flex-direction: column; min-height: auto; padding: 40px 16px; gap: 30px; }
+      .hero-left { flex: 1 1 auto; }
+      .hero-right { flex: 1 1 auto; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo-lockup">
+        <img src="assets/logo.png" alt="Rhythmic Ribbon of Texas Logo" style="width:48px;height:48px;border-radius:10px;">
+        <div><span class="brand-name">Rhythmic Ribbon</span><p class="brand-tagline">of Texas</p></div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="header-nav" id="main-nav">
+        <a href="/" class="nav-link active">Home</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/programs.html" class="nav-link">Programs</a>
+        <a href="/registration.html" class="nav-link">Registration</a>
+        <a href="/gallery.html" class="nav-link">Gallery</a>
+        <a href="/coaches.html" class="nav-link">Coaches</a>
+        <a href="/contact.html" class="nav-link">Contact</a>
+        <a href="tel:+17186892469" class="btn btn-primary mobile-cta" style="font-size: 0.85rem;">(718) 689-2469</a>
+      </nav>
+      <a href="/registration.html" class="btn btn-primary shine">Book Free Trial</a>
+    </div>
+  </header>
+
+  <main id="main" style="position: relative;">
+    <div class="hero-bg-fixed"></div>
+    
+    <section class="hero-section">
+      <div class="hero-left">
+        <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 12px;">About Rhythmic Ribbon of Texas</h1>
+        <p style="font-size: 1.1rem; color: var(--rrt-muted-light); margin-bottom: 15px;">Founded by Ella Melnyk, a former competitive rhythmic gymnast with over 30 years of experience, Rhythmic Ribbon of Texas brings world-class training to McKinney and Frisco.</p>
+        <p style="color: var(--rrt-soft-gold); margin-bottom: 25px; font-weight: 500;">As a USAG certified club, we focus on building confidence, discipline, and love for the sport in every athlete.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+          <a href="/coaches.html" class="btn btn-primary shine">Meet Our Coaches</a>
+          <a href="/programs.html" class="btn btn-secondary">View Programs</a>
         </div>
-        <div style="text-align: center;">
-          <i class="fas fa-shield-alt" style="color: var(--rrt-gold); font-size: 1.5rem; margin-bottom: 8px; display: block;"></i>
-          <p style="color: var(--rrt-muted-light); font-size: 0.8rem;">Background Checked<br>Coaches</p>
+      </div>
+      
+      <div class="hero-right">
+        <div class="schedule-card">
+          <h3 style="color: var(--rrt-gold); margin-bottom: 18px; text-align: center; font-size: 1.1rem;">Visit Us</h3>
+          
+          <div style="margin-bottom: 20px;">
+            <h4 style="color: var(--rrt-soft-gold); font-size: 0.95rem; margin-bottom: 8px;">McKinney</h4>
+            <p style="color: var(--rrt-cream); font-size: 0.85rem; margin-bottom: 4px;"><strong>Rhythmic Ribbon of Texas</strong></p>
+            <a href="https://maps.google.com/?q=4260+Eldorado+Pkwy+McKinney+TX+75070" target="_blank" style="color: var(--rrt-muted-light); font-size: 0.8rem;">4260 Eldorado Pkwy<br>Zenith Gymnastics, 2nd Floor<br>McKinney, TX 75070</a>
+          </div>
+          
+          <div>
+            <h4 style="color: var(--rrt-soft-gold); font-size: 0.95rem; margin-bottom: 8px;">Frisco</h4>
+            <p style="color: var(--rrt-cream); font-size: 0.85rem; margin-bottom: 4px;"><strong>Rhythmic Ribbon of Texas</strong></p>
+            <a href="https://maps.google.com/?q=7255+Meadow+Hill+Dr+Frisco+TX+75034" target="_blank" style="color: var(--rrt-muted-light); font-size: 0.8rem;">7255 Meadow Hill Dr<br>Performance Indoor Training, Field 5<br>Frisco, TX 75034</a>
+          </div>
         </div>
-        <div style="text-align: center;">
-          <i class="fas fa-map-marker-alt" style="color: var(--rrt-gold); font-size: 1.5rem; margin-bottom: 8px; display: block;"></i>
-          <p style="color: var(--rrt-muted-light); font-size: 0.8rem;">McKinney & Frisco<br>Locations</p>
+      </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section style="background: rgba(5, 9, 20, 0.8); padding: 60px 20px;">
+      <div class="container" style="max-width: 700px; margin: 0 auto;">
+        <p class="eyebrow" style="text-align: center;">What Parents Are Saying</p>
+        <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 40px; text-align: center;">Reviews</h2>
+        
+        <div style="position: relative;">
+          <div id="reviews-carousel" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 15px; padding: 30px; min-height: 200px;">
+            <div class="review-slide" style="display: none;">
+              <div style="color: var(--rrt-gold); margin-bottom: 15px;">★★★★★</div>
+              <p style="color: var(--rrt-muted-light); font-style: italic; font-size: 1.1rem; line-height: 1.7; margin-bottom: 12px;">"Miss Ella is the best!! I went to her stretching classes for years as a figure skater and she helped me improve both technical and artistic elements of my skating. Both my younger sisters now take classes from her and they also love it!"</p>
+              <p style="color: var(--rrt-soft-gold); font-weight: 500;">— Mandy Chiang</p>
+            </div>
+            <div class="review-slide" style="display: none;">
+              <div style="color: var(--rrt-gold); margin-bottom: 15px;">★★★★★</div>
+              <p style="color: var(--rrt-muted-light); font-style: italic; font-size: 1.1rem; line-height: 1.7; margin-bottom: 12px;">"Mrs. Ella is an excellent stretching coach. She has helped my daughter with her flexibility for figure skating skills and gymnastics."</p>
+              <p style="color: var(--rrt-soft-gold); font-weight: 500;">— Wendy C</p>
+            </div>
+            <div class="review-slide" style="display: none;">
+              <div style="color: var(--rrt-gold); margin-bottom: 15px;">★★★★★</div>
+              <p style="color: var(--rrt-muted-light); font-style: italic; font-size: 1.1rem; line-height: 1.7; margin-bottom: 12px;">"I am so grateful for the wonderful experience my daughter has had at this rhythmic gymnastics club. She has been attending for over three years, and her progress has been amazing. The coaches are incredibly professional, supportive, and create a positive and fun atmosphere every session."</p>
+              <p style="color: var(--rrt-soft-gold); font-weight: 500;">— Margarita Li</p>
+            </div>
+            <div class="review-slide" style="display: none;">
+              <div style="color: var(--rrt-gold); margin-bottom: 15px;">★★★★★</div>
+              <p style="color: var(--rrt-muted-light); font-style: italic; font-size: 1.1rem; line-height: 1.7; margin-bottom: 12px;">"Hard to find another gymnastics school in the area that parallels this one in level of coaching and organization. The coaches are all professional, experienced, and very hands on. Ella, the owner and head coach, is very understanding, extremely organized, great with all the girls and parents."</p>
+              <p style="color: var(--rrt-soft-gold); font-weight: 500;">— MS K</p>
+            </div>
+            <div class="review-slide" style="display: none;">
+              <div style="color: var(--rrt-gold); margin-bottom: 15px;">★★★★★</div>
+              <p style="color: var(--rrt-muted-light); font-style: italic; font-size: 1.1rem; line-height: 1.7; margin-bottom: 12px;">"I cannot say enough about how Amazing Rhythmic Ribbon of Texas is! My daughters absolutely love working with Miss Ella. She shows my dancer how to stretch properly and why she needs certain stretch and strength techniques. I definitely recommend to anyone looking for high quality training and a nurturing environment!"</p>
+              <p style="color: var(--rrt-soft-gold); font-weight: 500;">— Jennifer Allen</p>
+            </div>
+          </div>
+          
+          <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+            <button onclick="changeReview(-1)" style="background: rgba(212,175,55,0.2); border: 1px solid var(--rrt-gold); color: var(--rrt-gold); padding: 10px 15px; border-radius: 8px; cursor: pointer;">←</button>
+            <span id="review-dots" style="display: flex; gap: 8px; align-items: center;"></span>
+            <button onclick="changeReview(1)" style="background: rgba(212,175,55,0.2); border: 1px solid var(--rrt-gold); color: var(--rrt-gold); padding: 10px 15px; border-radius: 8px; cursor: pointer;">→</button>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 25px;">
+          <a href="https://share.google/osSjUmCME3pWLKZ2R" target="_blank" rel="noopener noreferrer" style="color: var(--rrt-gold); font-size: 0.9rem;">See all reviews on <i class="fab fa-google"></i>oogle →</a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      let currentReview = 0;
+      const reviews = document.querySelectorAll('.review-slide');
+      const dotsContainer = document.getElementById('review-dots');
+      
+      reviews.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.style.cssText = 'width: 10px; height: 10px; border-radius: 50%; background: rgba(212,175,55,0.3); cursor: pointer;';
+        dot.onclick = () => goToReview(i);
+        dotsContainer.appendChild(dot);
+      });
+      
+      function showReview(index) {
+        reviews.forEach(r => r.style.display = 'none');
+        document.querySelectorAll('#review-dots span').forEach(d => d.style.background = 'rgba(212,175,55,0.3)');
+        reviews[index].style.display = 'block';
+        document.querySelectorAll('#review-dots span')[index].style.background = 'var(--rrt-gold)';
+      }
+      
+      function changeReview(dir) {
+        currentReview = (currentReview + dir + reviews.length) % reviews.length;
+        showReview(currentReview);
+      }
+      
+      function goToReview(i) {
+        currentReview = i;
+        showReview(currentReview);
+      }
+      
+      showReview(0);
+    </script>
+
+    <!-- Video Section -->
+    <section class="container" style="padding: 60px 20px;">
+      <p class="eyebrow" style="text-align: center;">Grace in Motion</p>
+      <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 30px; text-align: center;">Experience the Art of Rhythmic Gymnastics</h2>
+      <div style="max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 20px; overflow: hidden; position: relative;">
+        <video id="homeVideo" controls autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;" poster="assets/rrt-media/backgrounds/background-1.jpg">
+          <source src="assets/rrt-media/art/home-page-video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <button id="unmuteBtn" style="position:absolute; bottom:16px; right:16px; background:rgba(0,0,0,0.7); color:#fff; border:2px solid var(--rrt-gold); border-radius:50%; width:48px; height:48px; font-size:1.2rem; cursor:pointer; z-index:10; transition: opacity 0.3s;" aria-label="Unmute video">🔇</button>
+      </div>
+      <script>
+        (function() {
+          const video = document.getElementById('homeVideo');
+          const unmuteBtn = document.getElementById('unmuteBtn');
+          if (!video) return;
+
+          // Update button icon based on mute state
+          function updateBtn() {
+            unmuteBtn.textContent = video.muted ? '🔇' : '🔊';
+            unmuteBtn.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
+          }
+
+          // Toggle mute on button click
+          unmuteBtn.addEventListener('click', function() {
+            video.muted = !video.muted;
+            if (!video.muted) video.volume = 1.0;
+            updateBtn();
+            if (video.paused) video.play();
+          });
+
+          video.addEventListener('volumechange', updateBtn);
+          updateBtn();
+        })();
+      </script>
+    </section>
+
+    <!-- What is Rhythmic Gymnastics -->
+    <section class="container" style="padding: 80px 20px;">
+      <div class="grid-2" style="align-items: center;">
+        <div>
+          <p class="eyebrow">The Sport</p>
+          <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 12px;">What is Rhythmic Gymnastics?</h2>
+          <p style="color: var(--rrt-muted-light); line-height: 1.8; margin-bottom: 15px;">Rhythmic gymnastics is an Olympic sport that blends ballet, apparatus mastery, flexibility, and performance artistry. Athletes perform choreographed routines using ribbon, hoop, ball, clubs, and rope.</p>
+          <p style="color: var(--rrt-muted-light); line-height: 1.8; margin-bottom: 25px;">It's an ideal sport for children who enjoy movement, dance, and expressive performance within a structured athletic setting.</p>
+          <a href="/about.html" class="btn btn-secondary">Learn More</a>
+        </div>
+        <div>
+          <h3 style="color: var(--rrt-gold); margin-bottom: 12px;">Benefits</h3>
+          <ul style="color: var(--rrt-muted-light); list-style: none;">
+            <li style="padding: 10px 0; border-bottom: 1px solid var(--rrt-border);">✓ Exceptional flexibility</li>
+            <li style="padding: 10px 0; border-bottom: 1px solid var(--rrt-border);">✓ Core strength and endurance</li>
+            <li style="padding: 10px 0; border-bottom: 1px solid var(--rrt-border);">✓ Coordination and balance</li>
+            <li style="padding: 10px 0; border-bottom: 1px solid var(--rrt-border);">✓ Musicality and artistic performance</li>
+            <li style="padding: 10px 0; border-bottom: 1px solid var(--rrt-border);">✓ Discipline and focus</li>
+            <li style="padding: 10px 0;">✓ Confidence and stage presence</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore Our Programs -->
+    <section style="padding: 40px 20px;">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <p class="eyebrow" style="text-align: center;">The Five Programs</p>
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 12px; text-align: center;">Explore Our Programs</h2>
+          <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="/programs.html#preschool" style="text-decoration: none; text-align: center;">
+              <img src="assets/gallery/Beginner student.jpg" alt="Preschool" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px;">
+              <p style="color: var(--rrt-soft-gold); font-size: 0.8rem; margin-top: 8px;">Preschool</p>
+            </a>
+            <a href="/programs.html#beginners" style="text-decoration: none; text-align: center;">
+              <img src="assets/gallery/beginners-1.jpg" alt="Beginners" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px;">
+              <p style="color: var(--rrt-soft-gold); font-size: 0.8rem; margin-top: 8px;">Beginners</p>
+            </a>
+            <a href="/programs.html#competitive" style="text-decoration: none; text-align: center;">
+              <img src="assets/gallery/competition-ribbon.jpg" alt="Competitive" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px;">
+              <p style="color: var(--rrt-soft-gold); font-size: 0.8rem; margin-top: 8px;">Competitive</p>
+            </a>
+            <a href="/programs.html#flexibility" style="text-decoration: none; text-align: center;">
+              <img src="assets/rrt-media/flexibility/flexibility-1.jpg" alt="Flexibility" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px;">
+              <p style="color: var(--rrt-soft-gold); font-size: 0.8rem; margin-top: 8px;">Flexibility</p>
+            </a>
+            <a href="/programs.html#ballet" style="text-decoration: none; text-align: center;">
+              <img src="assets/rrt-media/ballet/ballet-1.jpg" alt="Ballet" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px;">
+              <p style="color: var(--rrt-soft-gold); font-size: 0.8rem; margin-top: 8px;">Ballet</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- The Five Apparatus -->
+    <section style="background: rgba(5, 9, 20, 0.6); padding: 40px 20px;">
+      <div class="container">
+        <p class="eyebrow" style="text-align: center;">The Equipment</p>
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 25px; text-align: center;">The Five Apparatus</h2>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; padding: 12px; text-align: center; width: 80px;">
+            <img src="assets/icon-rope.svg" alt="Rope" onclick="openModal('assets/rrt-media/apparatus-videos/rope-small.mp4')" style="width: 40px; height: 40px; margin-bottom: 8px; cursor: pointer;">
+            <h3 style="font-size: 0.75rem;">Rope</h3>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; padding: 12px; text-align: center; width: 80px;">
+            <img src="assets/icon-hoop.svg" alt="Hoop" onclick="openModal('assets/rrt-media/apparatus-videos/hoop.mp4')" style="width: 40px; height: 40px; margin-bottom: 8px; cursor: pointer;">
+            <h3 style="font-size: 0.75rem;">Hoop</h3>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; padding: 12px; text-align: center; width: 80px;">
+            <img src="assets/icon-ball.svg" alt="Ball" onclick="openModal('assets/rrt-media/apparatus-videos/ball.mp4')" style="width: 40px; height: 40px; margin-bottom: 8px; cursor: pointer;">
+            <h3 style="font-size: 0.75rem;">Ball</h3>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; padding: 12px; text-align: center; width: 80px;">
+            <img src="assets/icon-clubs.svg" alt="Clubs" onclick="openModal('assets/rrt-media/apparatus-videos/club-small.mp4')" style="width: 40px; height: 40px; margin-bottom: 8px; cursor: pointer;">
+            <h3 style="font-size: 0.75rem;">Clubs</h3>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; padding: 12px; text-align: center; width: 80px;">
+            <img src="assets/icon-ribbon-stick.svg" alt="Ribbon" onclick="openModal('assets/rrt-media/apparatus-videos/ribbons-small.mp4')" style="width: 40px; height: 40px; margin-bottom: 8px; cursor: pointer;">
+            <h3 style="font-size: 0.75rem;">Ribbon</h3>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+  </main>
+
+  <footer class="site-footer">
+    <div class="mobile-footer-spacer"></div>
+    <style>@media (max-width: 768px) { .mobile-footer-spacer { height: 80px; } }</style>
+    <!-- Phone - Mobile Only -->
+    <div style="text-align: center; padding: 10px; background: rgba(212, 175, 55, 0.1); border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
+      <a href="tel:+17186892469" style="color: var(--rrt-gold); font-size: 1.1rem; text-decoration: none;">📞 (718) 689-2469</a>
+    </div>
+    
+    <!-- Combined Trust + Social -->
+    <div style="background: rgba(5, 9, 20, 0.8); padding: 16px 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
+      <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+        <img src="assets/usag-logo.webp" alt="USAG" style="height: 28px;">
+        <a href="https://instagram.com/rhythmicribbonoftexas" target="_blank" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/RhythmicRibbon" target="_blank" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-facebook-f"></i></a>
+        <a href="/login.html" style="color:var(--rrt-soft-gold);font-size:0.85rem;"><i class="fas fa-user-group"></i> Login</a>
+      </div>
+    </div>
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rhythmic Ribbon of Texas. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
         </div>
       </div>
     </div>
-    <div class="mobile-footer-spacer"></div>
-    <style>@media (max-width: 768px) { .mobile-footer-spacer { height: 80px; } }</style>
-    <div class="footer-inner">
-      <div style="text-align: center; margin-bottom: 12px;">
-        <p style="color: var(--rrt-muted-light); margin-bottom: 10px;">Follow Us</p>
-        <a href="https://instagram.com/rhythmicribbonoftexas" target="_blank" style="color: var(--rrt-gold); font-size: 1.5rem; margin: 0 15px;"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com/RhythmicRibbon" target="_blank" style="color: var(--rrt-gold); font-size: 1.5rem; margin: 0 15px;"><i class="fab fa-facebook-f"></i></a>
-      </div>
-      <div style="text-align: center; margin-bottom: 12px;">
-        <a href="/community.html" style="color: var(--rrt-soft-gold); font-size: 0.9rem;"><i class="fas fa-user-group"></i> Community Login</a>
-      </div>
+  </footer>
+  
+  <!-- Mobile Sticky CTA -->
+  <div class="mobile-sticky-cta">
+    <a href="/registration.html" class="btn btn-primary shine" style="width:100%;display:block;padding:14px 20px;text-align:center;text-decoration:none;">Book Free Trial</a>
+  </div>
+  <style>
+    .mobile-sticky-cta{display:none;}
+    @media(max-width:768px){
+      .mobile-sticky-cta{display:block;position:fixed;bottom:0;left:0;right:0;background:rgba(5,7,13,0.95);padding:12px 15px;z-index:999;border-top:1px solid var(--rrt-border);}
+    }
+  </style>
+
+  <!-- Video Modal -->
+  <div id="videoModal" onclick="closeModal()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; align-items:center; justify-content:center; cursor:pointer;">
+    <video id="modalVideo" style="max-width:90%; max-height:80%; border-radius:10px;" controls></video>
+    <p style="position:absolute; top:20px; color:#fff; font-size:0.9rem;">Tap to close</p>
+  </div>
+  <script>
+    function openModal(videoSrc) {
+      var modal = document.getElementById('videoModal');
+      var modalVideo = document.getElementById('modalVideo');
+      modalVideo.src = videoSrc;
+      modal.style.display = 'flex';
+      modalVideo.play();
+    }
+    function closeModal() {
+      var modal = document.getElementById('videoModal');
+      var modalVideo = document.getElementById('modalVideo');
+      modalVideo.pause();
+      modalVideo.currentTime = 0;
+      modal.style.display = 'none';
+    }
+  </script>
+  <script src="assets/main.js"></script>
+</body>
+</html>
       <div class="footer-bottom">
         <p>&copy; 2026 Rhythmic Ribbon of Texas. All rights reserved.</p>
         <div class="footer-legal">
