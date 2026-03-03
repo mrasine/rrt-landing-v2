@@ -1,6 +1,11 @@
 // RRT Landing Page - Main JavaScript
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Auto-update copyright year
+  document.querySelectorAll('.copyright-year').forEach(el => {
+    el.textContent = new Date().getFullYear();
+  });
+
   // Hamburger menu toggle
   const navToggle = document.querySelector('.nav-toggle');
   const mainNav = document.getElementById('main-nav');
