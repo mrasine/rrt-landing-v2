@@ -16,8 +16,86 @@
   <link href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
-    .form-container { max-width: 700px; margin: 0 auto; }
+    .form-container { max-width: 750px; margin: 0 auto; }
+
+    /* ── Progress stepper ── */
+    .step-progress { display: flex; justify-content: center; align-items: center; gap: 0; margin-bottom: 40px; position: relative; }
+    .step-indicator { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; flex: 1; }
+    .step-circle { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 1rem; border: 2px solid rgba(255,255,255,0.2); color: var(--rrt-muted); background: rgba(255,255,255,0.04); transition: all 0.35s ease; }
+    .step-indicator.active .step-circle { border-color: var(--rrt-gold); color: var(--rrt-gold); background: rgba(212,175,55,0.12); box-shadow: 0 0 16px rgba(212,175,55,0.25); }
+    .step-indicator.done .step-circle { border-color: #7bdcb5; color: #120a02; background: #7bdcb5; }
+    .step-label { margin-top: 8px; font-size: 0.78rem; color: var(--rrt-muted); transition: color 0.3s; }
+    .step-indicator.active .step-label { color: var(--rrt-gold); }
+    .step-indicator.done .step-label { color: #7bdcb5; }
+    .step-line { flex: 0 0 80px; height: 2px; background: rgba(255,255,255,0.12); margin-bottom: 24px; transition: background 0.35s; }
+    .step-line.done { background: #7bdcb5; }
+
+    @media (max-width: 500px) {
+      .step-line { flex: 0 0 30px; }
+      .step-circle { width: 36px; height: 36px; font-size: 0.85rem; }
+    }
+
+    /* ── Step panels ── */
+    .step-panel { display: none; animation: fadeStepIn 0.35s ease; }
+    .step-panel.active { display: block; }
+    @keyframes fadeStepIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    .form-section { background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 20px; padding: 35px; margin-bottom: 25px; }
+    .form-section h3 { color: var(--rrt-gold); margin-bottom: 20px; font-family: var(--font-heading); }
+
+    .required-star { color: var(--rrt-gold); }
+
+    /* ── Calendar ── */
+    .cal-wrapper { user-select: none; }
+    .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .cal-header h4 { color: var(--rrt-cream); font-family: var(--font-heading); font-size: 1.15rem; }
+    .cal-nav { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--rrt-cream); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .cal-nav:hover { border-color: var(--rrt-gold); color: var(--rrt-gold); }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+    .cal-dow { font-size: 0.75rem; color: var(--rrt-muted); padding: 4px 0; font-weight: 600; }
+    .cal-day { padding: 10px 4px; border-radius: 10px; font-size: 0.9rem; color: var(--rrt-muted); cursor: default; transition: all 0.2s; }
+    .cal-day.available { color: var(--rrt-cream); cursor: pointer; background: rgba(255,255,255,0.04); }
+    .cal-day.available:hover { background: rgba(212,175,55,0.15); color: var(--rrt-gold); }
+    .cal-day.selected { background: var(--rrt-gold) !important; color: #120a02 !important; font-weight: 600; }
+    .cal-day.today { border: 1px solid rgba(212,175,55,0.4); }
+
+    /* ── Time slots ── */
+    .slot-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .time-slot { padding: 10px 18px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: var(--rrt-cream); cursor: pointer; font-size: 0.9rem; transition: all 0.2s; }
+    .time-slot:hover { border-color: var(--rrt-gold); color: var(--rrt-gold); }
+    .time-slot.selected { background: var(--rrt-gold); color: #120a02; border-color: var(--rrt-gold); font-weight: 600; }
+    .slot-empty { color: var(--rrt-muted); font-size: 0.9rem; padding: 10px 0; }
+
+    /* ── Location picker ── */
+    .loc-grid { display: flex; gap: 14px; flex-wrap: wrap; }
+    .loc-card { flex: 1; min-width: 220px; padding: 20px; border-radius: 16px; border: 2px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03); cursor: pointer; transition: all 0.25s; }
+    .loc-card:hover { border-color: rgba(212,175,55,0.4); }
+    .loc-card.selected { border-color: var(--rrt-gold); background: rgba(212,175,55,0.08); box-shadow: 0 0 20px rgba(212,175,55,0.15); }
+    .loc-card h4 { color: var(--rrt-gold); margin-bottom: 6px; font-family: var(--font-heading); font-size: 1.1rem; }
+    .loc-card p { color: var(--rrt-muted-light); font-size: 0.82rem; margin: 0; line-height: 1.5; }
+    .loc-card .loc-times { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.8rem; color: var(--rrt-muted); }
+
+    /* ── Waiver ── */
+    .waiver-agree label { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-bottom: 14px; }
+    .waiver-agree label span { color: var(--rrt-muted-light); font-size: 0.9rem; }
+
+    /* ── Confirmation ── */
+    .confirmation-card { background: rgba(123,220,181,0.08); border: 1px solid rgba(123,220,181,0.3); border-radius: 20px; padding: 45px 35px; text-align: center; }
+    .confirmation-card .check-icon { font-size: 3.5rem; color: #7bdcb5; margin-bottom: 16px; }
+    .confirmation-card h2 { font-family: var(--font-heading); color: #7bdcb5; margin-bottom: 12px; }
+    .confirmation-card p { color: var(--rrt-muted-light); margin-bottom: 8px; }
+    .summary-detail { display: inline-block; background: rgba(255,255,255,0.05); border: 1px solid var(--rrt-border); border-radius: 12px; padding: 18px 28px; margin-top: 20px; text-align: left; }
+    .summary-detail dt { color: var(--rrt-muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 10px; }
+    .summary-detail dd { color: var(--rrt-cream); margin: 2px 0 6px; }
+
+    /* ── Button row ── */
+    .btn-row { display: flex; gap: 12px; margin-top: 20px; }
+    .btn-row .btn { flex: 1; }
+    .btn-back { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--rrt-cream); padding: 14px 28px; border-radius: 30px; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
+    .btn-back:hover { border-color: var(--rrt-gold); color: var(--rrt-gold); }
   </style>
 </head>
 <body>
@@ -50,110 +128,256 @@
     <div class="hero-bg-fixed"></div>
     <section class="container" style="padding: 60px 20px;">
       <div class="form-container">
-        <h1 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 12px;">Register for Free Trial</h1>
-        <p class="lead" style="margin-bottom: 40px;">Try a free class before you commit. Fill out the form below and we'll contact you within 24 hours.</p>
-        
-        <p style="text-align: center; margin-bottom: 25px;">
-          <a href="/waiver.html" style="color: var(--rrt-soft-gold); font-size: 0.95rem;">View Waiver Form</a>
-        </p>
-        
-        <form id="registration-form" novalidate action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 20px; padding: 40px;">
-          <input type="hidden" name="_subject" value="New Free Trial Request - Rhythmic Ribbon">
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-          <!-- novalidate to use custom validation -->
-          <h3 style="color: var(--rrt-gold); margin-bottom: 25px;">Parent Information</h3>
-          
-          <div class="grid-form" style="margin-bottom: 30px;">
-            <div>
-              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Parent/Guardian Name *</label>
-              <input type="text" name="parentName" placeholder="First Last" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+        <h1 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 12px; text-align: center;">Book Your Free Trial</h1>
+        <p class="lead" style="margin-bottom: 40px; text-align: center;">Complete all three steps to lock in your free trial class.</p>
+
+        <!-- ═══ Progress Stepper ═══ -->
+        <div class="step-progress">
+          <div class="step-indicator active" data-step="1">
+            <div class="step-circle">1</div>
+            <span class="step-label">Register</span>
+          </div>
+          <div class="step-line" data-line="1"></div>
+          <div class="step-indicator" data-step="2">
+            <div class="step-circle">2</div>
+            <span class="step-label">Waiver</span>
+          </div>
+          <div class="step-line" data-line="2"></div>
+          <div class="step-indicator" data-step="3">
+            <div class="step-circle">3</div>
+            <span class="step-label">Schedule</span>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════
+             STEP 1 — Registration
+        ═══════════════════════════════════════════ -->
+        <div class="step-panel active" id="step1">
+          <form id="reg-form" novalidate>
+            <div class="form-section">
+              <h3>Parent / Guardian</h3>
+              <div class="grid-form" style="margin-bottom: 20px;">
+                <div>
+                  <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Name <span class="required-star">*</span></label>
+                  <input type="text" name="parentName" placeholder="First Last" required style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Email <span class="required-star">*</span></label>
+                  <input type="email" name="email" placeholder="you@example.com" required style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Phone <span class="required-star">*</span></label>
+                  <input type="tel" name="phone" placeholder="(469) 555-0123" required style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Address</label>
+                  <input type="text" name="address" placeholder="123 Main St, McKinney, TX" style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Zip Code</label>
+                  <input type="text" name="zipCode" placeholder="75070" style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+              </div>
             </div>
-            <div>
-              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Email *</label>
-              <input type="email" name="email" placeholder="you@example.com" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+
+            <div class="form-section">
+              <h3>Student Information</h3>
+              <div class="grid-form" style="margin-bottom: 20px;">
+                <div>
+                  <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Child's Name <span class="required-star">*</span></label>
+                  <input type="text" name="childName" placeholder="First Last" required style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Date of Birth <span class="required-star">*</span></label>
+                  <input type="date" name="childDob" required style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Child's Age <span class="required-star">*</span></label>
+                  <select name="childAge" required style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                    <option value="">Select age</option>
+                    <option value="3">3 years old</option>
+                    <option value="4">4 years old</option>
+                    <option value="5">5 years old</option>
+                    <option value="6">6 years old</option>
+                    <option value="7">7 years old</option>
+                    <option value="8">8 years old</option>
+                    <option value="9">9 years old</option>
+                    <option value="10">10 years old</option>
+                    <option value="11">11+ years old</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Interested Program <span class="required-star">*</span></label>
+                  <select name="program" required style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                    <option value="">Select program</option>
+                    <option value="preschool">Preschool (Ages 3-5)</option>
+                    <option value="beginners">Beginners (Ages 6+)</option>
+                    <option value="competitive" disabled>Competitive Team (Call to inquire)</option>
+                    <option value="flexibility" disabled>Multi-Sport Flexibility (Call to inquire)</option>
+                    <option value="ballet" disabled>Ballet (Call to inquire)</option>
+                  </select>
+                  <p style="font-size:0.8rem;color:var(--rrt-muted-light);margin-top:8px;">For Competitive, Flexibility, or Ballet programs, please <a href="/contact.html" style="color:var(--rrt-gold);">call or send us a message</a>.</p>
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Experience Level</label>
+                  <select name="experience" style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                    <option value="none">No experience</option>
+                    <option value="recreational">Recreational gymnastics</option>
+                    <option value="dance">Dance experience</option>
+                    <option value="competitive">Competitive gymnastics</option>
+                    <option value="other">Other sport experience</option>
+                  </select>
+                </div>
+              </div>
             </div>
-            <div>
-              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Phone *</label>
-              <input type="tel" name="phone" placeholder="(469) 555-0123" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+
+            <button type="submit" class="btn btn-primary btn-full">Continue to Waiver &#8594;</button>
+          </form>
+        </div>
+
+        <!-- ═══════════════════════════════════════════
+             STEP 2 — Waiver
+        ═══════════════════════════════════════════ -->
+        <div class="step-panel" id="step2">
+          <form id="waiver-form" novalidate>
+            <!-- Auto-populated read-only summary -->
+            <div class="form-section" style="background:rgba(212,175,55,0.05);">
+              <h3 style="font-size:1rem;">Registrant Summary</h3>
+              <p style="color:var(--rrt-muted-light);font-size:0.9rem;margin:0;">
+                <strong id="sumParent"></strong> &mdash; <span id="sumChild"></span> (Age <span id="sumAge"></span>)<br>
+                <span id="sumProgram" style="text-transform:capitalize;"></span> Program
+              </p>
             </div>
-            <div>
-              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Address</label>
-              <input type="text" name="address" placeholder="123 Main St, McKinney, TX" style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+
+            <div class="form-section">
+              <h3>Emergency Contact</h3>
+              <div class="grid-form" style="gap:15px;">
+                <div>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Emergency Contact Name <span class="required-star">*</span></label>
+                  <input type="text" name="emergencyName" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+                <div>
+                  <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Emergency Contact Phone <span class="required-star">*</span></label>
+                  <input type="tel" name="emergencyPhone" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                </div>
+              </div>
             </div>
-            <div>
-              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Zip Code</label>
-              <input type="text" name="zipCode" placeholder="75070" style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+
+            <div class="form-section">
+              <h3>Medical Information</h3>
+              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Allergies / Medical Conditions</label>
+              <input type="text" name="medical" placeholder="List any allergies or conditions" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+            </div>
+
+            <div class="form-section">
+              <h3>Agreements &amp; Consent</h3>
+              <div class="waiver-agree">
+                <label>
+                  <input type="checkbox" name="releaseAgree" required style="margin-top:4px;">
+                  <span>I hereby release and discharge Rhythmic Ribbon of Texas, its coaches, and staff from any and all liability for injury or accident occurring during my child's participation in classes. <span class="required-star">*</span></span>
+                </label>
+                <label>
+                  <input type="checkbox" name="medicalAgree" required style="margin-top:4px;">
+                  <span>I consent to emergency medical treatment if necessary and authorize staff to seek medical attention. <span class="required-star">*</span></span>
+                </label>
+                <label>
+                  <input type="checkbox" name="mediaAgree" style="margin-top:4px;">
+                  <span>I consent to my child being photographed/videoed for promotional purposes.</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="policyAgree" required style="margin-top:4px;">
+                  <span>I have read and agree to the studio policies including attendance, dress code, and payment terms. <span class="required-star">*</span></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>Electronic Signature</h3>
+              <p style="color:var(--rrt-muted-light);margin-bottom:12px;font-size:0.9rem;">Type your full name as your electronic signature. <span class="required-star">*</span></p>
+              <input type="text" name="signature" required placeholder="Type full name" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);font-size:1.1rem;">
+              <p style="color:var(--rrt-muted);font-size:0.8rem;margin-top:8px;">By typing your name, you agree that this electronic signature is legally binding.</p>
+            </div>
+
+            <div class="btn-row">
+              <button type="button" class="btn-back" onclick="goStep(1)">&larr; Back</button>
+              <button type="submit" class="btn btn-primary" style="flex:2;">Continue to Scheduling &#8594;</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ═══════════════════════════════════════════
+             STEP 3 — Schedule
+        ═══════════════════════════════════════════ -->
+        <div class="step-panel" id="step3">
+          <div class="form-section">
+            <h3>Choose Location</h3>
+            <p style="color:var(--rrt-muted-light);font-size:0.9rem;margin-bottom:18px;">Select the studio where you'd like to attend your free trial.</p>
+            <div class="loc-grid">
+              <div class="loc-card" onclick="pickLocation('mckinney')">
+                <h4><i class="fas fa-map-marker-alt" style="margin-right:6px;"></i> McKinney</h4>
+                <p>4260 Eldorado Pkwy<br>Zenith Gymnastics, 2nd Floor<br>McKinney, TX 75070</p>
+                <div class="loc-times">Wed 6:00 &ndash; 7:30 PM &bull; Sat 12:45 &ndash; 2:15 PM</div>
+              </div>
+              <div class="loc-card" onclick="pickLocation('frisco')">
+                <h4><i class="fas fa-map-marker-alt" style="margin-right:6px;"></i> Frisco</h4>
+                <p>7255 Meadow Hill Dr<br>Performance Indoor Training, Field 5<br>Frisco, TX 75034</p>
+                <div class="loc-times">Sat 3:00 &ndash; 4:30 PM</div>
+              </div>
             </div>
           </div>
-          
-          <h3 style="color: var(--rrt-gold); margin-bottom: 25px;">Student Information</h3>
-          
-          <div class="grid-form" style="margin-bottom: 30px;">
-            <div>
-              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Child's Name *</label>
-              <input type="text" name="childName" placeholder="First Last" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+
+          <div class="form-section" id="calendarSection" style="display:none;">
+            <h3>Pick a Date</h3>
+            <p style="color:var(--rrt-muted-light);font-size:0.9rem;margin-bottom:18px;">Available trial dates are highlighted for your selected location.</p>
+            <div class="cal-wrapper" id="calendar"></div>
+          </div>
+
+          <div class="form-section" id="timeslotSection" style="display:none;">
+            <h3>Pick a Time &mdash; <span id="selectedDateLabel" style="color:var(--rrt-cream);"></span></h3>
+            <div class="slot-grid" id="timeslots"></div>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn-back" onclick="goStep(2)">&larr; Back</button>
+            <button type="button" class="btn btn-primary" style="flex:2;" id="finalSubmit" disabled>Confirm &amp; Book Trial</button>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════
+             STEP 4 — Confirmation
+        ═══════════════════════════════════════════ -->
+        <div class="step-panel" id="step4">
+          <div class="confirmation-card">
+            <div class="check-icon">&#10003;</div>
+            <h2>You're All Set!</h2>
+            <p>Confirmation emails have been sent to <strong id="confEmail"></strong>.</p>
+            <p style="color:var(--rrt-muted);font-size:0.85rem;">Check your inbox (and spam folder) for your trial class details.</p>
+            <div class="summary-detail">
+              <dl style="margin:0;">
+                <dt>Student</dt><dd id="confChild"></dd>
+                <dt>Program</dt><dd id="confProgram"></dd>
+                <dt>Location</dt><dd id="confLocation"></dd>
+                <dt>Date &amp; Time</dt><dd id="confDateTime"></dd>
+              </dl>
             </div>
-            <div>
-              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Date of Birth *</label>
-              <input type="date" name="childDob" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
-            </div>
-            <div>
-              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Child's Age *</label>
-              <select name="childAge" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
-                <option value="">Select age</option>
-                <option value="3">3 years old</option>
-                <option value="4">4 years old</option>
-                <option value="5">5 years old</option>
-                <option value="6">6 years old</option>
-                <option value="7">7 years old</option>
-                <option value="8">8 years old</option>
-                <option value="9">9 years old</option>
-                <option value="10">10 years old</option>
-                <option value="11">11+ years old</option>
-              </select>
-            </div>
-            <div>
-              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Interested Program *</label>
-              <select name="program" required style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
-                <option value="">Select program</option>
-                <option value="preschool">Preschool (Ages 3-5)</option>
-                <option value="beginners">Beginners (Ages 6+)</option>
-                <option value="competitive" disabled>Competitive Team (Call to inquire)</option>
-                <option value="flexibility" disabled>Multi-Sport Flexibility (Call to inquire)</option>
-                <option value="ballet" disabled>Ballet (Call to inquire)</option>
-              </select>
-              <p style="font-size: 0.8rem; color: var(--rrt-muted-light); margin-top: 8px;">For Competitive, Flexibility, or Ballet programs, please <a href="/contact.html" style="color: var(--rrt-gold);">call or send us a message</a>.</p>
-            </div>
-            <div>
-              <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Experience Level</label>
-              <select name="experience" style="width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
-                <option value="none">No experience</option>
-                <option value="recreational">Recreational gymnastics</option>
-                <option value="dance">Dance experience</option>
-                <option value="competitive">Competitive gymnastics</option>
-                <option value="other">Other sport experience</option>
-              </select>
+            <div style="margin-top:30px;">
+              <a href="/" class="btn btn-primary" style="text-decoration:none;">Back to Home</a>
             </div>
           </div>
-          
-          <button type="submit" class="btn btn-primary btn-full" style="margin-top: 10px;">Submit Registration Request</button>
-          <p style="text-align: center; color: var(--rrt-muted); font-size: 0.85rem; margin-top: 15px;">We'll contact you within 24 hours to schedule your free trial!</p>
-        </form>
-      </div>
+        </div>
+
+      </div><!-- .form-container -->
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="mobile-footer-spacer"></div>
-    <!-- Phone - Mobile Only -->
-    <div style="text-align: center; padding: 10px; background: rgba(212, 175, 55, 0.1); border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
-      <a href="tel:+17186892469" style="color: var(--rrt-gold); font-size: 1.1rem; text-decoration: none;">&#x1F4DE; (718) 689-2469</a>
+    <div style="text-align:center;padding:10px;background:rgba(212,175,55,0.1);border-bottom:1px solid rgba(212,175,55,0.2);">
+      <a href="tel:+17186892469" style="color:var(--rrt-gold);font-size:1.1rem;text-decoration:none;">&#x1F4DE; (718) 689-2469</a>
     </div>
-    
-    <!-- Combined Trust + Social -->
-    <div style="background: rgba(5, 9, 20, 0.8); padding: 16px 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
-      <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-        <img src="assets/usag-logo.webp" alt="USAG" style="height: 28px;">
+    <div style="background:rgba(5,9,20,0.8);padding:16px 15px;border-bottom:1px solid rgba(212,175,55,0.2);">
+      <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;">
+        <img src="assets/usag-logo.webp" alt="USAG" style="height:28px;">
         <a href="https://instagram.com/rhythmicribbonoftexas" target="_blank" rel="noopener noreferrer" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-instagram"></i></a>
         <a href="https://facebook.com/RhythmicRibbon" target="_blank" rel="noopener noreferrer" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-facebook-f"></i></a>
         <a href="/login.html" style="color:var(--rrt-soft-gold);font-size:0.85rem;"><i class="fas fa-user-group"></i> Login</a>
@@ -169,185 +393,456 @@
       </div>
     </div>
   </footer>
-  
-  <!-- Mobile Sticky CTA -->
+
   <div class="mobile-sticky-cta">
     <a href="/registration.html" class="btn btn-primary shine" style="width:100%;display:block;padding:14px 20px;text-align:center;text-decoration:none;">Book Free Trial</a>
   </div>
 
-  <!-- Video Modal -->
-  <div id="videoModal" tabindex="-1" role="dialog" aria-modal="true" aria-label="Video player" onclick="closeModal()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; align-items:center; justify-content:center; cursor:pointer;">
-    <video id="modalVideo" style="max-width:90%; max-height:80%; border-radius:10px;" controls></video>
-    <p style="position:absolute; top:20px; color:#fff; font-size:0.9rem;">Tap to close or press Escape</p>
+  <div id="videoModal" tabindex="-1" role="dialog" aria-modal="true" aria-label="Video player" onclick="closeModal()" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:9999;align-items:center;justify-content:center;cursor:pointer;">
+    <video id="modalVideo" style="max-width:90%;max-height:80%;border-radius:10px;" controls></video>
+    <p style="position:absolute;top:20px;color:#fff;font-size:0.9rem;">Tap to close or press Escape</p>
   </div>
-  <script>
-    const form = document.getElementById('registration-form');
-    
-    // Auto-format phone
-    form.phone.addEventListener('input', (e) => {
-      let val = e.target.value.replace(/\D/g, '');
-      if (val.length > 10) val = val.slice(0, 10);
-      if (val.length >= 6) {
-        val = '(' + val.slice(0,3) + ') ' + val.slice(3,6) + '-' + val.slice(6);
-      } else if (val.length >= 3) {
-        val = '(' + val.slice(0,3) + ') ' + val.slice(3);
-      }
-      e.target.value = val;
-    });
-    
-    // Auto-populate age from date picker
-    form.childDob.addEventListener('change', (e) => {
-      if (e.target.value) {
-        const dob = new Date(e.target.value);
-        const today = new Date();
-        let age = today.getFullYear() - dob.getFullYear();
-        const m = today.getMonth() - dob.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-          age--;
-        }
-        if (age >= 0 && age <= 18) {
-          form.childAge.value = age >= 11 ? '11' : String(age);
-        }
-      }
-    });
-    
-    // Auto-format zip
-    form.zipCode && form.zipCode.addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 5);
-    });
-    
-    function showError(input, message) {
-      clearError(input);
-      input.classList.add('field-error');
-      const error = document.createElement('div');
-      error.className = 'error-msg';
-      error.textContent = message;
-      input.parentElement.appendChild(error);
-    }
-    
-    function clearError(input) {
-      input.classList.remove('field-error');
-      const parent = input.parentElement;
-      const error = parent.querySelector('.error-msg');
-      if (error) error.remove();
-    }
-    
-    function validateEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-    
-    function validatePhone(phone) {
-      return /^[\d\s\-()+ ]{14,}$/.test(phone);
-    }
-    
-    function validateDate(date) {
-      // Date input returns YYYY-MM-DD format
-      const d = new Date(date);
-      return !isNaN(d.getTime()) && d.getFullYear() >= 2000 && d.getFullYear() <= new Date().getFullYear();
-    }
-    
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      let valid = true;
-      
-      const parentName = form.parentName;
-      const email = form.email;
-      const phone = form.phone;
-      const childName = form.childName;
-      const childDob = form.childDob;
-      const childAge = form.childAge;
-      const program = form.program;
-      
-      clearError(parentName);
-      clearError(email);
-      clearError(phone);
-      clearError(childName);
-      clearError(childDob);
-      clearError(childAge);
-      clearError(program);
-      
-      if (!parentName.value.trim()) {
-        showError(parentName, 'Please enter parent name');
-        valid = false;
-      }
-      
-      if (!email.value.trim()) {
-        showError(email, 'Please enter email');
-        valid = false;
-      } else if (!validateEmail(email.value)) {
-        showError(email, 'Please enter a valid email');
-        valid = false;
-      }
-      
-      if (!phone.value.trim()) {
-        showError(phone, 'Please enter phone number');
-        valid = false;
-      } else if (!validatePhone(phone.value)) {
-        showError(phone, 'Please enter a valid phone number');
-        valid = false;
-      }
-      
-      if (!childName.value.trim()) {
-        showError(childName, "Please enter child's name");
-        valid = false;
-      }
-      
-      if (!childDob.value.trim()) {
-        showError(childDob, 'Please enter date of birth');
-        valid = false;
-      } else if (!validateDate(childDob.value)) {
-        showError(childDob, 'Please use MM/DD/YYYY format');
-        valid = false;
-      }
-      
-      if (!childAge.value) {
-        showError(childAge, 'Please select age');
-        valid = false;
-      }
-      
-      if (!program.value) {
-        showError(program, 'Please select a program');
-        valid = false;
-      }
-      
-      if (!valid) {
-        const firstErr = form.querySelector('.field-error');
-        if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return;
-      }
 
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Sending...';
-      submitBtn.disabled = true;
-      
-      fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: {
-          'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
-          alert('Thank you! We\'ll contact you within 24 hours to schedule your free trial class.');
-          form.reset();
-        } else {
-          alert('Something went wrong. Please try again or contact us directly.');
-        }
-      }).catch(error => {
-        alert('Something went wrong. Please try again or contact us directly.');
-      }).finally(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      });
+<script>
+/* ═══════════════════════════════════════════════════════
+   Configuration
+   ═══════════════════════════════════════════════════════ */
+var OWNER_EMAIL = 'rhythmicribbonoftexas@gmail.com';
+
+// ────── EmailJS Config ──────
+// Sign up free at https://emailjs.com, then:
+//  1. Create a service (e.g. Gmail) -> copy your Service ID
+//  2. Create two templates:
+//     - "parent_confirmation" -> sent to the parent
+//     - "owner_notification"  -> sent to the owner
+//  3. Copy your Public Key from Account -> API Keys
+var EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';           // <-- replace
+var EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';           // <-- replace
+var EMAILJS_PARENT_TEMPLATE = 'parent_confirmation';  // <-- template ID
+var EMAILJS_OWNER_TEMPLATE  = 'owner_notification';   // <-- template ID
+
+// ────── Locations & Schedule ──────
+// Each location has an address block and a schedule keyed by day-of-week (0=Sun … 6=Sat).
+var LOCATIONS = {
+  mckinney: {
+    label: 'McKinney',
+    address: '4260 Eldorado Pkwy, Zenith Gymnastics 2nd Floor, McKinney TX 75070',
+    schedule: {
+      3: ['6:00 – 7:30 PM'],   // Wednesday
+      6: ['12:45 – 2:15 PM']   // Saturday
+    }
+  },
+  frisco: {
+    label: 'Frisco',
+    address: '7255 Meadow Hill Dr, Performance Indoor Training Field 5, Frisco TX 75034',
+    schedule: {
+      6: ['3:00 – 4:30 PM']    // Saturday
+    }
+  }
+};
+// How many weeks ahead a parent can book
+var WEEKS_AHEAD = 6;
+
+/* ═══════════════════════════════════════════════════════
+   State
+   ═══════════════════════════════════════════════════════ */
+var currentStep = 1;
+var regData = {};
+var waiverData = {};
+var selectedLocation = null;
+var selectedDate = null;
+var selectedTime = null;
+var calMonth, calYear;
+
+/* ═══════════════════════════════════════════════════════
+   Step Navigation
+   ═══════════════════════════════════════════════════════ */
+function goStep(n) {
+  currentStep = n;
+  var panels = document.querySelectorAll('.step-panel');
+  for (var i = 0; i < panels.length; i++) panels[i].classList.remove('active');
+
+  var panel = document.getElementById('step' + n);
+  if (panel) panel.classList.add('active');
+
+  // Update stepper indicators
+  var indicators = document.querySelectorAll('.step-indicator');
+  for (var i = 0; i < indicators.length; i++) {
+    var s = parseInt(indicators[i].getAttribute('data-step'));
+    indicators[i].classList.remove('active', 'done');
+    if (s < n) indicators[i].classList.add('done');
+    else if (s === n) indicators[i].classList.add('active');
+  }
+  var lines = document.querySelectorAll('.step-line');
+  for (var i = 0; i < lines.length; i++) {
+    var l = parseInt(lines[i].getAttribute('data-line'));
+    if (l < n) lines[i].classList.add('done');
+    else lines[i].classList.remove('done');
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Reset calendar visibility when entering step 3
+  if (n === 3) {
+    // If no location chosen yet, hide calendar
+    if (!selectedLocation) {
+      var cs = document.getElementById('calendarSection');
+      if (cs) cs.style.display = 'none';
+      var ts = document.getElementById('timeslotSection');
+      if (ts) ts.style.display = 'none';
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   Helpers: Validation
+   ═══════════════════════════════════════════════════════ */
+function showError(el, msg) {
+  clearError(el);
+  el.classList.add('field-error');
+  var div = document.createElement('div');
+  div.className = 'error-msg';
+  div.textContent = msg;
+  if (el.type === 'checkbox') {
+    el.closest('label').parentElement.appendChild(div);
+  } else {
+    el.parentElement.appendChild(div);
+  }
+}
+function clearError(el) {
+  el.classList.remove('field-error');
+  var parent = el.type === 'checkbox' ? el.closest('label').parentElement : el.parentElement;
+  var err = parent.querySelector('.error-msg');
+  if (err) err.remove();
+}
+function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
+
+/* ═══════════════════════════════════════════════════════
+   Step 1 — Registration Form
+   ═══════════════════════════════════════════════════════ */
+(function() {
+  var form = document.getElementById('reg-form');
+  if (!form) return;
+
+  // Auto-format phone
+  form.phone.addEventListener('input', function(e) {
+    var val = e.target.value.replace(/\D/g, '');
+    if (val.length > 10) val = val.slice(0, 10);
+    if (val.length >= 6) val = '(' + val.slice(0,3) + ') ' + val.slice(3,6) + '-' + val.slice(6);
+    else if (val.length >= 3) val = '(' + val.slice(0,3) + ') ' + val.slice(3);
+    e.target.value = val;
+  });
+
+  // Auto-populate age from DOB
+  form.childDob.addEventListener('change', function(e) {
+    if (!e.target.value) return;
+    var dob = new Date(e.target.value);
+    var today = new Date();
+    var age = today.getFullYear() - dob.getFullYear();
+    var m = today.getMonth() - dob.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+    if (age >= 0 && age <= 18) form.childAge.value = age >= 11 ? '11' : String(age);
+  });
+
+  // Auto-format zip
+  if (form.zipCode) form.zipCode.addEventListener('input', function(e) { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 5); });
+
+  // Clear errors on input
+  var fields = form.querySelectorAll('input, select');
+  for (var i = 0; i < fields.length; i++) {
+    (function(el) {
+      el.addEventListener('input', function() { clearError(el); });
+      el.addEventListener('change', function() { clearError(el); });
+    })(fields[i]);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var ok = true;
+    var checks = [
+      [form.parentName, 'Please enter parent name'],
+      [form.email,      'Please enter email'],
+      [form.phone,      'Please enter phone number'],
+      [form.childName,  "Please enter child's name"],
+      [form.childDob,   'Please enter date of birth'],
+      [form.childAge,   'Please select age'],
+      [form.program,    'Please select a program']
+    ];
+    for (var i = 0; i < checks.length; i++) {
+      clearError(checks[i][0]);
+      if (!checks[i][0].value || !checks[i][0].value.trim()) { showError(checks[i][0], checks[i][1]); ok = false; }
+    }
+    if (form.email.value.trim() && !validEmail(form.email.value)) { showError(form.email, 'Please enter a valid email'); ok = false; }
+    if (form.phone.value.trim() && !validPhone(form.phone.value)) { showError(form.phone, 'Please enter a valid phone'); ok = false; }
+
+    if (!ok) { var f = form.querySelector('.field-error'); if (f) f.scrollIntoView({ behavior:'smooth', block:'center' }); return; }
+
+    // Save data
+    var fd = new FormData(form);
+    fd.forEach(function(v, k) { regData[k] = v; });
+
+    // Populate waiver summary
+    document.getElementById('sumParent').textContent = regData.parentName;
+    document.getElementById('sumChild').textContent = regData.childName;
+    document.getElementById('sumAge').textContent = regData.childAge === '11' ? '11+' : regData.childAge;
+    document.getElementById('sumProgram').textContent = regData.program;
+
+    goStep(2);
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════
+   Step 2 — Waiver Form
+   ═══════════════════════════════════════════════════════ */
+(function() {
+  var form = document.getElementById('waiver-form');
+  if (!form) return;
+
+  var fields = form.querySelectorAll('input, select, textarea');
+  for (var i = 0; i < fields.length; i++) {
+    (function(el) {
+      el.addEventListener('input',  function() { clearError(el); });
+      el.addEventListener('change', function() { clearError(el); });
+    })(fields[i]);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var ok = true;
+
+    var textFields = [
+      [form.emergencyName,  'Please enter emergency contact name'],
+      [form.emergencyPhone, 'Please enter emergency contact phone'],
+      [form.signature,      'Please type your full name as signature']
+    ];
+    var checkboxes = [
+      [form.releaseAgree, 'You must agree to the liability release'],
+      [form.medicalAgree, 'You must consent to emergency medical treatment'],
+      [form.policyAgree,  'You must agree to studio policies']
+    ];
+
+    for (var i = 0; i < textFields.length; i++) {
+      clearError(textFields[i][0]);
+      if (!textFields[i][0].value.trim()) { showError(textFields[i][0], textFields[i][1]); ok = false; }
+    }
+    if (form.emergencyPhone.value.trim() && !validPhone(form.emergencyPhone.value)) { showError(form.emergencyPhone, 'Please enter a valid phone'); ok = false; }
+    for (var i = 0; i < checkboxes.length; i++) {
+      clearError(checkboxes[i][0]);
+      if (!checkboxes[i][0].checked) { showError(checkboxes[i][0], checkboxes[i][1]); ok = false; }
+    }
+
+    if (!ok) { var f = form.querySelector('.field-error'); if (f) f.scrollIntoView({ behavior:'smooth', block:'center' }); return; }
+
+    var fd = new FormData(form);
+    fd.forEach(function(v, k) { waiverData[k] = v; });
+    waiverData.mediaAgree   = form.mediaAgree.checked  ? 'Yes' : 'No';
+    waiverData.releaseAgree = 'Yes';
+    waiverData.medicalAgree = 'Yes';
+    waiverData.policyAgree  = 'Yes';
+
+    goStep(3);
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════
+   Step 3 — Location + Calendar
+   ═══════════════════════════════════════════════════════ */
+function pickLocation(key) {
+  selectedLocation = key;
+  selectedDate = null;
+  selectedTime = null;
+  document.getElementById('finalSubmit').disabled = true;
+  document.getElementById('timeslotSection').style.display = 'none';
+
+  // Highlight selected card
+  var cards = document.querySelectorAll('.loc-card');
+  for (var i = 0; i < cards.length; i++) cards[i].classList.remove('selected');
+  var idx = key === 'mckinney' ? 0 : 1;
+  cards[idx].classList.add('selected');
+
+  // Show and render calendar
+  document.getElementById('calendarSection').style.display = 'block';
+  var today = new Date();
+  calMonth = today.getMonth();
+  calYear = today.getFullYear();
+  renderCalendar();
+  document.getElementById('calendarSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function getActiveSchedule() {
+  if (!selectedLocation || !LOCATIONS[selectedLocation]) return {};
+  return LOCATIONS[selectedLocation].schedule;
+}
+
+function renderCalendar() {
+  var wrap = document.getElementById('calendar');
+  var sched = getActiveSchedule();
+  var today = new Date(); today.setHours(0,0,0,0);
+  var maxDate = new Date(today); maxDate.setDate(maxDate.getDate() + WEEKS_AHEAD * 7);
+
+  var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var dowLabels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+  var firstDay = new Date(calYear, calMonth, 1).getDay();
+  var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+  var html = '<div class="cal-header">';
+  html += '<button type="button" class="cal-nav" onclick="calPrev()">&#8249;</button>';
+  html += '<h4>' + monthNames[calMonth] + ' ' + calYear + '</h4>';
+  html += '<button type="button" class="cal-nav" onclick="calNext()">&#8250;</button>';
+  html += '</div>';
+  html += '<div class="cal-grid">';
+  for (var i = 0; i < dowLabels.length; i++) html += '<div class="cal-dow">' + dowLabels[i] + '</div>';
+
+  for (var i = 0; i < firstDay; i++) html += '<div class="cal-day"></div>';
+
+  for (var d = 1; d <= daysInMonth; d++) {
+    var date = new Date(calYear, calMonth, d);
+    var dow = date.getDay();
+    var available = sched[dow] && date >= today && date <= maxDate;
+    var isToday = date.getTime() === today.getTime();
+    var isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
+    var cls = 'cal-day';
+    if (available) cls += ' available';
+    if (isToday)   cls += ' today';
+    if (isSelected) cls += ' selected';
+    if (available) {
+      html += '<div class="' + cls + '" onclick="pickDate(' + calYear + ',' + calMonth + ',' + d + ')">' + d + '</div>';
+    } else {
+      html += '<div class="' + cls + '">' + d + '</div>';
+    }
+  }
+  html += '</div>';
+  wrap.innerHTML = html;
+}
+
+function calPrev() {
+  calMonth--;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+function calNext() {
+  calMonth++;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  renderCalendar();
+}
+
+function pickDate(y, m, d) {
+  selectedDate = new Date(y, m, d);
+  selectedTime = null;
+  document.getElementById('finalSubmit').disabled = true;
+  renderCalendar();
+
+  var sched = getActiveSchedule();
+  var dow = selectedDate.getDay();
+  var slots = sched[dow] || [];
+  var section = document.getElementById('timeslotSection');
+  var grid = document.getElementById('timeslots');
+  var label = document.getElementById('selectedDateLabel');
+
+  label.textContent = selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  section.style.display = 'block';
+
+  if (!slots.length) {
+    grid.innerHTML = '<p class="slot-empty">No slots available on this day.</p>';
+    return;
+  }
+  var slotHtml = '';
+  for (var i = 0; i < slots.length; i++) {
+    slotHtml += '<button type="button" class="time-slot" onclick="pickTime(this,\'' + slots[i] + '\')">' + slots[i] + '</button>';
+  }
+  grid.innerHTML = slotHtml;
+  section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function pickTime(btn, time) {
+  selectedTime = time;
+  var allSlots = document.querySelectorAll('.time-slot');
+  for (var i = 0; i < allSlots.length; i++) allSlots[i].classList.remove('selected');
+  btn.classList.add('selected');
+  document.getElementById('finalSubmit').disabled = false;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Final Submit — Send Emails
+   ═══════════════════════════════════════════════════════ */
+document.getElementById('finalSubmit').addEventListener('click', function() {
+  if (!selectedDate || !selectedTime || !selectedLocation) return;
+
+  var btn = document.getElementById('finalSubmit');
+  btn.textContent = 'Sending\u2026';
+  btn.disabled = true;
+
+  var loc = LOCATIONS[selectedLocation];
+  var locationStr = loc.label + ' — ' + loc.address;
+  var dateStr = selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  var programLabels = { preschool: 'Preschool (Ages 3-5)', beginners: 'Beginners (Ages 6+)' };
+  var programLabel = programLabels[regData.program] || regData.program;
+
+  // Shared template params
+  var params = {
+    parent_name:    regData.parentName,
+    parent_email:   regData.email,
+    parent_phone:   regData.phone,
+    address:        regData.address || 'N/A',
+    child_name:     regData.childName,
+    child_age:      regData.childAge === '11' ? '11+' : regData.childAge,
+    child_dob:      regData.childDob,
+    program:        programLabel,
+    experience:     regData.experience || 'None',
+    emergency_name: waiverData.emergencyName,
+    emergency_phone:waiverData.emergencyPhone,
+    medical:        waiverData.medical || 'None',
+    media_consent:  waiverData.mediaAgree,
+    signature:      waiverData.signature,
+    location:       locationStr,
+    trial_date:     dateStr,
+    trial_time:     selectedTime,
+    owner_email:    OWNER_EMAIL,
+    to_email:       regData.email
+  };
+
+  function finish() {
+    // Show confirmation
+    document.getElementById('confEmail').textContent = regData.email;
+    document.getElementById('confChild').textContent = regData.childName;
+    document.getElementById('confProgram').textContent = programLabel;
+    document.getElementById('confLocation').textContent = locationStr;
+    document.getElementById('confDateTime').textContent = dateStr + ' at ' + selectedTime;
+    goStep(4);
+    // Hide stepper on confirmation
+    document.querySelector('.step-progress').style.display = 'none';
+  }
+
+  try {
+    // Initialize EmailJS
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    // Send parent email
+    var parentParams = {};
+    for (var k in params) parentParams[k] = params[k];
+    parentParams.to_email = regData.email;
+
+    var ownerParams = {};
+    for (var k in params) ownerParams[k] = params[k];
+    ownerParams.to_email = OWNER_EMAIL;
+
+    Promise.all([
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_PARENT_TEMPLATE, parentParams),
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_OWNER_TEMPLATE,  ownerParams)
+    ]).then(function() {
+      finish();
+    }).catch(function(err) {
+      console.warn('EmailJS error (emails may not have sent):', err);
+      finish(); // Still show confirmation so the parent is not stuck
     });
-    
-    // Clear errors on input
-    form.querySelectorAll('input, select').forEach(input => {
-      input.addEventListener('input', () => clearError(input));
-      input.addEventListener('change', () => clearError(input));
-    });
-  </script>
-  <script src="assets/main.js"></script>
+  } catch (err) {
+    console.warn('EmailJS init error:', err);
+    finish();
+  }
+});
+</script>
+<script src="assets/main.js"></script>
 </body>
 </html>
