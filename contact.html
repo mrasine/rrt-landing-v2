@@ -4,14 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
   <title>Contact | Rhythmic Ribbon of Texas</title>
+  <link rel="canonical" href="https://rhythmicribbonoftexas.com/contact.html">
   <meta name="description" content="Contact Rhythmic Ribbon of Texas at (718) 689-2469 or rhythmicribbonoftexas@gmail.com. Located at 4260 Eldorado Pkwy, McKinney, TX 75070.">
   <meta property="og:title" content="Contact | Rhythmic Ribbon of Texas">
   <meta property="og:description" content="Contact Rhythmic Ribbon of Texas in McKinney, TX. Phone, email, and studio location info.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://rhythmicribbonoftexas.com/assets/logo.png">
+  <meta property="og:url" content="https://rhythmicribbonoftexas.com/contact.html">
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -41,7 +46,7 @@
     </div>
   </header>
 
-  <main id="main"><a href="javascript:history.back()" style="position:fixed;bottom:80px;left:20px;background:rgba(212,175,55,0.95);color:#05070a;border:2px solid #d4af37;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;z-index:999999;box-shadow:0 4px 12px rgba(0,0,0,0,3);">&#8592;</a>
+  <main id="main"><a href="#" onclick="history.back();return false;" aria-label="Go back" style="position:fixed;bottom:80px;left:20px;background:rgba(212,175,55,0.95);color:#05070a;border:2px solid #d4af37;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;z-index:999999;box-shadow:0 4px 12px rgba(0,0,0,0.3);">&#8592;</a>
     <div class="hero-bg-fixed"></div>
     <section class="container" style="padding: 60px 20px;">
       <h1 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 12px;">Contact Us</h1>
@@ -100,16 +105,16 @@
             <h3 style="color: var(--rrt-gold); margin-bottom: 12px;">Send a Message</h3>
             <form id="contact-form" novalidate>
               <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Name *</label>
-                <input type="text" name="name" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+                <label for="contact-name" style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Name *</label>
+                <input type="text" id="contact-name" name="name" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
               </div>
               <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Email *</label>
-                <input type="email" name="email" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+                <label for="contact-email" style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Email *</label>
+                <input type="email" id="contact-email" name="email" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
               </div>
               <div style="margin-bottom: 12px;">
-                <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Message *</label>
-                <textarea name="message" rows="4" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream); resize: vertical;"></textarea>
+                <label for="contact-message" style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Message *</label>
+                <textarea id="contact-message" name="message" rows="4" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream); resize: vertical;"></textarea>
               </div>
               <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
             </form>
@@ -147,7 +152,7 @@
         </div>
       </div>
     </section>
-  </main><a href="#" onclick="window.scrollTo(0,0);return false;" style="position:fixed;bottom:80px;right:20px;background:rgba(212,175,55,0.95);color:#05070a;border:2px solid #d4af37;width:50px;height:50px;border-radius:50%;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;z-index:999999;box-shadow:0 4px 12px rgba(0,0,0,0.3);">&#8593;</a>
+  </main><a href="#" onclick="window.scrollTo(0,0);return false;" aria-label="Scroll to top" style="position:fixed;bottom:80px;right:20px;background:rgba(212,175,55,0.95);color:#05070a;border:2px solid #d4af37;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;z-index:999999;box-shadow:0 4px 12px rgba(0,0,0,0.3);">&#8593;</a>
 
   <footer class="site-footer">
     <div class="mobile-footer-spacer"></div>
@@ -160,8 +165,8 @@
     <div style="background: rgba(5, 9, 20, 0.8); padding: 16px 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
       <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
         <a href="https://usagym.org/rhythmic/" style="cursor:pointer;-webkit-tap-highlight-color:transparent" target="_blank" rel="noopener noreferrer"><img src="assets/usag-logo.webp" alt="USAG" style="height: 28px;"></a>
-        <a href="https://instagram.com/rhythmicribbonoftexas" target="_blank" rel="noopener noreferrer" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com/RhythmicRibbon" target="_blank" rel="noopener noreferrer" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com/rhythmicribbonoftexas" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/RhythmicRibbon" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-facebook-f"></i></a>
         <a href="/login.html" style="color:var(--rrt-soft-gold);font-size:0.85rem;"><i class="fas fa-user-group"></i> Login</a>
       </div>
     </div>

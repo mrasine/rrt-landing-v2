@@ -7,12 +7,16 @@
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/favicon.png">
   <title>Waiver | Rhythmic Ribbon of Texas</title>
+  <link rel="canonical" href="https://rhythmicribbonoftexas.com/waiver.html">
   <meta name="description" content="Complete the required waiver and release form for Rhythmic Ribbon of Texas. Online submission available.">
   <meta property="og:title" content="Waiver | Rhythmic Ribbon of Texas">
   <meta property="og:description" content="Complete the required waiver and release form for Rhythmic Ribbon of Texas.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://rhythmicribbonoftexas.com/assets/logo.png">
+  <meta property="og:url" content="https://rhythmicribbonoftexas.com/waiver.html">
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -81,7 +85,7 @@
     </div>
   </header>
 
-  <main id="main"><a href="javascript:history.back()" style="position:fixed;bottom:80px;left:20px;background:rgba(212,175,55,0.95);color:#05070a;border:2px solid #d4af37;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;z-index:999999;box-shadow:0 4px 12px rgba(0,0,0,0,3);">&#8592;</a>
+  <main id="main"><a href="#" onclick="history.back();return false;" aria-label="Go back" style="position:fixed;bottom:80px;left:20px;background:rgba(212,175,55,0.95);color:#05070a;border:2px solid #d4af37;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;z-index:999999;box-shadow:0 4px 12px rgba(0,0,0,0.3);">&#8592;</a>
     <div class="hero-bg-fixed"></div>
     <div class="waiver-container">
       <!-- Print-only header -->
@@ -111,32 +115,32 @@
           <h3>Parent/Guardian Information</h3>
           <div class="grid-form">
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Parent Name <span class="required-star">*</span></label>
-              <input type="text" name="parentName" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="parentName" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Parent Name <span class="required-star">*</span></label>
+              <input type="text" name="parentName" id="parentName" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Email <span class="required-star">*</span></label>
-              <input type="email" name="email" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="email" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Email <span class="required-star">*</span></label>
+              <input type="email" name="email" id="email" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Mobile Phone <span class="required-star">*</span></label>
-              <input type="tel" name="phone" required placeholder="(xxx) xxx-xxxx" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="phone" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Mobile Phone <span class="required-star">*</span></label>
+              <input type="tel" name="phone" id="phone" required placeholder="(xxx) xxx-xxxx" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Work Phone</label>
-              <input type="tel" name="workPhone" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="workPhone" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Work Phone</label>
+              <input type="tel" name="workPhone" id="workPhone" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Home Phone</label>
-              <input type="tel" name="homePhone" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="homePhone" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Home Phone</label>
+              <input type="tel" name="homePhone" id="homePhone" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Address</label>
-              <input type="text" name="address" placeholder="123 Main St" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="address" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Address</label>
+              <input type="text" name="address" id="address" placeholder="123 Main St" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">City / State / Zip</label>
-              <input type="text" name="cityStateZip" placeholder="McKinney, TX 75070" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="cityStateZip" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">City / State / Zip</label>
+              <input type="text" name="cityStateZip" id="cityStateZip" placeholder="McKinney, TX 75070" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
           </div>
         </div>
@@ -146,20 +150,20 @@
           <h3>Student Information</h3>
           <div class="grid-form">
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Child's Name <span class="required-star">*</span></label>
-              <input type="text" name="childName" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="childName" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Child's Name <span class="required-star">*</span></label>
+              <input type="text" name="childName" id="childName" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Date of Birth <span class="required-star">*</span></label>
-              <input type="date" name="childDob" required max="" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="childDob" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Date of Birth <span class="required-star">*</span></label>
+              <input type="date" name="childDob" id="childDob" required max="" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Age</label>
-              <input type="text" name="childAge" readonly placeholder="Auto-calculated" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);opacity:0.7;">
+              <label for="childAge" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Age</label>
+              <input type="text" name="childAge" id="childAge" readonly placeholder="Auto-calculated" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);opacity:0.7;">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Gender</label>
-              <select name="studentGender" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="studentGender" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Gender</label>
+              <select name="studentGender" id="studentGender" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
                 <option value="">Select</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -173,16 +177,16 @@
           <h3>Student Medical Information</h3>
           <div class="grid-form">
             <div style="grid-column:1/-1;">
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Medical Conditions We Should Know About?</label>
+              <label for="hasMedical" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Medical Conditions We Should Know About?</label>
               <div style="display:flex;gap:16px;margin-bottom:8px;">
-                <label style="display:flex;align-items:center;gap:5px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="hasMedical" value="yes"> Yes</label>
-                <label style="display:flex;align-items:center;gap:5px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="hasMedical" value="no" checked> No</label>
+                <label for="hasMedical" style="display:flex;align-items:center;gap:5px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="hasMedical" id="hasMedical" value="yes"> Yes</label>
+                <label for="medicalExplain" style="display:flex;align-items:center;gap:5px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="hasMedical" id="hasMedical" value="no" checked> No</label>
               </div>
-              <input type="text" name="medicalExplain" placeholder="If yes, please explain" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="text" name="medicalExplain" id="medicalExplain" placeholder="If yes, please explain" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div style="grid-column:1/-1;">
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Existing or Past Injury, Allergies, Medications Taken Regularly</label>
-              <textarea name="medical" rows="2" placeholder="List any injuries, allergies, or regular medications" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);resize:vertical;"></textarea>
+              <label for="medical" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Existing or Past Injury, Allergies, Medications Taken Regularly</label>
+              <textarea name="medical" id="medical" rows="2" placeholder="List any injuries, allergies, or regular medications" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);resize:vertical;"></textarea>
             </div>
           </div>
         </div>
@@ -191,11 +195,11 @@
         <div class="waiver-section">
           <h3>How Did You Hear About Us?</h3>
           <div class="radio-row">
-            <label><input type="radio" name="referralSource" value="google"> Google Ad / Flyer</label>
-            <label><input type="radio" name="referralSource" value="website"> Website</label>
-            <label><input type="radio" name="referralSource" value="friend"> Friend</label>
-            <label><input type="radio" name="referralSource" value="social"> Facebook / Instagram</label>
-            <label><input type="radio" name="referralSource" value="other"> Other</label>
+            <label for="referralSource"><input type="radio" name="referralSource" id="referralSource" value="google"> Google Ad / Flyer</label>
+            <label for="referralSource"><input type="radio" name="referralSource" id="referralSource" value="website"> Website</label>
+            <label for="referralSource"><input type="radio" name="referralSource" id="referralSource" value="friend"> Friend</label>
+            <label for="referralSource"><input type="radio" name="referralSource" id="referralSource" value="social"> Facebook / Instagram</label>
+            <label><input type="radio" name="referralSource" id="referralSource" value="other"> Other</label>
           </div>
         </div>
 
@@ -204,16 +208,16 @@
           <h3>Emergency Contact <span style="font-size:0.8rem;color:var(--rrt-muted);">(Other than Parent/Guardian)</span></h3>
           <div class="grid-form">
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Full Name <span class="required-star">*</span></label>
-              <input type="text" name="emergencyName" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="emergencyName" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Full Name <span class="required-star">*</span></label>
+              <input type="text" name="emergencyName" id="emergencyName" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Relationship</label>
-              <input type="text" name="emergencyRelationship" placeholder="e.g. Grandmother, Aunt" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="emergencyRelationship" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Relationship</label>
+              <input type="text" name="emergencyRelationship" id="emergencyRelationship" placeholder="e.g. Grandmother, Aunt" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Phone <span class="required-star">*</span></label>
-              <input type="tel" name="emergencyPhone" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="emergencyPhone" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Phone <span class="required-star">*</span></label>
+              <input type="tel" name="emergencyPhone" id="emergencyPhone" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
           </div>
         </div>
@@ -223,20 +227,20 @@
           <h3>Doctor &amp; Insurance</h3>
           <div class="grid-form">
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Family Doctor Name</label>
-              <input type="text" name="doctorName" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="doctorName" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Family Doctor Name</label>
+              <input type="text" name="doctorName" id="doctorName" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Doctor Phone</label>
-              <input type="tel" name="doctorPhone" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="doctorPhone" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Doctor Phone</label>
+              <input type="tel" name="doctorPhone" id="doctorPhone" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Insurance Company</label>
-              <input type="text" name="insuranceCompany" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="insuranceCompany" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Insurance Company</label>
+              <input type="text" name="insuranceCompany" id="insuranceCompany" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Policy Number</label>
-              <input type="text" name="insurancePolicy" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="insurancePolicy" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Policy Number</label>
+              <input type="text" name="insurancePolicy" id="insurancePolicy" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
           </div>
         </div>
@@ -252,8 +256,8 @@
             <p>This waiver is intended to be broad and inclusive. If any portion is found unenforceable, the remaining portions shall remain in effect.</p>
           </div>
           <div class="waiver-agree">
-            <label>
-              <input type="checkbox" name="releaseAgree" required style="margin-top:4px;">
+            <label for="releaseAgree">
+              <input type="checkbox" name="releaseAgree" id="releaseAgree" required style="margin-top:4px;">
               <span>I have read and agree to the Release &amp; Waiver above. <span class="required-star">*</span></span>
             </label>
           </div>
@@ -264,8 +268,8 @@
           <h3>Medical Consent</h3>
           <p style="color:var(--rrt-muted-light);font-size:0.85rem;line-height:1.7;margin-bottom:14px;">I authorize RRT/ISA staff to administer basic first aid and, if needed, to obtain emergency medical services for the student. I understand that RRT/ISA does not provide medical insurance and I accept responsibility for all costs associated with medical treatment.</p>
           <div class="waiver-agree">
-            <label>
-              <input type="checkbox" name="medicalAgree" required style="margin-top:4px;">
+            <label for="medicalAgree">
+              <input type="checkbox" name="medicalAgree" id="medicalAgree" required style="margin-top:4px;">
               <span>I consent to emergency medical treatment as described above. <span class="required-star">*</span></span>
             </label>
           </div>
@@ -276,10 +280,10 @@
           <h3>Media Release</h3>
           <p style="color:var(--rrt-muted-light);font-size:0.85rem;line-height:1.7;margin-bottom:14px;">Photos and videos may be taken during classes or events. We will not associate a child&rsquo;s name with their image without parental permission.</p>
           <div class="radio-row">
-            <label><input type="radio" name="mediaRelease" value="in-school"> In-school displays only</label>
-            <label><input type="radio" name="mediaRelease" value="website-social"> Website/social only</label>
-            <label><input type="radio" name="mediaRelease" value="both"> Both</label>
-            <label><input type="radio" name="mediaRelease" value="none"> None</label>
+            <label for="mediaRelease"><input type="radio" name="mediaRelease" id="mediaRelease" value="in-school"> In-school displays only</label>
+            <label for="mediaRelease"><input type="radio" name="mediaRelease" id="mediaRelease" value="website-social"> Website/social only</label>
+            <label for="mediaRelease"><input type="radio" name="mediaRelease" id="mediaRelease" value="both"> Both</label>
+            <label><input type="radio" name="mediaRelease" id="mediaRelease" value="none"> None</label>
           </div>
         </div>
 
@@ -288,38 +292,38 @@
           <h3>Policies <span style="font-size:0.8rem;color:var(--rrt-muted);">(Initial Each)</span></h3>
 
           <div class="policy-row">
-            <div class="initial-box"><input type="text" name="initMembership" maxlength="4" placeholder="Init" required></div>
+            <div class="initial-box"><input type="text" name="initMembership" id="initMembership" maxlength="4" placeholder="Init" required></div>
             <span><strong>Annual Membership Fee (camp excluded):</strong> A $90 annual membership fee is due at registration. If you are a current member and your membership is not due, you will not be charged. This fee renews every 12 months for active students.</span>
           </div>
 
           <div class="policy-row">
-            <div class="initial-box"><input type="text" name="initPayment" maxlength="4" placeholder="Init" required></div>
+            <div class="initial-box"><input type="text" name="initPayment" id="initPayment" maxlength="4" placeholder="Init" required></div>
             <span><strong>Payment Information:</strong> Tuition is due each month on the 26th, no later than the 1st. Late fees: $25 after the 5th, $50 after the 10th, and $75 after the 20th. Returned check fee: $30. Participation may be suspended if the account is not current. PayPal is accepted with a $15 processing fee (rhythmicribbonoftexas@gmail.com). Online payment may also be available via QuickBooks.</span>
           </div>
 
           <div class="policy-row">
-            <div class="initial-box"><input type="text" name="initCancellation" maxlength="4" placeholder="Init" required></div>
+            <div class="initial-box"><input type="text" name="initCancellation" id="initCancellation" maxlength="4" placeholder="Init" required></div>
             <span><strong>Cancellation Policy:</strong> To avoid charges for the next month, a drop class form must be submitted at least 30 days prior (beginner and recreational classes) and 60 days prior (competitive team and adult fitness). Drop forms available by email: rhythmicribbonoftexas@gmail.com.</span>
           </div>
 
           <div class="policy-row">
-            <div class="initial-box"><input type="text" name="initMakeup" maxlength="4" placeholder="Init" required></div>
+            <div class="initial-box"><input type="text" name="initMakeup" id="initMakeup" maxlength="4" placeholder="Init" required></div>
             <span><strong>Make-Up Classes:</strong> Contact Mrs. Rasin to schedule a make-up class for beginner classes. No make-up classes are offered for competitive program athletes.</span>
           </div>
 
           <div class="policy-row">
-            <div class="initial-box"><input type="text" name="initClosures" maxlength="4" placeholder="Init" required></div>
+            <div class="initial-box"><input type="text" name="initClosures" id="initClosures" maxlength="4" placeholder="Init" required></div>
             <span><strong>Closures:</strong> No classes on major holidays: January 1, Memorial Day, July 4 week, Labor Day, Thanksgiving (Thu&ndash;Fri), Christmas Eve, Christmas Day, New Year&rsquo;s Eve, and during inclement weather as determined by RRT/ISA.</span>
           </div>
 
           <div class="policy-row">
-            <div class="initial-box"><input type="text" name="initPickup" maxlength="4" placeholder="Init" required></div>
+            <div class="initial-box"><input type="text" name="initPickup" id="initPickup" maxlength="4" placeholder="Init" required></div>
             <span><strong>Pick-Up Policy:</strong> Students must be picked up inside the building promptly after class. Staff is not responsible for unattended children before or after class times unless prior arrangements have been made. If a child is not picked up within 30 minutes after closure and we cannot reach a parent/guardian, staff may contact law enforcement to help ensure safe transport.</span>
           </div>
 
           <div class="waiver-agree" style="margin-top:16px;">
-            <label>
-              <input type="checkbox" name="policyAgree" required style="margin-top:4px;">
+            <label for="policyAgree">
+              <input type="checkbox" name="policyAgree" id="policyAgree" required style="margin-top:4px;">
               <span>By initialing and checking this box, I verify that I have read, understood, and accepted the policies and terms on this form. <span class="required-star">*</span></span>
             </label>
           </div>
@@ -330,16 +334,16 @@
           <h3>Electronic Signature</h3>
           <div class="grid-form">
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Parent/Guardian Printed Name <span class="required-star">*</span></label>
-              <input type="text" name="signature" required placeholder="Type full legal name" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);font-size:1.1rem;">
+              <label for="signature" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Parent/Guardian Printed Name <span class="required-star">*</span></label>
+              <input type="text" name="signature" id="signature" required placeholder="Type full legal name" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);font-size:1.1rem;">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Driver&rsquo;s License # <span style="font-size:0.8rem;color:var(--rrt-muted);">(optional)</span></label>
-              <input type="text" name="driversLicense" placeholder="License number" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <label for="driversLicense" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Driver&rsquo;s License # <span style="font-size:0.8rem;color:var(--rrt-muted);">(optional)</span></label>
+              <input type="text" name="driversLicense" id="driversLicense" placeholder="License number" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
-              <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">State</label>
-              <input type="text" name="driversLicenseState" placeholder="e.g. TX" maxlength="2" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);text-transform:uppercase;">
+              <label for="driversLicenseState" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">State</label>
+              <input type="text" name="driversLicenseState" id="driversLicenseState" placeholder="e.g. TX" maxlength="2" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);text-transform:uppercase;">
             </div>
           </div>
           <p style="color:var(--rrt-muted);font-size:0.8rem;margin-top:12px;">By typing your name, you agree that this electronic signature is legally binding.</p>
@@ -348,7 +352,7 @@
         <!-- Additional Notes -->
         <div class="waiver-section">
           <h3>Additional Notes <span style="font-size:0.8rem;color:var(--rrt-muted);">(Optional)</span></h3>
-          <textarea name="additionalNotes" rows="3" placeholder="Anything else you'd like us to know?" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);resize:vertical;"></textarea>
+          <textarea name="additionalNotes" id="additionalNotes" rows="3" placeholder="Anything else you'd like us to know?" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);resize:vertical;"></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary btn-full" style="margin-top: 20px;">Submit Waiver</button>
@@ -367,8 +371,8 @@
     <div style="background: rgba(5, 9, 20, 0.8); padding: 16px 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
       <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
         <a href="https://usagym.org/rhythmic/" style="cursor:pointer;-webkit-tap-highlight-color:transparent" target="_blank" rel="noopener noreferrer"><img src="assets/usag-logo.webp" alt="USAG" style="height: 28px;"></a>
-        <a href="https://instagram.com/rhythmicribbonoftexas" target="_blank" rel="noopener noreferrer" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com/RhythmicRibbon" target="_blank" rel="noopener noreferrer" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com/rhythmicribbonoftexas" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/RhythmicRibbon" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-facebook-f"></i></a>
         <a href="/login.html" style="color:var(--rrt-soft-gold);font-size:0.85rem;"><i class="fas fa-user-group"></i> Login</a>
       </div>
     </div>
