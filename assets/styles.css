@@ -63,6 +63,25 @@ body {
   min-height: 100vh;
 }
 
+/* Form Error Messages */
+.error-msg {
+  color: var(--error);
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+input.field-error,
+select.field-error,
+textarea.field-error {
+  border-color: var(--error) !important;
+}
+
+input.field-error:focus,
+select.field-error:focus,
+textarea.field-error:focus {
+  box-shadow: 0 0 0 3px rgba(242, 108, 79, 0.2) !important;
+}
+
 /* Skip Link */
 .skip-link {
   position: absolute;

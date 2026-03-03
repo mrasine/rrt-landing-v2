@@ -52,9 +52,10 @@
         <h1 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 12px;">Register for Free Trial</h1>
         <p class="lead" style="margin-bottom: 40px;">Try a free class before you commit. Fill out the form below and we'll contact you within 24 hours.</p>
         
-        <form id="registration-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 20px; padding: 40px;">
+        <form id="registration-form" novalidate action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 20px; padding: 40px;">
           <input type="hidden" name="_subject" value="New Free Trial Request - Rhythmic Ribbon">
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <!-- novalidate to use custom validation -->
           <h3 style="color: var(--rrt-gold); margin-bottom: 25px;">Parent Information</h3>
           
           <div class="grid-form" style="margin-bottom: 30px;">
@@ -211,25 +212,19 @@
     });
     
     function showError(input, message) {
-      const parent = input.parentElement;
-      let error = parent.querySelector('.error-msg');
-      if (!error) {
-        error = document.createElement('div');
-        error.className = 'error-msg';
-        error.style.color = '#f26c4f';
-        error.style.fontSize = '0.8rem';
-        error.style.marginTop = '5px';
-        parent.appendChild(error);
-      }
+      clearError(input);
+      input.classList.add('field-error');
+      const error = document.createElement('div');
+      error.className = 'error-msg';
       error.textContent = message;
-      input.style.borderColor = '#f26c4f';
+      input.parentElement.appendChild(error);
     }
     
     function clearError(input) {
+      input.classList.remove('field-error');
       const parent = input.parentElement;
       const error = parent.querySelector('.error-msg');
       if (error) error.remove();
-      input.style.borderColor = '';
     }
     
     function validateEmail(email) {
@@ -310,32 +305,36 @@
         valid = false;
       }
       
-      if (valid) {
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
-        
-        fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: {
-            'Accept': 'application/json'
-          }
-        }).then(response => {
-          if (response.ok) {
-            alert('Thank you! We\'ll contact you within 24 hours to schedule your free trial class.');
-            form.reset();
-          } else {
-            alert('Something went wrong. Please try again or contact us directly.');
-          }
-        }).catch(error => {
-          alert('Something went wrong. Please try again or contact us directly.');
-        }).finally(() => {
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-        });
+      if (!valid) {
+        const firstErr = form.querySelector('.field-error');
+        if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
       }
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+      
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          alert('Thank you! We\'ll contact you within 24 hours to schedule your free trial class.');
+          form.reset();
+        } else {
+          alert('Something went wrong. Please try again or contact us directly.');
+        }
+      }).catch(error => {
+        alert('Something went wrong. Please try again or contact us directly.');
+      }).finally(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      });
     });
     
     // Clear errors on input

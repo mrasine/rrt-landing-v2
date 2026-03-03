@@ -208,19 +208,99 @@
     <p style="position:absolute; top:20px; color:#fff; font-size:0.9rem;">Tap to close or press Escape</p>
   </div>
   <script>
-    document.getElementById('waiverForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData.entries());
-      data.mediaAgree = formData.has('mediaAgree');
-      try {
-        document.getElementById('successMessage').classList.add('show');
-        e.target.reset();
-        window.scrollTo({ top: document.getElementById('successMessage').offsetTop - 100, behavior: 'smooth' });
-      } catch (error) {
-        alert('Error submitting form. Please try again.');
+    (function() {
+      const form = document.getElementById('waiverForm');
+      if (!form) return;
+
+      function showError(el, msg) {
+        clearError(el);
+        el.classList.add('field-error');
+        const err = document.createElement('div');
+        err.className = 'error-msg';
+        err.textContent = msg;
+        // For checkboxes, append to the label's parent
+        if (el.type === 'checkbox') {
+          el.closest('label').parentElement.appendChild(err);
+        } else {
+          el.parentElement.appendChild(err);
+        }
       }
-    });
+
+      function clearError(el) {
+        el.classList.remove('field-error');
+        const parent = el.type === 'checkbox' ? el.closest('label').parentElement : el.parentElement;
+        const err = parent.querySelector('.error-msg');
+        if (err) err.remove();
+      }
+
+      function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+      function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let ok = true;
+
+        const fields = {
+          parentName:    { el: form.parentName,    msg: 'Please enter parent name' },
+          email:         { el: form.email,          msg: 'Please enter email' },
+          phone:         { el: form.phone,          msg: 'Please enter phone number' },
+          childName:     { el: form.childName,      msg: "Please enter child's name" },
+          childDob:      { el: form.childDob,       msg: 'Please enter date of birth' },
+          emergencyName: { el: form.emergencyName,  msg: 'Please enter emergency contact name' },
+          emergencyPhone:{ el: form.emergencyPhone,  msg: 'Please enter emergency contact phone' },
+          signature:     { el: form.signature,      msg: 'Please type your full name as signature' },
+        };
+
+        const checkboxes = {
+          releaseAgree: { el: form.releaseAgree, msg: 'You must agree to the liability release' },
+          medicalAgree: { el: form.medicalAgree, msg: 'You must consent to emergency medical treatment' },
+          policyAgree:  { el: form.policyAgree,  msg: 'You must agree to studio policies' },
+        };
+
+        // Clear all errors
+        Object.values(fields).forEach(f => clearError(f.el));
+        Object.values(checkboxes).forEach(f => clearError(f.el));
+
+        // Validate text fields
+        Object.values(fields).forEach(f => {
+          if (!f.el.value.trim()) { showError(f.el, f.msg); ok = false; }
+        });
+
+        // Email format
+        if (form.email.value.trim() && !validEmail(form.email.value)) {
+          showError(form.email, 'Please enter a valid email'); ok = false;
+        }
+
+        // Phone format
+        if (form.phone.value.trim() && !validPhone(form.phone.value)) {
+          showError(form.phone, 'Please enter a valid phone number'); ok = false;
+        }
+        if (form.emergencyPhone.value.trim() && !validPhone(form.emergencyPhone.value)) {
+          showError(form.emergencyPhone, 'Please enter a valid phone number'); ok = false;
+        }
+
+        // Checkboxes
+        Object.values(checkboxes).forEach(f => {
+          if (!f.el.checked) { showError(f.el, f.msg); ok = false; }
+        });
+
+        if (ok) {
+          document.getElementById('successMessage').classList.add('show');
+          form.reset();
+          window.scrollTo({ top: document.getElementById('successMessage').offsetTop - 100, behavior: 'smooth' });
+        } else {
+          // Scroll to first error
+          const firstErr = form.querySelector('.field-error');
+          if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+
+      // Clear errors on input
+      form.querySelectorAll('input, select, textarea').forEach(function(el) {
+        el.addEventListener('input', function() { clearError(el); });
+        el.addEventListener('change', function() { clearError(el); });
+      });
+    })();
   </script>
   <script src="assets/main.js"></script>
 </body>

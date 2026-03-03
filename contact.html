@@ -127,18 +127,18 @@
           
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 20px; padding: 30px;">
             <h3 style="color: var(--rrt-gold); margin-bottom: 12px;">Send a Message</h3>
-            <form>
+            <form id="contact-form" novalidate>
               <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Name</label>
-                <input type="text" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+                <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Name *</label>
+                <input type="text" name="name" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
               </div>
               <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Email</label>
-                <input type="email" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+                <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Email *</label>
+                <input type="email" name="email" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
               </div>
               <div style="margin-bottom: 12px;">
-                <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Message</label>
-                <textarea rows="4" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream); resize: vertical;"></textarea>
+                <label style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Message *</label>
+                <textarea name="message" rows="4" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream); resize: vertical;"></textarea>
               </div>
               <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
             </form>
@@ -185,6 +185,53 @@
     <video id="modalVideo" style="max-width:90%; max-height:80%; border-radius:10px;" controls></video>
     <p style="position:absolute; top:20px; color:#fff; font-size:0.9rem;">Tap to close or press Escape</p>
   </div>
+  <script>
+    (function() {
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+
+      function showError(el, msg) {
+        clearError(el);
+        el.classList.add('field-error');
+        const err = document.createElement('div');
+        err.className = 'error-msg';
+        err.textContent = msg;
+        el.parentElement.appendChild(err);
+      }
+
+      function clearError(el) {
+        el.classList.remove('field-error');
+        const err = el.parentElement.querySelector('.error-msg');
+        if (err) err.remove();
+      }
+
+      function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let ok = true;
+        const name = form.elements.name;
+        const email = form.elements.email;
+        const message = form.elements.message;
+
+        [name, email, message].forEach(clearError);
+
+        if (!name.value.trim()) { showError(name, 'Please enter your name'); ok = false; }
+        if (!email.value.trim()) { showError(email, 'Please enter your email'); ok = false; }
+        else if (!validEmail(email.value)) { showError(email, 'Please enter a valid email'); ok = false; }
+        if (!message.value.trim()) { showError(message, 'Please enter a message'); ok = false; }
+
+        if (ok) {
+          alert('Thank you! We\'ll get back to you soon.');
+          form.reset();
+        }
+      });
+
+      form.querySelectorAll('input, textarea').forEach(function(el) {
+        el.addEventListener('input', function() { clearError(el); });
+      });
+    })();
+  </script>
   <script src="assets/main.js"></script>
 </body>
 </html>
