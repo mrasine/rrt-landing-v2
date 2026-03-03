@@ -151,7 +151,7 @@
             </div>
             <div>
               <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Date of Birth <span class="required-star">*</span></label>
-              <input type="date" name="childDob" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="date" name="childDob" required max="" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
             </div>
             <div>
               <label style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Age</label>
@@ -398,19 +398,29 @@
       var form = document.getElementById('waiverForm');
       if (!form) return;
 
+      /* Set date constraints */
+      var todayISO = new Date().toISOString().split('T')[0];
+      form.childDob.setAttribute('max', todayISO);
+      var minDate = new Date();
+      minDate.setFullYear(minDate.getFullYear() - 25);
+      form.childDob.setAttribute('min', minDate.toISOString().split('T')[0]);
+
       /* Auto-calculate age from DOB */
       var dobField = form.childDob;
       var ageField = form.childAge;
       if (dobField && ageField) {
         function calcAge() {
-          if (!dobField.value) { ageField.value = ''; return; }
+          if (!dobField.value) { ageField.value = ''; clearError(dobField); return; }
           var parts = dobField.value.split('-');
           var dob = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
           var today = new Date();
+          if (dob > today) { ageField.value = ''; showError(dobField, 'Date of birth cannot be in the future'); return; }
           var age = today.getFullYear() - dob.getFullYear();
           var m = today.getMonth() - dob.getMonth();
           if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
-          ageField.value = age >= 0 ? age : '';
+          if (age < 3) { ageField.value = ''; showError(dobField, 'Child must be at least 3 years old'); return; }
+          ageField.value = age;
+          clearError(dobField);
         }
         dobField.addEventListener('change', calcAge);
         dobField.addEventListener('input', calcAge);

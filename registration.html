@@ -216,7 +216,7 @@
                 </div>
                 <div>
                   <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Date of Birth <span class="required-star">*</span></label>
-                  <input type="date" name="childDob" required style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                  <input type="date" name="childDob" required max="" style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
                 </div>
                 <div>
                   <label style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Child's Age <span class="required-star">*</span></label>
@@ -704,17 +704,30 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
     e.target.value = val;
   });
 
+  // Set max date to today (block future dates)
+  var todayISO = new Date().toISOString().split('T')[0];
+  form.childDob.setAttribute('max', todayISO);
+  // Set min date to 25 years ago (reasonable range)
+  var minDate = new Date();
+  minDate.setFullYear(minDate.getFullYear() - 25);
+  form.childDob.setAttribute('min', minDate.toISOString().split('T')[0]);
+
   // Auto-calculate age from DOB
   function calcAge() {
     var val = form.childDob.value;
-    if (!val) { form.childAge.value = ''; return; }
+    if (!val) { form.childAge.value = ''; clearError(form.childDob); return; }
     var parts = val.split('-');
     var dob = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
     var today = new Date();
+    // Block future dates
+    if (dob > today) { form.childAge.value = ''; showError(form.childDob, 'Date of birth cannot be in the future'); return; }
     var age = today.getFullYear() - dob.getFullYear();
     var m = today.getMonth() - dob.getMonth();
     if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
-    form.childAge.value = age >= 0 ? age : '';
+    // Block under 3
+    if (age < 3) { form.childAge.value = ''; showError(form.childDob, 'Child must be at least 3 years old'); return; }
+    form.childAge.value = age;
+    clearError(form.childDob);
     clearError(form.childAge);
   }
   form.childDob.addEventListener('change', calcAge);
