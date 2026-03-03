@@ -690,7 +690,7 @@ main {
   .footer-bottom {
     flex-direction: column;
     gap: var(--space-md);
-    text-align: center;
+    text-align: left;
   }
 }
 
