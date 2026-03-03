@@ -717,15 +717,18 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
     var val = form.childDob.value;
     if (!val) { form.childAge.value = ''; clearError(form.childDob); return; }
     var parts = val.split('-');
-    var dob = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+    var y = parseInt(parts[0]), m = parseInt(parts[1]) - 1, d = parseInt(parts[2]);
+    var dob = new Date(y, m, d);
+    dob.setFullYear(y); // prevent JS from treating 0-99 as 1900-1999
     var today = new Date();
     // Block future dates
     if (dob > today) { form.childAge.value = ''; showError(form.childDob, 'Date of birth cannot be in the future'); return; }
     var age = today.getFullYear() - dob.getFullYear();
-    var m = today.getMonth() - dob.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
-    // Block under 3
+    var mo = today.getMonth() - dob.getMonth();
+    if (mo < 0 || (mo === 0 && today.getDate() < dob.getDate())) age--;
+    // Block unreasonable ages
     if (age < 3) { form.childAge.value = ''; showError(form.childDob, 'Child must be at least 3 years old'); return; }
+    if (age > 25) { form.childAge.value = ''; showError(form.childDob, 'Please enter a valid date of birth'); return; }
     form.childAge.value = age;
     clearError(form.childDob);
     clearError(form.childAge);

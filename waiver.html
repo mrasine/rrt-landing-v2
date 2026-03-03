@@ -412,13 +412,16 @@
         function calcAge() {
           if (!dobField.value) { ageField.value = ''; clearError(dobField); return; }
           var parts = dobField.value.split('-');
-          var dob = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+          var y = parseInt(parts[0]), mo = parseInt(parts[1]) - 1, d = parseInt(parts[2]);
+          var dob = new Date(y, mo, d);
+          dob.setFullYear(y); // prevent JS from treating 0-99 as 1900-1999
           var today = new Date();
           if (dob > today) { ageField.value = ''; showError(dobField, 'Date of birth cannot be in the future'); return; }
           var age = today.getFullYear() - dob.getFullYear();
           var m = today.getMonth() - dob.getMonth();
           if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
           if (age < 3) { ageField.value = ''; showError(dobField, 'Child must be at least 3 years old'); return; }
+          if (age > 25) { ageField.value = ''; showError(dobField, 'Please enter a valid date of birth'); return; }
           ageField.value = age;
           clearError(dobField);
         }
