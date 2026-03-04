@@ -30,8 +30,7 @@
 
   // Sync with the video unmute button on home page
   var video = document.getElementById('homeVideo');
-  var unmuteBtn = document.getElementById('unmuteBtn');
-  if (video && unmuteBtn) {
+  if (video) {
     // When video is unmuted, pause background music
     video.addEventListener('volumechange', function() {
       if (!video.muted && !audio.paused) {
@@ -39,19 +38,10 @@
         setPaused();
       }
     });
-    // When music starts, mute video
+    // When music starts, mute video so both don't play at once
     audio.addEventListener('play', function() {
       if (!video.muted) {
         video.muted = true;
-        unmuteBtn.textContent = '\uD83D\uDD07';
-        unmuteBtn.setAttribute('aria-label', 'Unmute video');
-      }
-    });
-    // When video is unmuted via its own button, pause music
-    unmuteBtn.addEventListener('click', function() {
-      if (!video.muted && !audio.paused) {
-        audio.pause();
-        setPaused();
       }
     });
   }

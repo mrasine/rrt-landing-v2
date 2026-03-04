@@ -12,6 +12,8 @@
   <meta property="og:image" content="https://rhythmicribbonoftexas.com/assets/logo.png">
   <meta property="og:url" content="https://rhythmicribbonoftexas.com/community.html">
   <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -224,15 +226,15 @@
     </div>
 
     <div class="program-filter">
-      <button class="active" onclick="filterPosts('all')">All Programs</button>
-      <button onclick="filterPosts('preschool')">Preschool</button>
-      <button onclick="filterPosts('beginners')">Beginners</button>
-      <button onclick="filterPosts('competitive')">Competitive</button>
-      <button onclick="filterPosts('flexibility')">Flexibility</button>
-      <button onclick="filterPosts('ballet')">Ballet</button>
+      <button class="active" onclick="filterPosts('all', event)">All Programs</button>
+      <button onclick="filterPosts('preschool', event)">Preschool</button>
+      <button onclick="filterPosts('beginners', event)">Beginners</button>
+      <button onclick="filterPosts('competitive', event)">Competitive</button>
+      <button onclick="filterPosts('flexibility', event)">Flexibility</button>
+      <button onclick="filterPosts('ballet', event)">Ballet</button>
     </div>
 
-    <div id="posts" style="margin-top: 30px;">
+    <div id="posts" aria-live="polite" style="margin-top: 30px;">
       <!-- Sample Posts -->
       <div class="post-card" data-program="beginners">
         <div class="post-header">
@@ -291,9 +293,9 @@
   </main>
 
   <script>
-    function filterPosts(program) {
+    function filterPosts(program, e) {
       document.querySelectorAll('.program-filter button').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+      if (e && e.target) e.target.classList.add('active');
       
       document.querySelectorAll('.post-card').forEach(post => {
         if (program === 'all' || post.dataset.program === program) {
