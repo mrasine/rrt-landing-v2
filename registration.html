@@ -711,14 +711,17 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
   var form = document.getElementById('reg-form');
   if (!form) return;
 
-  // Auto-format phone
-  form.phone.addEventListener('input', function(e) {
+  // Auto-format phone helper
+  function formatPhone(e) {
     var val = e.target.value.replace(/\D/g, '');
     if (val.length > 10) val = val.slice(0, 10);
     if (val.length >= 6) val = '(' + val.slice(0,3) + ') ' + val.slice(3,6) + '-' + val.slice(6);
     else if (val.length >= 3) val = '(' + val.slice(0,3) + ') ' + val.slice(3);
     e.target.value = val;
-  });
+  }
+  form.phone.addEventListener('input', formatPhone);
+  form.emergencyPhone.addEventListener('input', formatPhone);
+  if (form.doctorPhone) form.doctorPhone.addEventListener('input', formatPhone);
 
   // Set max date to today (block future dates)
   var todayISO = new Date().toISOString().split('T')[0];

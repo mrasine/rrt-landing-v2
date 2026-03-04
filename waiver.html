@@ -407,6 +407,18 @@
       var form = document.getElementById('waiverForm');
       if (!form) return;
 
+      /* Auto-format phone helper */
+      function formatPhone(e) {
+        var val = e.target.value.replace(/\D/g, '');
+        if (val.length > 10) val = val.slice(0, 10);
+        if (val.length >= 6) val = '(' + val.slice(0,3) + ') ' + val.slice(3,6) + '-' + val.slice(6);
+        else if (val.length >= 3) val = '(' + val.slice(0,3) + ') ' + val.slice(3);
+        e.target.value = val;
+      }
+      ['phone', 'workPhone', 'homePhone', 'emergencyPhone', 'doctorPhone'].forEach(function(name) {
+        if (form[name]) form[name].addEventListener('input', formatPhone);
+      });
+
       /* Set date constraints */
       var todayISO = new Date().toISOString().split('T')[0];
       form.childDob.setAttribute('max', todayISO);
