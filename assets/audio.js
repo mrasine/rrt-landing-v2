@@ -1,31 +1,60 @@
-// Background music player
+// Background music player — synced with video mute button
 (function() {
-  const audio = new Audio('assets/rrt-media/art/home-page-audio.mp3');
+  var audio = new Audio('assets/rrt-media/art/home-page-audio.mp3');
   audio.loop = true;
   audio.volume = 0.3;
-  
-  const btn = document.createElement('button');
-  btn.id = 'musicBtn';
-  btn.innerHTML = '🎵';
+
+  var btn = document.createElement('button');
+  btn.className = 'floating-btn floating-btn--sound visible';
+  btn.innerHTML = '<i class="fas fa-music"></i>';
   btn.setAttribute('aria-label', 'Play music');
-  btn.style.cssText = 'position:fixed;bottom:150px;right:20px;z-index:999999;width:50px;height:50px;border-radius:50%;background:rgba(212,175,55,0.95);border:2px solid #d4af37;color:#05070a;font-size:1.3rem;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:none;';
-  
+
+  function setPlaying() {
+    btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+    btn.setAttribute('aria-label', 'Pause music');
+  }
+  function setPaused() {
+    btn.innerHTML = '<i class="fas fa-music"></i>';
+    btn.setAttribute('aria-label', 'Play music');
+  }
+
   btn.addEventListener('click', function() {
     if (audio.paused) {
-      audio.play().catch(() => {});
-      btn.innerHTML = '🎶';
-      btn.setAttribute('aria-label', 'Pause music');
+      audio.play().catch(function() {});
+      setPlaying();
     } else {
       audio.pause();
-      btn.innerHTML = '🎵';
-      btn.setAttribute('aria-label', 'Play music');
+      setPaused();
     }
   });
-  
-  document.addEventListener('click', function firstClick() {
-    btn.style.display = 'flex';
-    document.removeEventListener('click', firstClick);
-  });
-  
+
+  // Sync with the video unmute button on home page
+  var video = document.getElementById('homeVideo');
+  var unmuteBtn = document.getElementById('unmuteBtn');
+  if (video && unmuteBtn) {
+    // When video is unmuted, pause background music
+    video.addEventListener('volumechange', function() {
+      if (!video.muted && !audio.paused) {
+        audio.pause();
+        setPaused();
+      }
+    });
+    // When music starts, mute video
+    audio.addEventListener('play', function() {
+      if (!video.muted) {
+        video.muted = true;
+        unmuteBtn.textContent = '\uD83D\uDD07';
+        unmuteBtn.setAttribute('aria-label', 'Unmute video');
+      }
+    });
+    // When video is unmuted via its own button, pause music
+    unmuteBtn.addEventListener('click', function() {
+      if (!video.muted && !audio.paused) {
+        audio.pause();
+        setPaused();
+      }
+    });
+  }
+
   document.body.appendChild(btn);
 })();

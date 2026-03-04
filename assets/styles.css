@@ -1328,3 +1328,64 @@ main {
     flex-direction: column !important;
   }
 }
+
+/* ── Floating utility buttons ── */
+.floating-btn {
+  position: fixed;
+  z-index: 999999;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid var(--rrt-gold);
+  background: rgba(5, 9, 20, 0.85);
+  color: var(--rrt-gold);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.floating-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.floating-btn:hover {
+  background: var(--rrt-gold);
+  color: #05070a;
+  transform: scale(1.12);
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
+}
+.floating-btn:active {
+  transform: scale(0.95);
+}
+
+.floating-btn--back {
+  bottom: 100px;
+  left: 20px;
+}
+.floating-btn--up {
+  bottom: 100px;
+  right: 20px;
+}
+.floating-btn--sound {
+  bottom: 156px;
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .floating-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+  }
+  .floating-btn--back { bottom: 110px; left: 16px; }
+  .floating-btn--up   { bottom: 110px; right: 16px; }
+  .floating-btn--sound { bottom: 162px; right: 16px; }
+}

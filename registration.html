@@ -154,7 +154,7 @@
     </div>
   </header>
 
-  <main id="main"><a href="#" onclick="history.back();return false;" aria-label="Go back" style="position:fixed;bottom:80px;left:20px;background:rgba(212,175,55,0.95);color:#05070a;border:2px solid #d4af37;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;z-index:999999;box-shadow:0 4px 12px rgba(0,0,0,0.3);">&#8592;</a>
+  <main id="main">
     <div class="hero-bg-fixed"></div>
     <section class="container" style="padding: 60px 20px;">
       <div class="form-container">
@@ -219,7 +219,7 @@
                 </div>
                 <div>
                   <label for="childDob" style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Date of Birth <span class="required-star">*</span></label>
-                  <input type="date" name="childDob" id="childDob" required max="" style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                  <input type="date" name="childDob" id="childDob" required style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
                 </div>
                 <div>
                   <label for="childAge" style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Child's Age <span class="required-star">*</span></label>
@@ -267,7 +267,7 @@
 
           <div style="display:flex;justify-content:flex-end;margin-bottom:16px;gap:10px;flex-wrap:wrap;">
             <button type="button" class="btn-outline" onclick="window.print()"><i class="fas fa-print"></i> Print / Save PDF</button>
-            <a href="/rrt-waiver.pdf" target="_blank" class="btn-outline"><i class="fas fa-file-pdf"></i> Download PDF</a>
+            <a href="/rrt-waiver.pdf" target="_blank" rel="noopener noreferrer" class="btn-outline"><i class="fas fa-file-pdf"></i> Download PDF</a>
           </div>
 
           <form id="waiver-form" novalidate>
@@ -284,11 +284,11 @@
             <div class="form-section">
               <h3>How Did You Hear About Us?</h3>
               <div style="display:flex;flex-wrap:wrap;gap:12px;">
-                <label for="referralSource" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" id="referralSource" value="google"> Google Ad / Flyer</label>
-                <label for="referralSource" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" id="referralSource" value="website"> Website</label>
-                <label for="referralSource" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" id="referralSource" value="friend"> Friend</label>
-                <label for="referralSource" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" id="referralSource" value="social"> Facebook / Instagram</label>
-                <label style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" id="referralSource" value="other"> Other</label>
+                <label for="referralSource-google" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" id="referralSource-google" value="google"> Google Ad / Flyer</label>
+                <label for="referralSource-website" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" id="referralSource-website" value="website"> Website</label>
+                <label for="referralSource-friend" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" id="referralSource-friend" value="friend"> Friend</label>
+                <label for="referralSource-social" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" id="referralSource-social" value="social"> Facebook / Instagram</label>
+                <label for="referralSource-other" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="referralSource" id="referralSource-other" value="other"> Other</label>
               </div>
             </div>
 
@@ -306,8 +306,8 @@
                 <div>
                   <label for="hasMedical" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Medical Conditions We Should Know About?</label>
                   <div style="display:flex;gap:16px;margin-bottom:8px;">
-                    <label for="hasMedical" style="display:flex;align-items:center;gap:5px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="hasMedical" id="hasMedical" value="yes"> Yes</label>
-                    <label for="medicalExplain" style="display:flex;align-items:center;gap:5px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="hasMedical" id="hasMedical" value="no" checked> No</label>
+                    <label for="hasMedical-yes" style="display:flex;align-items:center;gap:5px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="hasMedical" id="hasMedical-yes" value="yes"> Yes</label>
+                    <label for="hasMedical-no" style="display:flex;align-items:center;gap:5px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="hasMedical" id="hasMedical-no" value="no" checked> No</label>
                   </div>
                   <input type="text" name="medicalExplain" id="medicalExplain" placeholder="If yes, please explain" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
                 </div>
@@ -395,10 +395,10 @@
               <h3>Media Release</h3>
               <p style="color:var(--rrt-muted-light);font-size:0.85rem;line-height:1.7;margin-bottom:14px;">Photos and videos may be taken during classes or events. We will not associate a child&rsquo;s name with their image without parental permission.</p>
               <div style="display:flex;flex-wrap:wrap;gap:12px;">
-                <label for="mediaRelease" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="mediaRelease" id="mediaRelease" value="in-school"> In-school displays only</label>
-                <label for="mediaRelease" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="mediaRelease" id="mediaRelease" value="website-social"> Website/social only</label>
-                <label for="mediaRelease" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="mediaRelease" id="mediaRelease" value="both"> Both</label>
-                <label style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="mediaRelease" id="mediaRelease" value="none"> None</label>
+                <label for="mediaRelease-inschool" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="mediaRelease" id="mediaRelease-inschool" value="in-school"> In-school displays only</label>
+                <label for="mediaRelease-websocial" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="mediaRelease" id="mediaRelease-websocial" value="website-social"> Website/social only</label>
+                <label for="mediaRelease-both" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="mediaRelease" id="mediaRelease-both" value="both"> Both</label>
+                <label for="mediaRelease-none" style="display:flex;align-items:center;gap:6px;color:var(--rrt-muted-light);font-size:0.9rem;cursor:pointer;"><input type="radio" name="mediaRelease" id="mediaRelease-none" value="none"> None</label>
               </div>
             </div>
 
@@ -540,7 +540,7 @@
 
       </div><!-- .form-container -->
     </section>
-  </main><a href="#" onclick="window.scrollTo(0,0);return false;" style="position:fixed;bottom:80px;right:20px;background:rgba(212,175,55,0.95);color:#05070a;border:2px solid #d4af37;width:50px;height:50px;border-radius:50%;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;z-index:999999;box-shadow:0 4px 12px rgba(0,0,0,0.3);">&#8593;</a>
+  </main>
 
   <footer class="site-footer">
     <div class="mobile-footer-spacer"></div>
@@ -556,8 +556,8 @@
         </div>
         <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
           <a href="https://instagram.com/rhythmicribbonoftexas" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-instagram"></i></a>
-          <a href="https://facebook.com/RhythmicRibbon" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-facebook-f"></i></a>
           <a href="/login.html" style="color:var(--rrt-soft-gold);font-size:0.85rem;"><i class="fas fa-user-group"></i> Login</a>
+          <a href="https://facebook.com/RhythmicRibbon" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style="color:var(--rrt-gold);font-size:1.2rem;"><i class="fab fa-facebook-f"></i></a>
         </div>
       </div>
     </div>
@@ -752,8 +752,8 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
   form.childDob.addEventListener('change', calcAge);
   form.childDob.addEventListener('input', calcAge);
   // Fallback: poll for value changes (some browsers don't fire events reliably for date inputs)
-  setInterval(function() {
-    if (form.childDob.value && !form.childAge.value) calcAge();
+  var dobPollId = setInterval(function() {
+    if (form.childDob.value && !form.childAge.value) { calcAge(); if (form.childAge.value) clearInterval(dobPollId); }
   }, 500);
 
   // Auto-format zip
@@ -778,9 +778,7 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
       [form.childName,  "Please enter child's name"],
       [form.childDob,   'Please enter date of birth'],
       [form.childAge,   'Please select age'],
-      [form.program,    'Please select a program'],
-      [form.driversLicense, 'Please enter driver\'s license number'],
-      [form.driversLicenseState, 'Please enter state']
+      [form.program,    'Please select a program']
     ];
     for (var i = 0; i < checks.length; i++) {
       clearError(checks[i][0]);

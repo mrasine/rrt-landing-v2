@@ -167,14 +167,58 @@ function closeModal() {
 
 // Back to top button visibility
 (function() {
-  var btn = document.querySelector('a[onclick*="scrollTo(0,0)"]');
-  if (!btn) return;
-  
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 200) {
-      btn.style.display = 'flex';
+  // ── Create scroll-to-top button ──
+  var upBtn = document.querySelector('a[aria-label="Scroll to top"]');
+  if (!upBtn) {
+    upBtn = document.createElement('button');
+    document.body.appendChild(upBtn);
+  } else {
+    // Replace inline <a> with a proper <button>
+    var newUp = document.createElement('button');
+    upBtn.parentNode.replaceChild(newUp, upBtn);
+    upBtn = newUp;
+  }
+  upBtn.className = 'floating-btn floating-btn--up';
+  upBtn.setAttribute('aria-label', 'Scroll to top');
+  upBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+  upBtn.removeAttribute('style');
+  upBtn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ── Create back button (skip on home page) ──
+  var page = window.location.pathname.replace(/\/$/, '').split('/').pop();
+  var isHome = !page || page === '' || page === 'index.html';
+  var backLink = document.querySelector('a[aria-label="Go back"]');
+  var backBtn;
+  if (!isHome) {
+    if (backLink) {
+      backBtn = document.createElement('button');
+      backLink.parentNode.replaceChild(backBtn, backLink);
     } else {
-      btn.style.display = 'none';
+      backBtn = document.createElement('button');
+      document.body.appendChild(backBtn);
+    }
+    backBtn.className = 'floating-btn floating-btn--back visible';
+    backBtn.setAttribute('aria-label', 'Go back');
+    backBtn.innerHTML = '<i class="fas fa-arrow-left"></i>';
+    backBtn.addEventListener('click', function() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = '/';
+      }
+    });
+  } else if (backLink) {
+    backLink.remove();
+  }
+
+  // ── Show / hide scroll-to-top on scroll ──
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) {
+      upBtn.classList.add('visible');
+    } else {
+      upBtn.classList.remove('visible');
     }
   });
 })();
