@@ -453,12 +453,12 @@
                   <input type="text" name="signature" id="signature" required placeholder="Type full legal name" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);font-size:1.1rem;">
                 </div>
                 <div>
-                  <label for="driversLicense" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Driver&rsquo;s License #</label>
-                  <input type="text" name="driversLicense" id="driversLicense" placeholder="License number" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+                  <label for="driversLicense" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Driver&rsquo;s License # <span style="color:#ff6b6b;">*</span></label>
+                  <input type="text" name="driversLicense" id="driversLicense" placeholder="License number" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
                 </div>
                 <div>
-                  <label for="driversLicenseState" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">State</label>
-                  <input type="text" name="driversLicenseState" id="driversLicenseState" placeholder="e.g. TX" maxlength="2" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);text-transform:uppercase;" pattern="[A-Za-z]{2}" autocomplete="address-level1">
+                  <label for="driversLicenseState" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">State <span style="color:#ff6b6b;">*</span></label>
+                  <input type="text" name="driversLicenseState" id="driversLicenseState" placeholder="e.g. TX" maxlength="2" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);text-transform:uppercase;" pattern="[A-Za-z]{2}" autocomplete="address-level1">
                 </div>
               </div>
               <p style="color:var(--rrt-muted);font-size:0.8rem;margin-top:12px;">By typing your name, you agree that this electronic signature is legally binding.</p>
@@ -778,7 +778,9 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
       [form.childName,  "Please enter child's name"],
       [form.childDob,   'Please enter date of birth'],
       [form.childAge,   'Please select age'],
-      [form.program,    'Please select a program']
+      [form.program,    'Please select a program'],
+      [form.driversLicense, 'Please enter driver\'s license number'],
+      [form.driversLicenseState, 'Please enter state']
     ];
     for (var i = 0; i < checks.length; i++) {
       clearError(checks[i][0]);
