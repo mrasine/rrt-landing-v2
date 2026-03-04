@@ -720,8 +720,13 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
     e.target.value = val;
   }
   form.phone.addEventListener('input', formatPhone);
-  form.emergencyPhone.addEventListener('input', formatPhone);
-  if (form.doctorPhone) form.doctorPhone.addEventListener('input', formatPhone);
+
+  // Emergency/doctor phones are in waiver-form, not reg-form
+  var waiverForm = document.getElementById('waiver-form');
+  if (waiverForm) {
+    if (waiverForm.emergencyPhone) waiverForm.emergencyPhone.addEventListener('input', formatPhone);
+    if (waiverForm.doctorPhone) waiverForm.doctorPhone.addEventListener('input', formatPhone);
+  }
 
   // Set max date to today (block future dates)
   var todayISO = new Date().toISOString().split('T')[0];
