@@ -1,6 +1,6 @@
 // Background music player
 (function() {
-  const audio = new Audio('assets/rrt-media/art/home-page-video.mp4');
+  const audio = new Audio('assets/rrt-media/art/home-page-audio.mp3');
   audio.loop = true;
   audio.volume = 0.3;
   
