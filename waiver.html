@@ -116,31 +116,31 @@
           <div class="grid-form">
             <div>
               <label for="parentName" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Parent Name <span class="required-star">*</span></label>
-              <input type="text" name="parentName" id="parentName" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="text" name="parentName" id="parentName" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);" autocomplete="name" placeholder="First Last">
             </div>
             <div>
               <label for="email" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Email <span class="required-star">*</span></label>
-              <input type="email" name="email" id="email" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="email" name="email" id="email" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);" autocomplete="email" inputmode="email" placeholder="you@example.com">
             </div>
             <div>
               <label for="phone" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Mobile Phone <span class="required-star">*</span></label>
-              <input type="tel" name="phone" id="phone" required placeholder="(xxx) xxx-xxxx" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="tel" name="phone" id="phone" required placeholder="(xxx) xxx-xxxx" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);" inputmode="tel" autocomplete="tel" pattern="[0-9()\-\s+]{7,20}">
             </div>
             <div>
               <label for="workPhone" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Work Phone</label>
-              <input type="tel" name="workPhone" id="workPhone" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="tel" name="workPhone" id="workPhone" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);" inputmode="tel" pattern="[0-9()\-\s+]{7,20}" placeholder="(xxx) xxx-xxxx">
             </div>
             <div>
               <label for="homePhone" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Home Phone</label>
-              <input type="tel" name="homePhone" id="homePhone" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="tel" name="homePhone" id="homePhone" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);" inputmode="tel" pattern="[0-9()\-\s+]{7,20}" placeholder="(xxx) xxx-xxxx">
             </div>
             <div>
               <label for="address" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Address</label>
-              <input type="text" name="address" id="address" placeholder="123 Main St" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="text" name="address" id="address" placeholder="123 Main St" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);" autocomplete="street-address">
             </div>
             <div>
               <label for="cityStateZip" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">City / State / Zip</label>
-              <input type="text" name="cityStateZip" id="cityStateZip" placeholder="McKinney, TX 75070" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="text" name="cityStateZip" id="cityStateZip" placeholder="McKinney, TX 75070" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);" autocomplete="off">
             </div>
           </div>
         </div>
@@ -209,15 +209,15 @@
           <div class="grid-form">
             <div>
               <label for="emergencyName" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Full Name <span class="required-star">*</span></label>
-              <input type="text" name="emergencyName" id="emergencyName" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="text" name="emergencyName" id="emergencyName" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);" autocomplete="off" placeholder="Full name">
             </div>
             <div>
               <label for="emergencyRelationship" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Relationship</label>
-              <input type="text" name="emergencyRelationship" id="emergencyRelationship" placeholder="e.g. Grandmother, Aunt" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="text" name="emergencyRelationship" id="emergencyRelationship" placeholder="e.g. Grandmother, Aunt" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);" autocomplete="off">
             </div>
             <div>
               <label for="emergencyPhone" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Phone <span class="required-star">*</span></label>
-              <input type="tel" name="emergencyPhone" id="emergencyPhone" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="tel" name="emergencyPhone" id="emergencyPhone" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);" inputmode="tel" pattern="[0-9()\-\s+]{7,20}" placeholder="(xxx) xxx-xxxx">
             </div>
           </div>
         </div>
@@ -228,11 +228,11 @@
           <div class="grid-form">
             <div>
               <label for="doctorName" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Family Doctor Name</label>
-              <input type="text" name="doctorName" id="doctorName" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="text" name="doctorName" id="doctorName" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);" autocomplete="off" placeholder="Doctor name">
             </div>
             <div>
               <label for="doctorPhone" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Doctor Phone</label>
-              <input type="tel" name="doctorPhone" id="doctorPhone" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);">
+              <input type="tel" name="doctorPhone" id="doctorPhone" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);" inputmode="tel" pattern="[0-9()\-\s+]{7,20}" placeholder="(xxx) xxx-xxxx">
             </div>
             <div>
               <label for="insuranceCompany" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">Insurance Company</label>
@@ -292,32 +292,32 @@
           <h3>Policies <span style="font-size:0.8rem;color:var(--rrt-muted);">(Initial Each)</span></h3>
 
           <div class="policy-row">
-            <div class="initial-box"><input type="text" name="initMembership" id="initMembership" maxlength="4" placeholder="Init" required></div>
+            <div class="initial-box"><input type="text" name="initMembership" id="initMembership" maxlength="4" placeholder="Init" required autocapitalize="characters"></div>
             <span><strong>Annual Membership Fee (camp excluded):</strong> A $90 annual membership fee is due at registration. If you are a current member and your membership is not due, you will not be charged. This fee renews every 12 months for active students.</span>
           </div>
 
           <div class="policy-row">
-            <div class="initial-box"><input type="text" name="initPayment" id="initPayment" maxlength="4" placeholder="Init" required></div>
+            <div class="initial-box"><input type="text" name="initPayment" id="initPayment" maxlength="4" placeholder="Init" required autocapitalize="characters"></div>
             <span><strong>Payment Information:</strong> Tuition is due each month on the 26th, no later than the 1st. Late fees: $25 after the 5th, $50 after the 10th, and $75 after the 20th. Returned check fee: $30. Participation may be suspended if the account is not current. PayPal is accepted with a $15 processing fee (rhythmicribbonoftexas@gmail.com). Online payment may also be available via QuickBooks.</span>
           </div>
 
           <div class="policy-row">
-            <div class="initial-box"><input type="text" name="initCancellation" id="initCancellation" maxlength="4" placeholder="Init" required></div>
+            <div class="initial-box"><input type="text" name="initCancellation" id="initCancellation" maxlength="4" placeholder="Init" required autocapitalize="characters"></div>
             <span><strong>Cancellation Policy:</strong> To avoid charges for the next month, a drop class form must be submitted at least 30 days prior (beginner and recreational classes) and 60 days prior (competitive team and adult fitness). Drop forms available by email: rhythmicribbonoftexas@gmail.com.</span>
           </div>
 
           <div class="policy-row">
-            <div class="initial-box"><input type="text" name="initMakeup" id="initMakeup" maxlength="4" placeholder="Init" required></div>
+            <div class="initial-box"><input type="text" name="initMakeup" id="initMakeup" maxlength="4" placeholder="Init" required autocapitalize="characters"></div>
             <span><strong>Make-Up Classes:</strong> Contact Mrs. Rasin to schedule a make-up class for beginner classes. No make-up classes are offered for competitive program athletes.</span>
           </div>
 
           <div class="policy-row">
-            <div class="initial-box"><input type="text" name="initClosures" id="initClosures" maxlength="4" placeholder="Init" required></div>
+            <div class="initial-box"><input type="text" name="initClosures" id="initClosures" maxlength="4" placeholder="Init" required autocapitalize="characters"></div>
             <span><strong>Closures:</strong> No classes on major holidays: January 1, Memorial Day, July 4 week, Labor Day, Thanksgiving (Thu&ndash;Fri), Christmas Eve, Christmas Day, New Year&rsquo;s Eve, and during inclement weather as determined by RRT/ISA.</span>
           </div>
 
           <div class="policy-row">
-            <div class="initial-box"><input type="text" name="initPickup" id="initPickup" maxlength="4" placeholder="Init" required></div>
+            <div class="initial-box"><input type="text" name="initPickup" id="initPickup" maxlength="4" placeholder="Init" required autocapitalize="characters"></div>
             <span><strong>Pick-Up Policy:</strong> Students must be picked up inside the building promptly after class. Staff is not responsible for unattended children before or after class times unless prior arrangements have been made. If a child is not picked up within 30 minutes after closure and we cannot reach a parent/guardian, staff may contact law enforcement to help ensure safe transport.</span>
           </div>
 
@@ -343,7 +343,7 @@
             </div>
             <div>
               <label for="driversLicenseState" style="display:block;margin-bottom:5px;font-size:0.85rem;color:var(--rrt-muted-light);">State</label>
-              <input type="text" name="driversLicenseState" id="driversLicenseState" placeholder="e.g. TX" maxlength="2" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);text-transform:uppercase;">
+              <input type="text" name="driversLicenseState" id="driversLicenseState" placeholder="e.g. TX" maxlength="2" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);text-transform:uppercase;" pattern="[A-Za-z]{2}" autocomplete="address-level1">
             </div>
           </div>
           <p style="color:var(--rrt-muted);font-size:0.8rem;margin-top:12px;">By typing your name, you agree that this electronic signature is legally binding.</p>
@@ -382,6 +382,17 @@
     </div>
     
   
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>&copy; <span class="copyright-year">2026</span> Rhythmic Ribbon of Texas. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <!-- Mobile Sticky CTA -->
   <div class="mobile-sticky-cta">
     <a href="/registration.html" class="btn btn-primary shine" style="width:100%;display:block;padding:14px 20px;text-align:center;text-decoration:none;">Book Free Trial</a>

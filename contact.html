@@ -106,11 +106,11 @@
             <form id="contact-form" novalidate>
               <div style="margin-bottom: 15px;">
                 <label for="contact-name" style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Name *</label>
-                <input type="text" id="contact-name" name="name" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+                <input type="text" id="contact-name" name="name" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);" autocomplete="name">
               </div>
               <div style="margin-bottom: 15px;">
                 <label for="contact-email" style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Email *</label>
-                <input type="email" id="contact-email" name="email" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);">
+                <input type="email" id="contact-email" name="email" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream);" autocomplete="email" inputmode="email">
               </div>
               <div style="margin-bottom: 12px;">
                 <label for="contact-message" style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Message *</label>
@@ -176,6 +176,17 @@
     </div>
     
   
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>&copy; <span class="copyright-year">2026</span> Rhythmic Ribbon of Texas. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <!-- Mobile Sticky CTA -->
   <div class="mobile-sticky-cta">
     <a href="/registration.html" class="btn btn-primary shine" style="width:100%;display:block;padding:14px 20px;text-align:center;text-decoration:none;">Book Free Trial</a>

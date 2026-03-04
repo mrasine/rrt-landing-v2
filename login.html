@@ -125,11 +125,11 @@
     <form id="loginForm">
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email" inputmode="email">
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Any password works" required>
+        <input type="password" id="password" name="password" placeholder="Any password works" required autocomplete="current-password">
       </div>
       <button type="submit" class="btn">Sign In</button>
       <p class="error" id="error">Invalid credentials</p>
