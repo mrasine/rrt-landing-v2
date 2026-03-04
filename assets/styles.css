@@ -1327,6 +1327,15 @@ main {
   div[style*="display: flex"][style*="gap: 15px"]:has(.btn) {
     flex-direction: column !important;
   }
+
+  /* Schedule card text bump for readability */
+  .schedule-card p,
+  .schedule-card a {
+    font-size: 0.85rem !important;
+  }
+  .schedule-card h4 {
+    font-size: 1rem !important;
+  }
 }
 
 /* ── Floating utility buttons ── */
