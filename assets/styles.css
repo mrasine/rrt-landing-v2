@@ -932,6 +932,25 @@ main {
   /* Keep gallery photo grid at 2 columns on small screens */
   .grid-4:has(> div[style*="aspect-ratio"]) { grid-template-columns: repeat(2, 1fr) !important; }
   .grid-form { grid-template-columns: 1fr; }
+
+  /* Program card headers: stack image + title on small screens */
+  .program-header {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  .program-header img {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  .program-header h2 {
+    font-size: 1.5rem !important;
+  }
+
+  /* Homepage program thumbnails: slightly smaller on tiny screens */
+  .program-thumbs img {
+    width: 100px !important;
+    height: 100px !important;
+  }
 }
 
 /* Mobile: section padding, trust badges, reviews, video */
