@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /login.html
+Disallow: /community.html
+Disallow: /registration.html.bak
+
+Sitemap: https://rhythmicribbonoftexas.com/sitemap.xml

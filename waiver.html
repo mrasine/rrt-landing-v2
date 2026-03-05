@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; media-src 'self'; frame-src https://www.google.com; connect-src 'self' https://api.emailjs.com;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
@@ -110,6 +111,11 @@
       </div>
 
       <form id="waiverForm" style="margin-top: 20px;">
+        <!-- Bot trap -->
+        <div style="position:absolute;left:-9999px;" aria-hidden="true">
+          <input type="text" name="fax_number" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" name="waiver_ts" id="waiver-ts">
         <!-- Parent Information -->
         <div class="waiver-section">
           <h3>Parent/Guardian Information</h3>
@@ -475,6 +481,8 @@
 
       function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
       function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
+      var waiverTs = document.getElementById('waiver-ts');
+      if (waiverTs) waiverTs.value = Date.now();
 
       form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -520,6 +528,12 @@
         for (var i = 0; i < checkboxes.length; i++) {
           clearError(checkboxes[i][0]);
           if (!checkboxes[i][0].checked) { showError(checkboxes[i][0], checkboxes[i][1]); ok = false; }
+        }
+
+        // Bot checks
+        if (ok && form.elements.fax_number && form.elements.fax_number.value) { form.reset(); return; }
+        if (ok && waiverTs && (Date.now() - parseInt(waiverTs.value)) < 5000) {
+          alert('Please take your time filling out the form.'); return;
         }
 
         if (ok) {

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; media-src 'self'; frame-src https://www.google.com; connect-src 'self' https://api.emailjs.com;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
@@ -127,6 +128,11 @@
                 <label for="contact-message" style="display: block; margin-bottom: 8px; color: var(--rrt-muted-light);">Message *</label>
                 <textarea id="contact-message" name="message" rows="4" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: var(--rrt-cream); resize: vertical;"></textarea>
               </div>
+              <!-- Bot trap -->
+              <div style="position:absolute;left:-9999px;" aria-hidden="true">
+                <input type="text" name="website" tabindex="-1" autocomplete="off">
+              </div>
+              <input type="hidden" name="timestamp" id="contact-ts">
               <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
             </form>
           </div>
@@ -220,6 +226,8 @@
     (function() {
       const form = document.getElementById('contact-form');
       if (!form) return;
+      var tsField = document.getElementById('contact-ts');
+      if (tsField) tsField.value = Date.now();
 
       function showError(el, msg) {
         clearError(el);
@@ -251,6 +259,12 @@
         if (!email.value.trim()) { showError(email, 'Please enter your email'); ok = false; }
         else if (!validEmail(email.value)) { showError(email, 'Please enter a valid email'); ok = false; }
         if (!message.value.trim()) { showError(message, 'Please enter a message'); ok = false; }
+
+        // Bot checks
+        if (ok && form.elements.website && form.elements.website.value) { form.reset(); return; }
+        if (ok && tsField && (Date.now() - parseInt(tsField.value)) < 3000) {
+          alert('Please wait a moment before submitting.'); return;
+        }
 
         if (ok) {
           alert('Thank you! We\'ll get back to you soon.');

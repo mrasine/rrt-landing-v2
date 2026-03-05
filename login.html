@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; media-src 'self'; frame-src https://www.google.com; connect-src 'self' https://api.emailjs.com;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
   <title>Login | Rhythmic Ribbon of Texas</title>
   <link rel="canonical" href="https://rhythmicribbonoftexas.com/login.html">
   <meta property="og:title" content="Login | Rhythmic Ribbon of Texas">
@@ -129,8 +131,13 @@
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Any password works" required autocomplete="current-password">
+        <input type="password" id="password" name="password" placeholder="Enter password" required autocomplete="current-password">
       </div>
+      <!-- Bot trap -->
+      <div style="position:absolute;left:-9999px;" aria-hidden="true">
+        <input type="text" name="username" tabindex="-1" autocomplete="off">
+      </div>
+      <input type="hidden" name="login_ts" id="login-ts">
       <button type="submit" class="btn">Sign In</button>
       <p class="error" id="error" aria-live="assertive">Invalid credentials</p>
     </form>
@@ -138,9 +145,28 @@
   </div>
 
   <script>
+    var loginTs = document.getElementById('login-ts');
+    if (loginTs) loginTs.value = Date.now();
+    var loginAttempts = 0;
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      // Allow any credentials (including blank) - redirect to community
+      // Bot check: honeypot
+      var hp = this.elements.username;
+      if (hp && hp.value) return;
+      // Bot check: too fast
+      if (loginTs && (Date.now() - parseInt(loginTs.value)) < 2000) {
+        document.getElementById('error').style.display = 'block';
+        document.getElementById('error').textContent = 'Please wait a moment.';
+        return;
+      }
+      // Rate limit: max 5 attempts
+      loginAttempts++;
+      if (loginAttempts > 5) {
+        document.getElementById('error').style.display = 'block';
+        document.getElementById('error').textContent = 'Too many attempts. Please try again later.';
+        this.querySelector('button').disabled = true;
+        return;
+      }
       window.location.href = '/community.html';
     });
   </script>

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; media-src 'self'; frame-src https://www.google.com; connect-src 'self' https://api.emailjs.com;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
@@ -190,6 +191,11 @@
                 <div>
                   <label for="parentName" style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Name <span class="required-star">*</span></label>
                   <input type="text" name="parentName" id="parentName" placeholder="First Last" required style="width:100%;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:var(--rrt-cream);" autocomplete="name">
+                  <!-- Bot trap -->
+                  <div style="position:absolute;left:-9999px;" aria-hidden="true">
+                    <input type="text" name="company" tabindex="-1" autocomplete="off">
+                  </div>
+                  <input type="hidden" name="reg_ts" id="reg-ts">
                 </div>
                 <div>
                   <label for="email" style="display:block;margin-bottom:8px;color:var(--rrt-muted-light);">Email <span class="required-star">*</span></label>
@@ -700,6 +706,8 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
 (function() {
   var form = document.getElementById('reg-form');
   if (!form) return;
+  var regTs = document.getElementById('reg-ts');
+  if (regTs) regTs.value = Date.now();
 
   // Auto-format phone helper
   function formatPhone(e) {
@@ -784,6 +792,12 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
     }
     if (form.email.value.trim() && !validEmail(form.email.value)) { showError(form.email, 'Please enter a valid email'); ok = false; }
     if (form.phone.value.trim() && !validPhone(form.phone.value)) { showError(form.phone, 'Please enter a valid phone'); ok = false; }
+
+    // Bot checks
+    if (ok && form.elements.company && form.elements.company.value) { form.reset(); return; }
+    if (ok && regTs && (Date.now() - parseInt(regTs.value)) < 5000) {
+      alert('Please take your time filling out the form.'); return;
+    }
 
     if (!ok) { var f = form.querySelector('.field-error'); if (f) f.scrollIntoView({ behavior:'smooth', block:'center' }); return; }
 
