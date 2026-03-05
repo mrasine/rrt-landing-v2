@@ -31,8 +31,22 @@
     .video-hero .hero-cta-row { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
 
     @media (max-width: 768px) {
-      .video-hero { height: 50vh; min-height: 300px; }
-      .video-hero-overlay { padding-bottom: 30px; }
+      .video-hero { height: 44vh; min-height: 220px; }
+      .video-hero-overlay { padding-bottom: 18px; padding-left: 6vw; padding-right: 6vw; }
+      .video-hero h1 {
+        font-size: 1.45rem;
+        margin-bottom: 10px;
+        padding: 0 2vw;
+      }
+      .video-hero .lead {
+        font-size: 1rem;
+        margin-bottom: 8px;
+        padding: 0 2vw;
+      }
+      .hero-cta-row {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
 
     /* About + Schedule row */
