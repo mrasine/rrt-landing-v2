@@ -338,6 +338,62 @@
         </div>
       </div>
     </section>
+
+    <!-- FAQ Section -->
+    <section class="container" style="padding: 0 20px 60px;">
+      <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 25px; color: var(--rrt-gold); text-align: center;">Frequently Asked Questions</h2>
+      
+      <div style="max-width: 800px; margin: 0 auto;">
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>What ages do you accept?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">We accept students ages 4 and up. Our programs are tailored to different age groups from beginners to advanced.</p>
+        </details>
+        
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>What should my child wear?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">Leotards are recommended but not required. Students may wear athletic clothing that allows free movement. Hair should be secured away from the face.</p>
+        </details>
+        
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>Do I need to buy equipment?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">No, we provide all equipment for classes. Competition-level equipment can be purchased separately as needed.</p>
+        </details>
+        
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>What is your cancellation policy?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">You may cancel with 30 days notice. Please contact us to discuss options.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Student Testimonials -->
+    <section class="container" style="padding: 0 20px 60px;">
+      <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 25px; color: var(--rrt-gold); text-align: center;">Hear From Our Students</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto;">
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; padding: 10px; cursor: pointer;" onclick="openVideoModal('assets/testimonial-1.mp4')">
+          <video src="assets/testimonial-1.mp4" preload="metadata" style="width: 100%; border-radius: 8px; height: 120px; object-fit: cover;"></video>
+        </div>
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; padding: 10px; cursor: pointer;" onclick="openVideoModal('assets/testimonial-2.mp4')">
+          <video src="assets/testimonial-2.mp4" preload="metadata" style="width: 100%; border-radius: 8px; height: 120px; object-fit: cover;"></video>
+        </div>
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; padding: 10px; cursor: pointer;" onclick="openVideoModal('assets/testimonial-3.mp4')">
+          <video src="assets/testimonial-3.mp4" preload="metadata" style="width: 100%; border-radius: 8px; height: 120px; object-fit: cover;"></video>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -383,6 +439,17 @@
     <video id="modalVideo" style="max-width:90%; max-height:80%; border-radius:10px;" controls></video>
     <p style="position:absolute; top:20px; color:#fff; font-size:0.9rem;">Tap to close or press Escape</p>
   </div>
+  <script>
+    window.openVideoModal = function(videoSrc) {
+      var modal = document.getElementById('videoModal');
+      var video = document.getElementById('modalVideo');
+      if (modal && video) {
+        video.src = videoSrc;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    };
+  </script>
   <script src="assets/main.js"></script>
   <script src="assets/audio.js"></script>
 </body>
