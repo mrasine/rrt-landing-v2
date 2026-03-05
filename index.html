@@ -21,14 +21,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    .hero-section { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 60px 20px; gap: 40px; min-height: 70vh; }
-    .hero-left { flex: 1 1 500px; }
-    .hero-right { flex: 0 1 380px; }
+    /* Video Hero */
+    .video-hero { position: relative; width: 100%; height: 85vh; min-height: 500px; overflow: hidden; }
+    .video-hero video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); object-fit: cover; }
+    .video-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(2,3,8,0.3) 0%, rgba(2,3,8,0.15) 40%, rgba(2,3,8,0.6) 75%, rgba(2,3,8,0.95) 100%); display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 0 20px 60px; text-align: center; z-index: 2; }
+    .video-hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.4rem); color: #fff; margin-bottom: 16px; text-shadow: 0 2px 20px rgba(0,0,0,0.6); max-width: 800px; }
+    .video-hero .hero-sub { color: var(--rrt-soft-gold); font-size: clamp(1rem, 2vw, 1.2rem); margin-bottom: 28px; text-shadow: 0 1px 10px rgba(0,0,0,0.5); }
+    .video-hero .hero-cta-row { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+    .video-hero .unmute-btn { position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.6); color: #fff; border: 2px solid var(--rrt-gold); border-radius: 50%; width: 48px; height: 48px; font-size: 1.2rem; cursor: pointer; z-index: 3; transition: opacity 0.3s, background 0.3s; }
+    .video-hero .unmute-btn:hover { background: rgba(212,175,55,0.3); }
+    @media (max-width: 768px) {
+      .video-hero { height: 75vh; min-height: 400px; }
+      .video-hero-overlay { padding-bottom: 40px; }
+    }
+
+    /* About + Schedule row */
+    .about-schedule { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 60px 20px; gap: 40px; }
+    .about-text { flex: 1 1 500px; }
+    .schedule-side { flex: 0 1 380px; }
     .schedule-card { background: transparent; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 20px; padding: 25px; }
     @media (max-width: 768px) {
-      .hero-section { flex-direction: column; min-height: auto; padding: 40px 16px; gap: 30px; }
-      .hero-left { flex: 1 1 auto; }
-      .hero-right { flex: 1 1 auto; width: 100%; }
+      .about-schedule { flex-direction: column; padding: 40px 16px; gap: 30px; }
+      .about-text { flex: 1 1 auto; }
+      .schedule-side { flex: 1 1 auto; width: 100%; }
     }
   </style>
 </head>
@@ -60,22 +75,59 @@
 
   <main id="main" style="position: relative;">
     <div class="hero-bg-fixed"></div>
-    
-    <section class="hero-section">
-      <div class="hero-left">
-        <h1 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 12px;">More Than Gymnastics. A Foundation for Confidence.</h1>
-        <p style="font-size: 1.1rem; color: var(--rrt-muted-light); margin-bottom: 15px;">Our academy is committed to serving you and your family. Our programs are designed for gymnasts ages 3 and up, focusing on rhythmic gymnastics. The curriculum includes fundamental body movements, introduction to handling apparatus (rope, hoop, ball, clubs, ribbon), development of flexibility, strength, and hand-eye coordination, and basic ballet concepts.</p>
-        <p style="color: var(--rrt-soft-gold); margin-bottom: 25px; font-weight: 500;">We aim to instill a love for rhythmic gymnastics, emphasizing grace, beauty, coordination, and skillful apparatus handling. The sessions are led by experienced and certified coaches in a safe, clean, and fun environment with top-notch equipment.</p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+
+    <!-- Video Hero -->
+    <section class="video-hero">
+      <video id="homeVideo" autoplay muted loop playsinline preload="auto" poster="assets/rrt-media/backgrounds/background-1.jpg">
+        <source src="assets/rrt-media/art/home-page-video.mp4" type="video/mp4">
+      </video>
+      <div class="video-hero-overlay">
+        <h1>More Than Gymnastics. A Foundation for Confidence.</h1>
+        <p class="hero-sub">Premier rhythmic gymnastics training in McKinney &amp; Frisco, TX</p>
+        <div class="hero-cta-row">
           <a href="/registration.html" class="btn btn-primary shine">Schedule a Trial Class Today</a>
           <a href="/programs.html" class="btn btn-secondary">View Programs</a>
         </div>
       </div>
-      
-      <div class="hero-right">
+      <button class="unmute-btn" id="unmuteBtn" aria-label="Unmute video">🔇</button>
+      <script>
+        (function() {
+          const video = document.getElementById('homeVideo');
+          const unmuteBtn = document.getElementById('unmuteBtn');
+          if (!video) return;
+          function updateBtn() {
+            unmuteBtn.textContent = video.muted ? '🔇' : '🔊';
+            unmuteBtn.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
+          }
+          unmuteBtn.addEventListener('click', function() {
+            video.muted = !video.muted;
+            if (!video.muted) video.volume = 1.0;
+            updateBtn();
+            if (video.paused) video.play();
+          });
+          video.addEventListener('volumechange', updateBtn);
+          updateBtn();
+        })();
+      </script>
+    </section>
+
+    <!-- About + Schedule -->
+    <section class="about-schedule">
+      <div class="about-text">
+        <p class="eyebrow">Our Academy</p>
+        <h2 style="font-family: var(--font-heading); font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 12px;">Where Grace Meets Discipline</h2>
+        <p style="font-size: 1.05rem; color: var(--rrt-muted-light); margin-bottom: 15px; line-height: 1.8;">Our programs are designed for gymnasts ages 3 and up, focusing on rhythmic gymnastics. The curriculum includes fundamental body movements, apparatus handling (rope, hoop, ball, clubs, ribbon), flexibility, strength, hand-eye coordination, and basic ballet concepts.</p>
+        <p style="color: var(--rrt-soft-gold); margin-bottom: 25px; font-weight: 500; line-height: 1.8;">We instill a love for rhythmic gymnastics, emphasizing grace, coordination, and skillful apparatus handling. Sessions are led by experienced, certified coaches in a safe, fun environment with top-notch equipment.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
+          <a href="/about.html" class="btn btn-secondary">Learn More</a>
+          <a href="tel:+17186892469" style="color: var(--rrt-soft-gold); text-decoration: none; font-size: 0.95rem;"><i class="fas fa-phone" style="margin-right: 6px;"></i>(718) 689-2469</a>
+        </div>
+      </div>
+
+      <div class="schedule-side">
         <div class="schedule-card">
           <h3 style="color: var(--rrt-gold); margin-bottom: 18px; text-align: center; font-size: 1.1rem;">Free Trial Class Schedule</h3>
-          
+
           <div style="margin-bottom: 12px;">
             <p style="text-align: center; margin-bottom: 15px;"><a href="tel:+17186892469" style="color: var(--rrt-gold); font-size: 1rem;">(718) 689-2469</a></p>
             <h4 style="color: var(--rrt-soft-gold); font-size: 0.95rem; margin-bottom: 8px;">McKinney</h4>
@@ -86,7 +138,7 @@
             <p style="color: var(--rrt-muted-light); font-size: 0.75rem;">Sat 12:45 - 2:15 PM</p>
             <p style="color: var(--rrt-muted-light); font-size: 0.75rem; margin-top: 4px;">Duration: 90 minutes</p>
           </div>
-          
+
           <div>
             <h4 style="color: var(--rrt-soft-gold); font-size: 0.95rem; margin-bottom: 8px;">Frisco</h4>
             <p style="color: var(--rrt-cream); font-size: 0.85rem; margin-bottom: 4px;"><strong>Rhythmic Ribbon of Texas</strong></p>
@@ -145,43 +197,6 @@
           <a href="https://share.google/osSjUmCME3pWLKZ2R" target="_blank" rel="noopener noreferrer" style="color: var(--rrt-gold); font-size: 0.9rem;">See all reviews on Google →</a>
         </div>
       </div>
-    </section>
-
-    <!-- Video Section -->
-    <section class="container" style="padding: 60px 20px;">
-      <p class="eyebrow" style="text-align: center;">Grace in Motion</p>
-      <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 30px; text-align: center;">Experience the Art of Rhythmic Gymnastics</h2>
-      <div style="max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 20px; overflow: hidden; position: relative;">
-        <video id="homeVideo" controls autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;" poster="assets/rrt-media/backgrounds/background-1.jpg">
-          <source src="assets/rrt-media/art/home-page-video.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <button id="unmuteBtn" style="position:absolute; bottom:16px; right:16px; background:rgba(0,0,0,0.7); color:#fff; border:2px solid var(--rrt-gold); border-radius:50%; width:48px; height:48px; font-size:1.2rem; cursor:pointer; z-index:10; transition: opacity 0.3s;" aria-label="Unmute video">🔇</button>
-      </div>
-      <script>
-        (function() {
-          const video = document.getElementById('homeVideo');
-          const unmuteBtn = document.getElementById('unmuteBtn');
-          if (!video) return;
-
-          // Update button icon based on mute state
-          function updateBtn() {
-            unmuteBtn.textContent = video.muted ? '🔇' : '🔊';
-            unmuteBtn.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
-          }
-
-          // Toggle mute on button click
-          unmuteBtn.addEventListener('click', function() {
-            video.muted = !video.muted;
-            if (!video.muted) video.volume = 1.0;
-            updateBtn();
-            if (video.paused) video.play();
-          });
-
-          video.addEventListener('volumechange', updateBtn);
-          updateBtn();
-        })();
-      </script>
     </section>
 
     <!-- What is Rhythmic Gymnastics -->
