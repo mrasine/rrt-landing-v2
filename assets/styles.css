@@ -153,9 +153,9 @@ textarea.field-error:focus {
 }
 
 .logo-lockup img {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-sm);
+  width: 80px;
+  height: 80px;
+  border-radius: 14px;
   border: 1px solid rgba(212, 175, 55, 0.5);
 }
 
