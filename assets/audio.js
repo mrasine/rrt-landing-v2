@@ -1,50 +1,66 @@
-// Background music player, synced with video mute button
+// Unified sound control: video unmute button + floating music button
 (function() {
   var audio = new Audio('assets/rrt-media/art/home-page-audio.mp3');
   audio.loop = true;
   audio.volume = 0.3;
 
-  var btn = document.createElement('button');
-  btn.className = 'floating-btn floating-btn--sound visible';
-  btn.innerHTML = '<i class="fas fa-music"></i>';
-  btn.setAttribute('aria-label', 'Play music');
+  var video = document.getElementById('homeVideo');
+  var unmuteBtn = document.getElementById('unmuteBtn');
 
-  function setPlaying() {
-    btn.innerHTML = '<i class="fas fa-volume-up"></i>';
-    btn.setAttribute('aria-label', 'Pause music');
+  // --- Floating music button (all pages) ---
+  var musicBtn = document.createElement('button');
+  musicBtn.className = 'floating-btn floating-btn--sound visible';
+  musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+  musicBtn.setAttribute('aria-label', 'Play music');
+
+  function musicPlaying() {
+    musicBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+    musicBtn.setAttribute('aria-label', 'Pause music');
   }
-  function setPaused() {
-    btn.innerHTML = '<i class="fas fa-music"></i>';
-    btn.setAttribute('aria-label', 'Play music');
+  function musicPaused() {
+    musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+    musicBtn.setAttribute('aria-label', 'Play music');
   }
 
-  btn.addEventListener('click', function() {
+  function updateVideoBtn() {
+    if (!unmuteBtn || !video) return;
+    unmuteBtn.textContent = video.muted ? '🔇' : '🔊';
+    unmuteBtn.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
+  }
+
+  // Music button: toggle background music, mute video if needed
+  musicBtn.addEventListener('click', function() {
     if (audio.paused) {
+      // Mute video before playing music
+      if (video && !video.muted) {
+        video.muted = true;
+        updateVideoBtn();
+      }
       audio.play().catch(function() {});
-      setPlaying();
+      musicPlaying();
     } else {
       audio.pause();
-      setPaused();
+      musicPaused();
     }
   });
 
-  // Sync with the video unmute button on home page
-  var video = document.getElementById('homeVideo');
-  if (video) {
-    // When video is unmuted, pause background music
-    video.addEventListener('volumechange', function() {
-      if (!video.muted && !audio.paused) {
-        audio.pause();
-        setPaused();
-      }
-    });
-    // When music starts, mute video so both don't play at once
-    audio.addEventListener('play', function() {
+  // Video unmute button: toggle video sound, pause music if needed
+  if (unmuteBtn && video) {
+    unmuteBtn.addEventListener('click', function() {
+      video.muted = !video.muted;
       if (!video.muted) {
-        video.muted = true;
+        video.volume = 1.0;
+        // Pause music when video is unmuted
+        if (!audio.paused) {
+          audio.pause();
+          musicPaused();
+        }
       }
+      updateVideoBtn();
+      if (video.paused) video.play();
     });
+    updateVideoBtn();
   }
 
-  document.body.appendChild(btn);
+  document.body.appendChild(musicBtn);
 })();
