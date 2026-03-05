@@ -180,7 +180,7 @@
         </div>
 
         <!-- ═══════════════════════════════════════════
-             STEP 1 — Registration
+             STEP 1: Registration
         ═══════════════════════════════════════════ -->
         <div class="step-panel active" id="step1">
           <form id="reg-form" novalidate>
@@ -255,7 +255,7 @@
         </div>
 
         <!-- ═══════════════════════════════════════════
-             STEP 2 — Waiver
+             STEP 2: Waiver
         ═══════════════════════════════════════════ -->
         <div class="step-panel" id="step2">
           <!-- Print-only header -->
@@ -478,7 +478,7 @@
         </div>
 
         <!-- ═══════════════════════════════════════════
-             STEP 3 — Schedule
+             STEP 3: Schedule
         ═══════════════════════════════════════════ -->
         <div class="step-panel" id="step3">
           <div class="form-section">
@@ -516,7 +516,7 @@
         </div>
 
         <!-- ═══════════════════════════════════════════
-             STEP 4 — Confirmation
+             STEP 4: Confirmation
         ═══════════════════════════════════════════ -->
         <div class="step-panel" id="step4">
           <div class="confirmation-card">
@@ -592,8 +592,8 @@ var OWNER_EMAIL = 'rhythmicribbonoftexas@gmail.com';
 //     - "parent_confirmation" -> sent to the parent
 //     - "owner_notification"  -> sent to the owner
 //  3. Copy your Public Key from Account -> API Keys
-var EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';           // TODO: Replace with real EmailJS public key — emails will NOT send without this
-var EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';           // TODO: Replace with real EmailJS service ID — emails will NOT send without this
+var EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';           // TODO: Replace with real EmailJS public key - emails will NOT send without this
+var EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';           // TODO: Replace with real EmailJS service ID - emails will NOT send without this
 var EMAILJS_PARENT_TEMPLATE = 'parent_confirmation';  // <-- template ID
 var EMAILJS_OWNER_TEMPLATE  = 'owner_notification';   // <-- template ID
 
@@ -695,7 +695,7 @@ function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
 
 /* ═══════════════════════════════════════════════════════
-   Step 1 — Registration Form
+   Step 1: Registration Form
    ═══════════════════════════════════════════════════════ */
 (function() {
   var form = document.getElementById('reg-form');
@@ -802,7 +802,7 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
 })();
 
 /* ═══════════════════════════════════════════════════════
-   Step 2 — Waiver Form
+   Step 2: Waiver Form
    ═══════════════════════════════════════════════════════ */
 (function() {
   var form = document.getElementById('waiver-form');
@@ -865,7 +865,7 @@ function validPhone(v) { return v.replace(/\D/g, '').length >= 10; }
 })();
 
 /* ═══════════════════════════════════════════════════════
-   Step 3 — Location + Calendar
+   Step 3: Location + Calendar
    ═══════════════════════════════════════════════════════ */
 function pickLocation(key) {
   selectedLocation = key;
@@ -984,7 +984,7 @@ function pickTime(btn, time) {
 }
 
 /* ═══════════════════════════════════════════════════════
-   Final Submit — Send Emails
+   Final Submit: Send Emails
    ═══════════════════════════════════════════════════════ */
 document.getElementById('finalSubmit').addEventListener('click', function() {
   if (!selectedDate || !selectedTime || !selectedLocation) return;
@@ -994,7 +994,7 @@ document.getElementById('finalSubmit').addEventListener('click', function() {
   btn.disabled = true;
 
   var loc = LOCATIONS[selectedLocation];
-  var locationStr = loc.label + ' — ' + loc.address;
+  var locationStr = loc.label + ', ' + loc.address;
   var dateStr = selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
   var programLabels = { preschool: 'Preschool (Ages 3-5)', beginners: 'Beginners (Ages 6+)' };
   var programLabel = programLabels[regData.program] || regData.program;

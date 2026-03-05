@@ -1,4 +1,4 @@
-// Background music player — synced with video mute button
+// Background music player, synced with video mute button
 (function() {
   var audio = new Audio('assets/rrt-media/art/home-page-audio.mp3');
   audio.loop = true;
