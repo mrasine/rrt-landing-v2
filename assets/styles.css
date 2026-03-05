@@ -910,6 +910,8 @@ main {
     padding: 20px;
     border-bottom: 1px solid var(--rrt-border);
     gap: 5px;
+    overflow-y: auto;
+    max-height: 80vh;
   }
 
   .header-nav.open { display: flex; }
