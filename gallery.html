@@ -455,6 +455,17 @@
         document.body.style.overflow = 'hidden';
       }
     };
+    window.closeModal = function() {
+      var modal = document.getElementById('videoModal');
+      var video = document.getElementById('modalVideo');
+      if (modal && video) {
+        video.pause();
+        video.currentTime = 0;
+        video.removeAttribute('src');
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    };
   </script>
   <script src="assets/main.js"></script>
   <script src="assets/audio.js"></script>
