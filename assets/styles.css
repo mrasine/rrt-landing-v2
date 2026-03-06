@@ -916,7 +916,7 @@ main {
 /* --- Body text utilities --- */
 .body-text      { color: var(--rrt-muted-light); line-height: 1.8; }
 .body-text + .body-text { margin-top: 15px; }
-.lead-text      { font-size: 1.1rem; color: var(--rrt-muted-light); }
+.lead-text      { font-size: 1.2rem; color: var(--rrt-muted-light); }
 .small-text     { font-size: 0.85rem; color: var(--rrt-muted-light); }
 .tiny-text      { font-size: 0.75rem; color: var(--rrt-muted-light); }
 
