@@ -1,37 +1,3 @@
-    <!-- FAQ Section -->
-    <section class="container" style="padding: 0 20px 60px;">
-      <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 25px; color: var(--rrt-gold); text-align: center;">Frequently Asked Questions</h2>
-      <div style="max-width: 800px; margin: 0 auto;">
-        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
-          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-            <span>What ages do you accept?</span>
-            <span style="color: var(--rrt-gold);">+</span>
-          </summary>
-          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">We accept students ages 4 and up. Our programs are tailored to different age groups from beginners to advanced.</p>
-        </details>
-        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
-          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-            <span>What should my child wear?</span>
-            <span style="color: var(--rrt-gold);">+</span>
-          </summary>
-          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">Leotards are recommended but not required. Students may wear athletic clothing that allows free movement. Hair should be secured away from the face.</p>
-        </details>
-        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
-          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-            <span>Do I need to buy equipment?</span>
-            <span style="color: var(--rrt-gold);">+</span>
-          </summary>
-          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">No, we provide all equipment for classes. Competition-level equipment can be purchased separately as needed.</p>
-        </details>
-        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
-          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-            <span>What is your cancellation policy?</span>
-            <span style="color: var(--rrt-gold);">+</span>
-          </summary>
-          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">You may cancel with 30 days notice. Please contact us to discuss options.</p>
-        </details>
-      </div>
-    </section>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,7 +96,7 @@
         <h2 style="color: var(--rrt-gold); margin-bottom: 12px;">The Five Apparatus</h2>
         <p style="color: var(--rrt-muted-light); text-align: center; margin-bottom: 25px; font-size: 0.9rem;">Hover or tap to watch</p>
         <div class="grid-5">
-          <div class="apparatus-item" onclick="openModal(this.dataset.video)" data-video="assets/rrt-media/apparatus-videos/rope-small.mp4" onmouseover="playVideo(this)" onmouseout="stopVideo(this)" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 15px; padding: 10px; text-align: center; cursor: pointer;">
+          <div class="apparatus-item" onclick="openModal(this.dataset.video)" data-video="assets/rrt-media/apparatus-videos/rope-small.mp4" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 15px; padding: 10px; text-align: center; cursor: pointer;">
             <div style="position: relative; width: 100%; height: 80px; display: flex; align-items: center; justify-content: center;">
               <img src="assets/icon-rope.svg" alt="Rope" class="apparatus-icon" style="width: 50px; height: 50px; object-fit: contain;">
               <video src="assets/rrt-media/apparatus-videos/rope-small.mp4" muted class="apparatus-video" style="display:none; width: 100%; height: 80px; object-fit: contain; border-radius: 8px;"></video>
@@ -138,7 +104,7 @@
             <h3 style="font-size: 0.9rem; margin-top: 10px;">Rope</h3>
             <p style="font-size: 0.7rem; color: var(--rrt-muted-light);">tap to watch</p>
           </div>
-          <div class="apparatus-item" onclick="openModal(this.dataset.video)" data-video="assets/rrt-media/apparatus-videos/hoop.mp4" onmouseover="playVideo(this)" onmouseout="stopVideo(this)" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 15px; padding: 10px; text-align: center; cursor: pointer;">
+          <div class="apparatus-item" onclick="openModal(this.dataset.video)" data-video="assets/rrt-media/apparatus-videos/hoop.mp4" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 15px; padding: 10px; text-align: center; cursor: pointer;">
             <div style="position: relative; width: 100%; height: 80px; display: flex; align-items: center; justify-content: center;">
               <img src="assets/icon-hoop.svg" alt="Hoop" class="apparatus-icon" style="width: 50px; height: 50px; object-fit: contain;">
               <video src="assets/rrt-media/apparatus-videos/hoop.mp4" muted class="apparatus-video" style="display:none; width: 100%; height: 80px; object-fit: contain; border-radius: 8px;"></video>
@@ -146,7 +112,7 @@
             <h3 style="font-size: 0.9rem; margin-top: 10px;">Hoop</h3>
             <p style="font-size: 0.7rem; color: var(--rrt-muted-light);">tap to watch</p>
           </div>
-          <div class="apparatus-item" onclick="openModal(this.dataset.video)" data-video="assets/rrt-media/apparatus-videos/ball.mp4" onmouseover="playVideo(this)" onmouseout="stopVideo(this)" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 15px; padding: 10px; text-align: center; cursor: pointer;">
+          <div class="apparatus-item" onclick="openModal(this.dataset.video)" data-video="assets/rrt-media/apparatus-videos/ball.mp4" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 15px; padding: 10px; text-align: center; cursor: pointer;">
             <div style="position: relative; width: 100%; height: 80px; display: flex; align-items: center; justify-content: center;">
               <img src="assets/icon-ball.svg" alt="Ball" class="apparatus-icon" style="width: 50px; height: 50px; object-fit: contain;">
               <video src="assets/rrt-media/apparatus-videos/ball.mp4" muted class="apparatus-video" style="display:none; width: 100%; height: 80px; object-fit: contain; border-radius: 8px;"></video>
@@ -154,7 +120,7 @@
             <h3 style="font-size: 0.9rem; margin-top: 10px;">Ball</h3>
             <p style="font-size: 0.7rem; color: var(--rrt-muted-light);">tap to watch</p>
           </div>
-          <div class="apparatus-item" onclick="openModal(this.dataset.video)" data-video="assets/rrt-media/apparatus-videos/club-small.mp4" onmouseover="playVideo(this)" onmouseout="stopVideo(this)" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 15px; padding: 10px; text-align: center; cursor: pointer;">
+          <div class="apparatus-item" onclick="openModal(this.dataset.video)" data-video="assets/rrt-media/apparatus-videos/club-small.mp4" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 15px; padding: 10px; text-align: center; cursor: pointer;">
             <div style="position: relative; width: 100%; height: 80px; display: flex; align-items: center; justify-content: center;">
               <img src="assets/icon-clubs.svg" alt="Clubs" class="apparatus-icon" style="width: 50px; height: 50px; object-fit: contain;">
               <video src="assets/rrt-media/apparatus-videos/club-small.mp4" muted class="apparatus-video" style="display:none; width: 100%; height: 80px; object-fit: contain; border-radius: 8px;"></video>
@@ -162,7 +128,7 @@
             <h3 style="font-size: 0.9rem; margin-top: 10px;">Clubs</h3>
             <p style="font-size: 0.7rem; color: var(--rrt-muted-light);">tap to watch</p>
           </div>
-          <div class="apparatus-item" onclick="openModal(this.dataset.video)" data-video="assets/rrt-media/apparatus-videos/ribbons-small.mp4" onmouseover="playVideo(this)" onmouseout="stopVideo(this)" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 15px; padding: 10px; text-align: center; cursor: pointer;">
+          <div class="apparatus-item" onclick="openModal(this.dataset.video)" data-video="assets/rrt-media/apparatus-videos/ribbons-small.mp4" style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 15px; padding: 10px; text-align: center; cursor: pointer;">
             <div style="position: relative; width: 100%; height: 80px; display: flex; align-items: center; justify-content: center;">
               <img src="assets/icon-ribbon-stick.svg" alt="Ribbon" class="apparatus-icon" style="width: 50px; height: 50px; object-fit: contain;">
               <video src="assets/rrt-media/apparatus-videos/ribbons-small.mp4" muted class="apparatus-video" style="display:none; width: 100%; height: 80px; object-fit: contain; border-radius: 8px;"></video>
@@ -172,29 +138,93 @@
           </div>
         </div>
       </div>
-      <script>
-        // Desktop hover
-        function playVideo(el) {
-          if (window.innerWidth > 768) {
-            el.querySelector('.apparatus-icon').style.display = 'none';
-            el.querySelector('.apparatus-video').style.display = 'block';
-            el.querySelector('.apparatus-video').play();
-          }
-        }
-        function stopVideo(el) {
-          if (window.innerWidth > 768) {
-            var vid = el.querySelector('.apparatus-video');
-            vid.pause();
-            vid.currentTime = 0;
-            vid.style.display = 'none';
-            el.querySelector('.apparatus-icon').style.display = 'block';
-          }
-        }
-        // Mobile tap - open modal is handled by main.js
-      </script>
-      
       <div style="text-align: center; margin-top: 60px;">
         <a href="/programs.html" class="btn btn-primary">Explore Our Programs</a>
+      </div>
+
+      <!-- FAQ Section -->
+      <div style="margin-top: 80px;">
+        <h2 style="color: var(--rrt-gold); margin-bottom: 20px;">Frequently Asked Questions</h2>
+        
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>What is rhythmic gymnastics?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">Rhythmic gymnastics is a sport that combines gymnastics, dance, and flexibility. Athletes perform routines to music using apparatus like ribbon, hoop, ball, rope, and clubs.</p>
+        </details>
+        
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>What age can children start rhythmic gymnastics?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">Children can start as early as 3 years old in preschool classes designed to build coordination, flexibility, and basic movement skills.</p>
+        </details>
+        
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>Does my child need experience to join?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">No experience is needed. Beginner classes are designed for students who are new to rhythmic gymnastics.</p>
+        </details>
+        
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>What should my child wear to class?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">A leotard with white socks, or leggings with a tank top and white socks. No jewelry. Hair should be pulled up.</p>
+        </details>
+        
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>What programs do you offer?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">We offer preschool classes, beginner rhythmic gymnastics classes, flexibility and conditioning classes, ballet, and a competitive team program.</p>
+        </details>
+        
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>How do students move to higher levels?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">Coaches evaluate students based on their skills, flexibility, focus, and readiness for the next level.</p>
+        </details>
+        
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>Do you have a competitive team?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">Yes. Students who show strong ability and commitment may be invited to join the competitive team.</p>
+        </details>
+        
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>How do I register my child?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">You can register through our website or contact us directly for class availability.</p>
+        </details>
+        
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>Can my child try a class first?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">Yes, trial classes may be available depending on space in the class.</p>
+        </details>
+        
+        <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--rrt-border); border-radius: 12px; margin-bottom: 12px; padding: 15px; cursor: pointer;">
+          <summary style="color: var(--rrt-cream); font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            <span>Where are you located?</span>
+            <span style="color: var(--rrt-gold);">+</span>
+          </summary>
+          <p style="color: var(--rrt-muted-light); margin-top: 12px; line-height: 1.6;">We are located in McKinney and Frisco, Texas.</p>
+        </details>
       </div>
 
       <!-- Safety Section -->
@@ -271,10 +301,9 @@
 
   <!-- Video Modal -->
   <div id="videoModal" tabindex="-1" role="dialog" aria-modal="true" aria-label="Video player" onclick="closeModal()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; align-items:center; justify-content:center; cursor:pointer;">
-    <video id="modalVideo" style="max-width:90%; max-height:80%; border-radius:10px;" controls></video>
+    <video id="modalVideo" onclick="event.stopPropagation()" style="max-width:90%; max-height:80%; border-radius:10px;" controls></video>
     <p style="position:absolute; top:20px; color:#fff; font-size:0.9rem;">Tap to close or press Escape</p>
   </div>
-  <script src="assets/main.js"></script>
   <script src="assets/audio.js"></script>
 </body>
 </html>

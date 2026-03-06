@@ -107,6 +107,7 @@ function openModal(videoSrc) {
   if (!modal || !modalVideo) return;
   modalVideo.src = videoSrc;
   modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
   modalVideo.play();
   // Trap focus and allow Escape to close
   modal.focus();
@@ -126,7 +127,27 @@ function closeModal() {
   modalVideo.currentTime = 0;
   modalVideo.removeAttribute('src');
   modal.style.display = 'none';
+  document.body.style.overflow = '';
 }
+
+// Apparatus hover preview — desktop (pointer/hover capable) devices only
+(function() {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  document.querySelectorAll('.apparatus-item').forEach(function(el) {
+    el.addEventListener('mouseenter', function() {
+      var icon = el.querySelector('.apparatus-icon');
+      var vid = el.querySelector('.apparatus-video');
+      if (icon) icon.style.display = 'none';
+      if (vid) { vid.style.display = 'block'; vid.play(); }
+    });
+    el.addEventListener('mouseleave', function() {
+      var icon = el.querySelector('.apparatus-icon');
+      var vid = el.querySelector('.apparatus-video');
+      if (vid) { vid.pause(); vid.currentTime = 0; vid.style.display = 'none'; }
+      if (icon) icon.style.display = 'block';
+    });
+  });
+})();
 
 // Reviews Carousel
 (function() {
