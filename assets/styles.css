@@ -896,18 +896,18 @@ main {
    ======================================== */
 
 /* --- Text color utilities --- */
-.text-gold       { color: var(--rrt-gold); }
-.text-soft-gold  { color: var(--rrt-soft-gold); }
-.text-muted      { color: var(--rrt-muted-light); }
-.text-cream      { color: var(--rrt-cream); }
+.text-gold,      a.text-gold      { color: var(--rrt-gold); }
+.text-soft-gold, a.text-soft-gold { color: var(--rrt-soft-gold); }
+.text-muted,     a.text-muted     { color: var(--rrt-muted-light); }
+.text-cream,     a.text-cream     { color: var(--rrt-cream); }
 .text-center     { text-align: center; }
 
 /* --- Heading utilities --- */
-.heading { font-family: var(--font-heading); }
-.heading-xl  { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 12px; }
-.heading-lg  { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 12px; }
-.heading-md  { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 12px; }
-.heading-sm  { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 10px; }
+.heading     { font-family: var(--font-heading); }
+.heading-xl  { font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 3.5rem); }
+.heading-lg  { font-family: var(--font-heading); font-size: 2.5rem; }
+.heading-md  { font-family: var(--font-heading); font-size: 2rem; }
+.heading-sm  { font-family: var(--font-heading); font-size: 1.3rem; }
 
 /* --- Body text utilities --- */
 .body-text      { color: var(--rrt-muted-light); line-height: 1.8; }
